@@ -1,0 +1,87 @@
+
+.about-container{
+
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    max-height: 500px;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+ 
+
+}
+
+.banner{
+    overflow: hidden;
+    max-height: 400px;
+    max-width: 1200px;
+  
+}
+
+.banner > img {
+
+    width: 100%;
+    height: 100%;   
+    object-fit: cover;
+
+}
+
+
+.about {
+    display: flex;
+}
+
+.profile{
+    min-width: 200px;
+    position: relative;
+    top: -100px;
+    padding-left: 10px;
+    background-color: transparent;
+    text-align: center;
+
+
+}
+
+.profile-image{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid black;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+
+.profile-image > img{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.profile-name{
+    
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    
+}
+
+.buttons{
+
+   width: 100%;
+}
+
+.about-me{
+
+    width: 100%;
+    height: 100%;
+    padding-top: 2%;
+    padding-left: 2%;
+ 
+
+
+}

@@ -1,0 +1,14 @@
+.header-right-container > fa-icon {
+
+    margin: 5px;
+
+
+}
+
+.header-right-container > fa-icon:hover{
+
+    cursor: hand;
+    cursor: pointer;
+
+
+}

@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+* { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+}
+
+html{
+
+    background-color: rgb(228, 228, 228);
+
+}
