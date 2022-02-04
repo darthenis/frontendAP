@@ -1,9 +1,17 @@
 footer{
 
     width: 100%;
-    text-align: center;
     height: 200px;
     margin-top: 20px;
+    margin-top: 20px;
 
+
+}
+
+.container__footer{
+
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
 
 }

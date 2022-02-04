@@ -1,14 +1,14 @@
 
-.about-container{
-
+.aboutme{
+    display: grid;
+    grid-template-rows: 60% 40%;
+    max-height: 500px;
     position: relative;
     width: 100%;
     margin-top: 20px;
-    max-height: 500px;
+  /* hand this with jquery */
     overflow: hidden;
     background-color: white;
-    display: flex;
-    flex-direction: column;
     border-radius: 20px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
  
@@ -17,42 +17,51 @@
 
 .banner{
     overflow: hidden;
-    max-height: 400px;
-    max-width: 1200px;
-  
+    
 }
 
 .banner > img {
 
     width: 100%;
-    height: 100%;   
-    object-fit: cover;
+    height: 100%; 
+    object-fit: fill;
 
 }
 
+.about-me-container{
 
-.about {
     display: flex;
+    margin-top: 2%;
+
 }
 
-.profile{
-    min-width: 200px;
+
+.header-about{
     position: relative;
-    top: -100px;
-    padding-left: 10px;
-    background-color: transparent;
-    text-align: center;
-
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 2%;
+    padding-right: 2%;
 
 }
+
+.header-about > fa-icon{
+
+    align-self: flex-start;
+
+}
+
 
 .profile-image{
+    position: absolute;
+    top: -120px;
+    left: 4%;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     border: 2px solid black;
     overflow: hidden;
-    margin: 0 auto;
 }
 
 
@@ -62,26 +71,53 @@
     
 }
 
-.profile-name{
-    
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    
+.profile{
+    padding-left: 2%;
+    padding-right: 2%;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+
 }
 
-.buttons{
+.profile > ul > li{
 
-   width: 100%;
+    list-style: none;
+    font-size: 20px;
+
 }
+
 
 .about-me{
 
-    width: 100%;
+    grid-column: 2/-1;
+    margin-left: 5%;
+    width: 60%;
     height: 100%;
-    padding-top: 2%;
-    padding-left: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
  
+}
+
+.profile > ul > li > .name{
+
+    font-size: 25px;
+
+}
+
+
+.profile > ul > li > .title{
+
+    font-weight: bold;
+}
+
+.profile > ul > li > .location{
+
+    font-size: 12px; 
 
 
 }

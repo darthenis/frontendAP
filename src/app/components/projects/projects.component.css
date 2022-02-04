@@ -1,8 +1,46 @@
-.container-projects{
+.projects{
     background: white;
     width: 100%;
     max-width: 1200px;
     padding: 1.5%;
     border-radius: 20px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+}
+
+.projects__title {
+
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: rgb(0 0 0 / 50%);
+}
+
+.projects__content{
+    padding: 5%;
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax( 1em, 20em) minmax( 1em, 20em) minmax( 1em, 20em);
+    column-gap: 20px;
+    justify-content: space-between;
+}
+
+.projects__content-item{
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.projects__content-item-image{
+
+    width: 100%;
+
+}
+
+.projects__content-item-image > img {
+    width: 100%;
+    object-fit: fill;
+   
 }
