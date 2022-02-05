@@ -14,6 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
 import { EditButtonsComponent } from './components/modules/edit-buttons/edit-buttons.component';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { ButtonComponent } from './components/modules/button/button.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
     SkillsComponent,
     ProjectsComponent,
     FooterComponent,
-    EditButtonsComponent
+    EditButtonsComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<section class="aboutme">  <!-- About Me -->
+<section class="app-about-me">  <!-- About Me -->
 
 
     <div class="banner"><img src="/assets/banner.png" alt=""></div>
@@ -11,18 +11,21 @@
 
         <div class="about-me-container">
             <div class="profile">
-                <ul>
-                    <li><span class="name">Emiliano Acevedo</span></li>
-                    <li><span class="title">Full Stack Developer Jr</span></li>
-                    <li><span class="location">La Plata, Buenos Aires, Argentina</span></li>
-                </ul>
+               
+                    <div><span class="name">Emiliano Acevedo</span></div>
+                    <div><span class="title">Full Stack Developer Jr</span></div>
+                    <div><span class="location">La Plata, Buenos Aires, Argentina</span></div>
+              
             </div>
             <div class="about-me">
-                <h2>Sobre mí</h2>  
+                <span>Sobre mí</span>   
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, praesentium ducimus? 
                     Impedit iusto cumque ab maxime, dolores officiis nemo, molestias nostrum error
                     modi pariatur saepe reiciendis expedita praesentium tempore culpa.</p>
             </div>
+        </div>
+        <div>
+            <app-button [name]="'Añadir Sección'"></app-button>
         </div>
 
     </div>

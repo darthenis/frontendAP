@@ -5,7 +5,17 @@
     padding: 1.5%;
     border-radius: 20px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    font-family: sans-serif;
 
+
+}
+
+.app-education > span{
+
+
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: rgb(0 0 0 / 50%);
 
 }
 
@@ -32,16 +42,6 @@
 
 }
 
-.header-container > span{
-
-    font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: rgb(0 0 0 / 50%);
-
-
-}
-
 .header-right-container > span{
 
     margin: 5px;
@@ -53,6 +53,11 @@
 
     padding: 1%;
 
+}
+
+.info-container > ul{
+
+    list-style: none;
 }
 
 .education-item{
