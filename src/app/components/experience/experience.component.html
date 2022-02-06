@@ -1,17 +1,19 @@
-<section class="app-experience">
+<section class="app-experience" >
                     <span>Experiencia</span>
-                    <article class="experience-container">
-                        <div class="experience-item">
-                            <div class="logo-exp"><img src="/assets/empty.png" alt=""></div>
-                            <div class="info-container">
-                                <div class="header-item"><h2>Desarrollador Web</h2> <app-edit-buttons></app-edit-buttons></div>
-                                <ul>
-                                    <li><strong>Empresa</strong>: Casa de la Cultura</li>
-                                    <li><strong>Fecha</strong>: Enero 2019 - Actualidad</li>
-                                    <li><strong>Puesto:</strong>: frontend </li>
-                                    <li><strong>Info:</strong>: asdasdasdasdasdasd</li>
-                                </ul>
+                        <article class="experience-container" *ngFor="let e of elements">
+                            <div class="experience-item">
+                                <div class="logo-exp"><img src="/assets/empty.png" alt=""></div>
+                                <div class="info-container">
+                                    <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons></app-edit-buttons></div>
+                                    <ul>
+                                        <li><strong>Empresa</strong>: {{e.name}}</li>
+                                        <li><strong>Fecha</strong>: {{e.initDate}} - {{e.endDate}}</li>
+                                        <li><strong>Puesto:</strong>: {{e.job}} </li>
+                                        <li><strong>Info:</strong>: {{e.info}}</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </article>  <!-- End of experience-container -->
+                        </article>
+
+                      <!-- End of experience-container -->
 </section>

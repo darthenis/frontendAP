@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faPenSquare} from '@fortawesome/free-solid-svg-icons';
+import {faPenSquare, faCamera } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-about-me',
@@ -9,6 +9,7 @@ import {faPenSquare} from '@fortawesome/free-solid-svg-icons';
 export class AboutMeComponent implements OnInit {
 
   faPenSquare = faPenSquare;
+  faCamera = faCamera;
 
   constructor() { }
 

@@ -17,6 +17,7 @@
 
 .banner{
     overflow: hidden;
+    position: relative;
     
 }
 
@@ -27,6 +28,18 @@
     object-fit: fill;
 
 }
+
+.banner > fa-icon{
+
+    position: absolute;
+    margin-top: 1%;
+    right: 1%;
+    color: rgb(175, 175, 175);
+    cursor: pointer;
+    cursor: hand;
+
+}
+
 
 .about-me-container{
 
@@ -53,10 +66,8 @@
 }
 
 
-.profile-image{
-    position: absolute;
-    top: -120px;
-    left: 4%;
+.card-avatar{
+   
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -65,10 +76,28 @@
 }
 
 
-.profile-image > img{
+.card-avatar > img{
     width: 100%;
     height: 100%;
     
+}
+
+.container-avatar{
+    position: absolute;
+    top: -120px;
+    left: 4%;
+    position: absolute;
+}
+
+.edit-avatar{
+
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: rgb(175, 175, 175);
+    cursor: pointer;
+    cursor: hand;
+
 }
 
 .profile{

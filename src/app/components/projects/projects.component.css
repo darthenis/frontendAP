@@ -28,7 +28,7 @@
     margin: 0 auto;
     height: 100%;
     display: grid;
-    grid-template-columns: minmax( 1em, 20em) minmax( 1em, 20em) minmax( 1em, 20em);
+    grid-template-columns: minmax( 1em, 40em) minmax( 1em, 40em);
     column-gap: 20px;
     justify-content: space-between;
 }
