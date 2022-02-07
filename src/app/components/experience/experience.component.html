@@ -1,4 +1,4 @@
-<section class="app-experience" >
+<section class="app-experience" [ngStyle]="{'display': display }">
                     <span>Experiencia</span>
                         <article class="experience-container" *ngFor="let e of elements">
                             <div class="experience-item">
@@ -7,9 +7,9 @@
                                     <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons></app-edit-buttons></div>
                                     <ul>
                                         <li><strong>Empresa</strong>: {{e.name}}</li>
-                                        <li><strong>Fecha</strong>: {{e.initDate}} - {{e.endDate}}</li>
-                                        <li><strong>Puesto:</strong>: {{e.job}} </li>
-                                        <li><strong>Info:</strong>: {{e.info}}</li>
+                                        <li><strong>Fecha</strong>: {{e.initDate}} a {{e.endDate}}</li>
+                                        <li><strong>Puesto</strong>: {{e.job}} </li>
+                                        <li><strong>Info</strong>: {{e.info}}</li>
                                     </ul>
                                 </div>
                             </div>

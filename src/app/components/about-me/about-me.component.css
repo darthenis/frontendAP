@@ -40,6 +40,12 @@
 
 }
 
+.banner > fa-icon:hover{
+
+    color: rgb(141, 141, 141);
+
+}
+
 
 .about-me-container{
 
@@ -62,6 +68,14 @@
 .header-about > fa-icon{
 
     align-self: flex-start;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+.header-about > fa-icon:hover{
+
+    color: rgb(87, 87, 87);
 
 }
 
@@ -97,6 +111,12 @@
     color: rgb(175, 175, 175);
     cursor: pointer;
     cursor: hand;
+
+}
+
+.edit-avatar:hover{
+
+    color: rgb(141, 141, 141);
 
 }
 

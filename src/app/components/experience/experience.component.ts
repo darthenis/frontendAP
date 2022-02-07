@@ -11,7 +11,7 @@ export class ExperienceComponent implements OnInit {
   faPenSquare = faPenSquare;
   faTimes = faTimes;
 
-  elements =[{
+  elements: any[] =[{
       title : "Supermercado",
       name : "Argenchino",
       initDate : "julio - 2019",
@@ -27,6 +27,9 @@ export class ExperienceComponent implements OnInit {
       job : "desarrollo en frontend",
       info : "Encargado diseño e implementación de soluciones para usuarios con una buena experiencia"
     }]
+
+
+  display = this.elements.length ? 'block' : 'none';
 
   constructor() { }
 

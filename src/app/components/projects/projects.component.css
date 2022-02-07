@@ -15,6 +15,14 @@
     color: rgb(0 0 0 / 50%);
 }
 
+.projects-header-buttons{
+
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+
+}
+
 .projects__title {
 
     font-size: 20px;

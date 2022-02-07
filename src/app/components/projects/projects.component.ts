@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-elements = [{
+elements : any[] = [{
 
             title : "Mi portfolio",
             url : "http://www.miportfolio.com",
@@ -21,6 +21,8 @@ elements = [{
   info: "Mi proyecto de calculadora en Java"
 
 }]
+
+display = this.elements.length ? 'block' : 'none';
 
   constructor() { }
 

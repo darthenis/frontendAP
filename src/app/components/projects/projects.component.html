@@ -1,10 +1,13 @@
-<section class="projects">
+<section class="projects" [ngStyle]="{'display': display}">
         <span>Projects</span>
         <div class="projects__content">
             <article *ngFor='let e of elements'>
                 <div class="projects__content-item">
                     <div class="projects__content-item-image">
                         <img src="/assets/empty.png" alt="">
+                    </div>
+                    <div class="projects-header-buttons">
+                        <app-edit-buttons></app-edit-buttons>
                     </div>
                     <a href=e.url>{{e.url}}</a>
                     <div class="projects__content-item-text">

@@ -1,3 +1,4 @@
+import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EducationComponent implements OnInit {
 
-  elements =[{
+  elements : any[] =[{
     title: "Secundario",
     name : "Media 31, ex comercial San Martin",
     initDate : "marzo - 2007",
@@ -21,6 +22,8 @@ export class EducationComponent implements OnInit {
     endDate : "noviembre - 2019",
     career : "Programacion"
   }]
+
+  display = this.elements.length ? 'block' : 'none';
 
   constructor() { }
 

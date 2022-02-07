@@ -9,7 +9,7 @@ export class SkillsComponent implements OnInit {
 
   colorCircle = 'rgb(64, 175, 50)';
 
-  elements = [{
+  elements : any[] = [{
           name : "HTML",
           porcent: 90
   },
@@ -22,6 +22,7 @@ export class SkillsComponent implements OnInit {
           porcent: 70
 }]
 
+display = this.elements.length ? 'block' : 'none';
 
   constructor() { }
 

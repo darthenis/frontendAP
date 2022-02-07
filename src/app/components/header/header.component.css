@@ -65,6 +65,12 @@
 
 }
 
+.icon:hover{
+
+    color: rgb(87, 87, 87);
+
+}
+
 .navBar > button {
 
   margin-left: 5px;
