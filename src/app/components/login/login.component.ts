@@ -8,6 +8,7 @@ import { faUser, faKey, faEye, faEyeSlash, faSpinner} from '@fortawesome/free-so
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   faUser = faUser;
