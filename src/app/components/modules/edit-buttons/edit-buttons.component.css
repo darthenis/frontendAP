@@ -1,6 +1,7 @@
 .header-right-container > fa-icon {
 
     margin: 5px;
+    color: #273c75;
 
 
 }
@@ -9,7 +10,7 @@
 
     cursor: hand;
     cursor: pointer;
-    color: rgb(87, 87, 87);
+    color: #3958ad;
 
 
 }

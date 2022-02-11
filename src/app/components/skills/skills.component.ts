@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-skills',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SkillsComponent implements OnInit {
 
-  colorCircle = 'rgb(64, 175, 50)';
+  faTimes = faTimes;
+
+  colorCircle = '#273c75';
 
   elements : any[] = [{
           name : "HTML",

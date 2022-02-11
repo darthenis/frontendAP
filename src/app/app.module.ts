@@ -15,6 +15,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { EditButtonsComponent } from './components/modules/edit-buttons/edit-buttons.component';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { ButtonComponent } from './components/modules/button/button.component';
+import { LoginComponent } from './components/login/login.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,13 +32,18 @@ import { ButtonComponent } from './components/modules/button/button.component';
     ProjectsComponent,
     FooterComponent,
     EditButtonsComponent,
-    ButtonComponent
+    ButtonComponent,
+    LoginComponent,
+    PortfolioComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    RoundProgressModule
+    RoundProgressModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -70,12 +70,13 @@
     align-self: flex-start;
     cursor: hand;
     cursor: pointer;
+    color: #273c75;
 
 }
 
 .header-about > fa-icon:hover{
 
-    color: rgb(87, 87, 87);
+    color: #3958ad;
 
 }
 
@@ -185,8 +186,9 @@
 
 }
 
-app-button{
+.section-button{
 
     margin-left: 4%;
+    margin-right: 1%;
 
 }

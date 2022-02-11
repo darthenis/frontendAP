@@ -5,15 +5,16 @@ padding-left: 15px;
 padding-right: 15px;
 border-radius: 5px;
 border: none;
-background-color: rgb(0, 0, 0);
+background-color: #273c75;
 color: white;
+font-weight: bold;
 
 
 }
 
 #button:hover{
 
-    background-color: rgb(87, 87, 87);
+    background-color: #3e61c2;
     cursor: hand;
     cursor: pointer;
 

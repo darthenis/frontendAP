@@ -1,0 +1,33 @@
+.container-app{
+    background-color: rgb(228, 228, 228);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    row-gap: 20px;
+    flex-direction: column;
+  
+  }
+  
+  .header-grid{
+  
+      background-color: rgb(255, 255, 255);
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+      padding: 1.5%;
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+  
+  
+  }
+  
+  .layout{
+    height: auto;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+  }
