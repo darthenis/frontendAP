@@ -3,19 +3,22 @@
         <h1>Apportfolios</h1>
         <p>Te ayudamos a crear tu propio portfolio con la cual conectar con tu siguiente empleo.</p>
     </div>
-    <form action="" id="login-form">
+    <form action="" id="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="container__input">
                 <fa-icon class="iconUser" [icon]="faUser"></fa-icon>
-                <input type="text" id="login__user" class="login__input" placeholder="Usuario" required>
+                <input type="text" id="login__user" class="login__input" placeholder="Usuario" formControlName="username">
             </div>
             <div class="container__input">
                 <fa-icon class="iconUser" [icon]="faKey"></fa-icon>
-                <input [type]="passwordHide ? 'password' : 'text'" id="login__password"  class="login__input" placeholder="Contraseña" required>
+                <input [type]="passwordHide ? 'password' : 'text'" id="login__password"  class="login__input" placeholder="Contraseña" formControlName="password">
                 <fa-icon class="iconEye" [icon]='faEye'  *ngIf="passwordHide" (click)="hidePassword()"></fa-icon>
                 <fa-icon class="iconEye" [icon]='faEyeSlash' *ngIf="!passwordHide" (click)="hidePassword()"></fa-icon>
             </div>
             
-            <button type="submit" class="login__button">Iniciar Sesión</button>
+            <button type="submit" class="login__button">
+                <fa-icon *ngIf="loading" [icon]="faSpinner" [spin]="true"></fa-icon>
+                <span *ngIf="!loading">Iniciar Sesión</span>
+            </button>
 
             <div id="footer-login"> ¿Usuario nuevo? <a [routerLink]="['/registration']">Registrarse</a> </div>
     </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { faCheckCircle, faTimesCircle, faCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,15 +29,13 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  public profileGroup : any;
-
   invalidForm : boolean = false;
   
 
 
   onSubmit() {
 
-    if(!this.profileGroup.valid) {
+    if(!this.form.valid) {
       
       this.invalidForm = true;
       
@@ -45,42 +43,53 @@ export class RegistrationComponent implements OnInit {
 
       this.loading = true;
 
-      setTimeout(() => { this.loading = false } , 3000);
+      setTimeout(() => { 
+
+        this.loading = false
+        console.log(this.form.value.username); 
+      } , 3000);
+
     }
 
   }
 
  
+  form : FormGroup;
 
 
+  constructor(private fb : FormBuilder) { 
 
-  constructor() { }
+    this.form = this.fb.group({
 
-  ngOnInit(): void {
-
-    this.profileGroup = new FormGroup({
-
-      username : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]),
-      password : new FormControl('',  [Validators.required, Validators.minLength(8)]),
-      passwordConfirm : new FormControl('',  Validators.required),
-      name : new FormControl('', [Validators.required, Validators.minLength(3)]),
-      lastname : new FormControl('',  [Validators.required, Validators.minLength(3)]),
-      email : new FormControl('',  [Validators.required, Validators.email])
+      username : ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+      password : ['',  [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+      passwordConfirm : ['',  Validators.required],
+      name : ['', [Validators.required, Validators.minLength(3)]],
+      lastname : ['',  [Validators.required, Validators.minLength(3)]],
+      email : ['',  [Validators.required, Validators.email]]
 
     } , {validators: this.checkPasswords });
 
+
+  }
+
+  ngOnInit(): void {
+      
+
   }
   
-  get username() { return this.profileGroup.get('username'); }
+  get Username() { return this.form.get('username'); }
 
-  get password() { return this.profileGroup.get('password'); }
+  get Password() { return this.form.get('password'); }
 
-  get passwordConfirm() { return this.profileGroup.get('passwordConfirm'); }
+  get PasswordConfirm() { return this.form.get('passwordConfirm'); }
   
-  get name() { return this.profileGroup.get('name'); }
+  get Name() { return this.form.get('name'); }
 
-  get lastname() { return this.profileGroup.get('lastname'); }
+  get Lastname() { return this.form.get('lastname'); }
 
-  get email() { return this.profileGroup.get('email'); }
+  get Email() { return this.form.get('email'); }
+
+  
 
 }

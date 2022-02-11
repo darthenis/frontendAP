@@ -6,70 +6,71 @@
         <h1>Crea tu cuenta en Apportfolios</h1>
     </div>
 
-    <form action="" class="registration" [formGroup]="profileGroup" (ngSubmit)="onSubmit()">
+    <form action="" class="registration" [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <div class="form-container">
             <div class="form-group">
                 <input type="text" id="name" name="name" placeholder='Nombre' class="input-registration" formControlName="name">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!name.errors?.['minlength'] && (name.touched || name.dirty) && name.value " class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty) " class="red"></fa-icon>
+                <fa-icon [icon]="faCheckCircle" *ngIf="!Name?.hasError('minlength') && Name?.value " class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="Name?.hasError('minlength') && Name?.touched" class="red"></fa-icon>
             </div>
-            <p class="text-danger"  [ngStyle]="{ 'visibility' : !name.errors?.['minlength'] ? 'hidden' : 'visible'}" >3 carácteres mínimo</p>
+            <p class="text-danger"  [ngStyle]="{ 'visibility' : !Name?.hasError('minlength') ? 'hidden' : 'visible'}" >3 carácteres mínimo</p>
         </div>
 
         <div class="form-container">
             <div class="form-group">
                 <input type="text" id="login" name="login" placeholder='Usuario' class="input-registration" formControlName="username">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!username.invalid && (username.touched || username.dirty) && username.value " class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="username.invalid && (username.touched || username.dirty) && username.value" class="red"></fa-icon>
+                <fa-icon [icon]="faCheckCircle" *ngIf="!Username?.errors && Username?.value " class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="Username?.errors && Username?.touched && Username?.value" class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{ 'visibility': username.value && !username.valid ? 'visible' : 'hidden'}">6 carácteres mínimo y 10 máximos</p>
+            <p class="text-danger" [ngStyle]="{ 'visibility': Username?.value && Username?.invalid ? 'visible' : 'hidden'}">6 carácteres mínimo y 10 máximos</p>
         </div>
 
         <div class="form-container">
             <div class="form-group">
                 <input type="text" id="last_name" name="last_name" placeholder='Apellido' class="input-registration" formControlName="lastname">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!lastname.errors?.['minlength'] && lastname.value && (lastname.touched || lastname.dirty) " class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="lastname.errors?.['minlength'] && (lastname.touched || lastname.dirty) " class="red"></fa-icon>
+                <fa-icon [icon]="faCheckCircle" *ngIf="!Lastname?.hasError('minlength') && Lastname?.value " class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="Lastname?.hasError('minlength') && Lastname?.value" class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : !lastname.errors?.['minlength'] ? 'hidden' : 'visible'}">3 carácteres mínimo</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : !Lastname?.hasError('minlength') ? 'hidden' : 'visible'}">3 carácteres mínimo</p>
         </div>
 
         <div class="form-container">
             <div class="form-group">
                 <input type="password" id="password" name="password" placeholder='Contraseña' class="input-registration" formControlName="password">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!password.errors?.['minlength'] && password.value && (password.touched || password.dirty) " class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="password.errors?.['minlength'] && password.value " class="red"></fa-icon>
+                <fa-icon [icon]="faCheckCircle" *ngIf="!Password?.hasError('minlength') && Password?.value" class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="Password?.hasError('minlength') && Password?.value " class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : !password.errors?.['minlength'] ? 'hidden' : 'visible'}">8 carácteres mínimo</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : !Password?.hasError('minlength') ? 'hidden' : 'visible'}">8 carácteres mínimo</p>
         </div>
 
         <div class="form-container">
             <div class="form-group">
                 <input type="email" id="email" name="email" placeholder='Email' class="input-registration" formControlName="email">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!email.errors?.['email'] && email.value && (email.touched || email.dirty) " class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="email.errors?.['email'] && email.value " class="red"></fa-icon>
+                <fa-icon [icon]="faCheckCircle" *ngIf="!Email?.hasError('email') && Email?.value" class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="Email?.hasError('email') && Email?.value " class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : !email.errors?.['email'] ? 'hidden' : 'visible'}">Correo válido</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : !Email?.hasError('email') ? 'hidden' : 'visible'}">Correo válido</p>
         </div>
 
         <div class="form-container">
             <div class="form-group">
                 <input type="password" id="password_confirm" name="password_confirm" placeholder='Repetir Contraseña' class="input-registration" formControlName="passwordConfirm">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!profileGroup.errors?.['notSame'] && passwordConfirm.value && (passwordConfirm.touched || passwordConfirm.dirty)" class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="profileGroup.errors?.['notSame']" class="red"></fa-icon>
+                <fa-icon [icon]="faCheckCircle" *ngIf="!form?.hasError('notSame') && PasswordConfirm?.value" class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="form?.hasError('notSame')" class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : !profileGroup.errors?.['notSame'] ? 'hidden' : 'visible'}">Las contraseñas deben coincidir</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : !form?.hasError('notSame') ? 'hidden' : 'visible'}">Las contraseñas deben coincidir</p>
         </div>
 
         <div class="form-footer">
             <button type="submit" class="registration-button">
                 <fa-icon *ngIf="loading" [icon]="faSpinner" [spin]="true"></fa-icon>
-                Registrar
+                <span *ngIf="!loading" >Registrar</span>
             </button>
-            <p class="text-danger" *ngIf="invalidForm && !profileGroup.valid">*Complete todos los campos</p> 
+            <p class="text-danger" *ngIf="invalidForm && form?.invalid">*Complete todos los campos</p> 
         </div>
 
+       
         <div class="registration-footer">
             <p>¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
         </div>

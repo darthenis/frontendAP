@@ -98,11 +98,12 @@
 
 #login-form > button{
 
-    padding: 3% 5% 3% 5%;
+    padding: 3% 2% 3% 2%;
     margin: 4% 0% 1% 0%;
     background-color: #3958ad;
     border: none;
     border-radius: 10px;
+    width: 200px;
     color: white;
     font-weight: bold;
     font-size: calc(1rem + .2vw);

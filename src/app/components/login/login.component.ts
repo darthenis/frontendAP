@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faUser, faKey, faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faUser, faKey, faEye, faEyeSlash, faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -13,8 +14,13 @@ export class LoginComponent implements OnInit {
   faKey = faKey;
   faEye = faEye;
   faEyeSlash = faEyeSlash;
+  faSpinner = faSpinner;
 
   passwordHide = true;
+
+  loading = false;
+
+  form : FormGroup;
 
   hidePassword() {
 
@@ -24,7 +30,32 @@ export class LoginComponent implements OnInit {
 
   iconPassword = this.passwordHide ? faEye : faEyeSlash;
 
-  constructor() { }
+  constructor(private fb : FormBuilder) {
+
+
+    this.form = this.fb.group({
+      username : ['', Validators.required],
+      password : ['', Validators.required]
+    }); 
+
+  }
+
+  get Username() { return this.form.get('username'); }
+
+  get Password() { return this.form.get('password'); }
+
+  onSubmit() {
+
+      this.loading = true;
+
+      setTimeout(() => { 
+
+        this.loading = false
+        console.log(this.form.value); 
+      } , 3000);
+  
+    
+  }
 
   ngOnInit(): void {
   }
