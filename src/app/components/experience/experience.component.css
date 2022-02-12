@@ -96,3 +96,28 @@
     object-fit: contain;
 
 }
+
+.input-container-exp{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+    z-index: 1111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.input-container-exp > form{
+
+    padding: 2%;
+    opacity: 1;
+    background-color: white;
+
+
+}

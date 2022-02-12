@@ -8,6 +8,22 @@ import {faPenSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class ExperienceComponent implements OnInit {
 
+  edit(state : boolean, name : string){
+
+    this.elements = this.elements.map(e => {
+      if(e.name === name) return {...e, edit : !e.edit}
+  
+      return e;
+      
+      })
+  }
+
+  delete(){
+
+    console.log("delete")
+
+  }
+
   faPenSquare = faPenSquare;
   faTimes = faTimes;
 
@@ -17,7 +33,8 @@ export class ExperienceComponent implements OnInit {
       initDate : "julio - 2019",
       endDate : "diciembre - 2020",
       job : "Repositor",
-      info : "Encargado de reponer y limpieza"
+      info : "Encargado de reponer y limpieza",
+      edit : false
     },
     {
       title : "Desarrollador web",
@@ -25,7 +42,8 @@ export class ExperienceComponent implements OnInit {
       initDate : "enero - 2021",
       endDate : "enero - 2022",
       job : "desarrollo en frontend",
-      info : "Encargado diseño e implementación de soluciones para usuarios con una buena experiencia"
+      info : "Encargado diseño e implementación de soluciones para usuarios con una buena experiencia",
+      edit : false
     }]
 
 

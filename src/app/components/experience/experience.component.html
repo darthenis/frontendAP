@@ -2,9 +2,46 @@
                     <span>Experiencia</span>
                         <article class="experience-container" *ngFor="let e of elements">
                             <div class="experience-item">
-                                <div class="logo-exp"><img src="/assets/empty.png" alt=""></div>
-                                <div class="info-container">
-                                    <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons></app-edit-buttons></div>
+
+                                <!--EDIT MODE-->
+
+                                <div class="input-container-exp"  *ngIf="e.edit" (click)="edit(false, e.name)">
+                                    <form action="" (click)="$event.stopPropagation()" >
+                                        <div>
+                                            <label for="">Título</label>
+                                            <input type="text">
+                                        </div>
+                                        <div>
+                                            <label for="">Empresa</label>
+                                            <input type="text">
+                                        </div>
+                                        <div>
+                                            <label for="">fecha de inicio</label>
+                                            <input type="text">
+                                        </div>
+                                        <div>
+                                            <label for="">fecha final</label>
+                                            <input type="text">
+                                        </div>
+                                        <div>
+                                            <label for="">Puesto</label>
+                                            <input type="text">
+                                        </div>
+                                        <div>
+                                            <label for="">info</label>
+                                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                                        </div>
+                                        <div class="form-footer">
+                                            <button type="submit">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!--END EDIT MODES-->
+
+                                <div class="logo-exp" *ngIf="!e.edit"><img src="/assets/empty.png" alt=""></div>
+                                <div class="info-container" *ngIf="!e.edit">
+                                    <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit($event, e.name)"></app-edit-buttons></div>
                                     <ul>
                                         <li><strong>Empresa</strong>: {{e.name}}</li>
                                         <li><strong>Fecha</strong>: {{e.initDate}} a {{e.endDate}}</li>
