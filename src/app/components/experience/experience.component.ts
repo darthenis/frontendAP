@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {faPenSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { experience } from './type';
 
 @Component({
   selector: 'app-experience',
@@ -8,13 +9,12 @@ import {faPenSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class ExperienceComponent implements OnInit {
 
-  edit(state : boolean, name : string){
+  edit(id : number){
 
     this.elements = this.elements.map(e => {
-      if(e.name === name) return {...e, edit : !e.edit}
-  
+    
+      if(e.id === id) return {...e, edit : !e.edit}
       return e;
-      
       })
   }
 
@@ -27,22 +27,27 @@ export class ExperienceComponent implements OnInit {
   faPenSquare = faPenSquare;
   faTimes = faTimes;
 
-  elements: any[] =[{
+  elements: experience [] =[{
+      id: 1,
       title : "Supermercado",
       name : "Argenchino",
       initDate : "julio - 2019",
       endDate : "diciembre - 2020",
       job : "Repositor",
       info : "Encargado de reponer y limpieza",
+      urlImg : "img",
       edit : false
+      
     },
     {
+      id : 2,
       title : "Desarrollador web",
       name : "Financias SA",
       initDate : "enero - 2021",
       endDate : "enero - 2022",
       job : "desarrollo en frontend",
       info : "Encargado diseño e implementación de soluciones para usuarios con una buena experiencia",
+      urlImg : "img",
       edit : false
     }]
 

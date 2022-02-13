@@ -18,6 +18,7 @@ import { ButtonComponent } from './components/modules/button/button.component';
 import { LoginComponent } from './components/login/login.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { FormComponent } from './components/experience/form/form.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -35,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonComponent,
     LoginComponent,
     PortfolioComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

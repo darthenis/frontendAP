@@ -1,0 +1,61 @@
+.input-container-exp{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+    z-index: 1111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+
+
+}
+
+.input-container-exp > form{
+
+    max-height: 90vh;
+    padding: 2%;
+    opacity: 1;
+    background-color: #273c75;
+    color: white;
+    
+
+
+}
+
+.input-container-exp > form > h1{
+
+    margin-bottom: 5%;
+
+}
+
+.form-control-exp{
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    min-width: 200px;
+
+
+}
+
+.form-control-exp > textarea {
+    padding: 5px;
+    resize: none;
+    overflow: auto;
+    height: auto;
+}
+
+.form-footer-exp > button {
+
+    margin-top: 5%;
+    padding: 3%;
+    font-weight: bold;
+    color:   #273c75;
+    background-color: aliceblue;
+
+}
