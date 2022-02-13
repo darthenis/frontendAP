@@ -21,6 +21,11 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { FormComponent } from './components/experience/form/form.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EduFormComponent } from './components/education/edu-form/edu-form.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +42,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     PortfolioComponent,
     RegistrationComponent,
-    FormComponent
+    FormComponent,
+    EduFormComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +53,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RoundProgressModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],

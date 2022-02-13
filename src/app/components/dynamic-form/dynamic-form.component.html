@@ -1,0 +1,9 @@
+<form action="" [formGroup]="myForm" ngSubmit="onSubmit()">
+    <div class="form-control" *ngFor="let control of formData?.controls">
+        <label for="">{{ control.label.spanish }}</label>
+        <input  [type]="control.type" 
+                [formControlName]="control.name" 
+                [value]="control.value">
+    </div>
+    <button type="submit">Submit</button>
+</form>

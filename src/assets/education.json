@@ -1,0 +1,98 @@
+{
+    "controls":[
+        {
+            "name": "title",
+            "label": {
+                "english": "Title",
+                "spanish": "Título"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        {
+            "name": "name",
+            "label": {
+                "english": "Institute",
+                "spanish": "instituto"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        
+        {
+            "name": "career",
+            "label": {
+                "english": "Career",
+                "spanish": "Carrera"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        
+        {
+            "name": "initDate",
+            "label": {
+                "english": "Initial Date",
+                "spanish": "Fecha de Inicio"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        {
+            "name": "endDate",
+            "label": {
+                "english": "Ending Date",
+                "spanish": "Fecha de Término"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        {
+            "name": "logoUrl",
+            "label": {
+                "english": "Logo",
+                "spanish": "Logotipo"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        }
+        
+        
+        
+        
+    ]
+
+
+
+
+}

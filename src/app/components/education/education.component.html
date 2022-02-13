@@ -1,10 +1,13 @@
 <section class="app-education" [ngStyle]="{'display': display}">
     <span>Educación</span>
     <div class="education-container" *ngFor="let e of elements">
+
+        <app-dynamic-form *ngIf="e.edit" (cancel)="edit(e.id)" [editData]="e" [formData]="formData"></app-dynamic-form>
+
         <div class="education-item">
             <div class="logo-exp"><img src="/assets/empty.png" alt=""></div>
             <div class="info-container">
-                <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons></app-edit-buttons></div>
+                <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
                 <ul>
                     <li><strong>Institución</strong>: {{e.name}}</li>
                     <li><strong>Fecha</strong>: {{e.initDate}} a {{e.endDate}}</li>
