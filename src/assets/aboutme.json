@@ -1,0 +1,164 @@
+{
+    "controls":[
+        {
+            "name": "name",
+            "label": {
+                "english": "Name",
+                "spanish": "Nombre"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 2,
+                "maxLength": 15
+            }
+        },
+        {
+            "name": "lastName",
+            "label": {
+                "english": "Lastname",
+                "spanish": "Apellido"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 2,
+                "maxLength": 15
+            }
+        },
+        
+        {
+            "name": "title",
+            "label": {
+                "english": "Title",
+                "spanish": "Título"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        
+        {
+            "name": "country",
+            "label": {
+                "english": "Country",
+                "spanish": "Nacionalidad"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        {
+            "name": "state",
+            "label": {
+                "english": "State/Province",
+                "spanish": "Provincia/Estado"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+        {
+            "name": "city",
+            "label": {
+                "english": "City/Municipality",
+                "spanish": "Ciudad/Pueblo"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 15
+            }
+        },
+
+        {
+            "name": "aboutMe",
+            "label": {
+                "english": "About me",
+                "spanish": "Sobre mí"
+            },
+            "value": "",
+            "type": "textarea",
+            "validators": {
+                "required": true,
+                "minLength": 4,
+                "maxLength": 250
+            }
+        },
+        {
+                        "name": "facebook",
+                        "label": {
+                            "english": "Facebook",
+                            "spanish": "Facebook"
+                            },
+                        "value": "",
+                        "type": "url",
+                        "validators": {
+                            "required": false,
+                            "minLength": 4,
+                            "maxLength": 15
+                            }
+                        },  
+                        {
+                            "name": "twitter",
+                            "label": {
+                                "english": "Twitter",
+                                "spanish": "Twitter"
+                            },
+                            "value": "",
+                            "type": "url",
+                            "validators": {
+                                "required": false,
+                                "minLength": 4,
+                                "maxLength": 15
+                            }
+                        },
+                        {
+                            "name": "instagram",
+                            "label": {
+                                "english": "Instagram",
+                                "spanish": "Instagram"
+                            },
+                            "value": "",
+                            "type": "url",
+                            "validators": {
+                                "required": false,
+                                "minLength": 4,
+                                "maxLength": 15
+                            }
+                        },
+                        {
+                            "name": "github",
+                            "label": {
+                                "english": "Github",
+                                "spanish": "Github"
+                            },
+                            "value": "",
+                            "type": "url",
+                            "validators": {
+                                "required": false,
+                                "minLength": 4,
+                                "maxLength": 15
+                            }
+                        }
+        
+
+    ]
+
+}

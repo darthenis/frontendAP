@@ -8,8 +8,8 @@
     margin-top: 20px;
     font-family: sans-serif;
     background-color: white;
-    border-radius: 20px;
-    overflow: hidden;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
  
 
@@ -17,6 +17,8 @@
 
 .banner{
     overflow: hidden;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     position: relative;
     
 }
@@ -191,3 +193,6 @@
     margin-right: 1%;
 
 }
+
+
+

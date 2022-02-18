@@ -2,10 +2,10 @@
     <span>Educación</span>
     <div class="education-container" *ngFor="let e of elements">
 
-        <app-dynamic-form *ngIf="e.edit" (cancel)="edit(e.id)" [editData]="e" [formData]="formData"></app-dynamic-form>
+        <app-dynamic-form *ngIf="e.edit" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Educación'"></app-dynamic-form>
 
         <div class="education-item">
-            <div class="logo-exp"><img src="/assets/empty.png" alt=""></div>
+            <div class="logo-exp"><img [src]="e.imgUrl || '/assets/empty.png'" alt=""></div>
             <div class="info-container">
                 <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
                 <ul>
@@ -17,3 +17,5 @@
         </div>
     </div>  <!-- End of education-container -->
 </section>
+
+<app-dynamic-form *ngIf="newSection" [formTitle]="'Educación'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

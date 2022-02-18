@@ -3,6 +3,9 @@
     <div class="skills-container">
 
         <article class="skill-item"  *ngFor="let e of elements">
+
+            <app-dynamic-form *ngIf="e.edit" [editData]="e" [formTitle]="'Habilidades'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
+
             <div class="skill-item-title">
                 <h3>{{e.name}}</h3>
             </div>
@@ -11,9 +14,11 @@
                             [radius]="70" 
                             [stroke]="10"
                             [color]="colorCircle"></round-progress>
-            <app-edit-buttons></app-edit-buttons>
+            <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
         </article>
 
     </div>
 
 </section>
+
+<app-dynamic-form *ngIf="newSection" [formTitle]="'Habilidades'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

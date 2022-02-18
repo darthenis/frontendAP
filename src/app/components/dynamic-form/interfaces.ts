@@ -8,7 +8,14 @@ interface FormValidators{
     minLength? : boolean,
     maxLength? : boolean,
     pattern? : string,
-    nullValidator?: boolean
+    nullValidator?: boolean,
+    sizeImage: sizeImage
+
+}
+
+interface sizeImage{
+
+    max: number
 
 }
 

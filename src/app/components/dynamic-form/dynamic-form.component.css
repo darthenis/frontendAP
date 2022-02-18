@@ -1,0 +1,142 @@
+.form-dynamic-container{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 1111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.form-dynamic-header > fa-icon{
+
+    color: white;
+    background-color: red;
+    padding: 2px 4px 2px 4px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+.form-dynamic-header{
+    text-align: center;
+    position: relative;
+    padding: 5% 0% 5% 0%;
+    min-width: 300px;
+    background: #273c75;
+    color: white;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+
+}
+
+
+
+
+.form-dynamic-container > div > form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    max-height: 90vh;
+    min-width: 300px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    
+
+
+}
+
+
+.form-dynamic-control{
+
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    padding: 15px;
+    color: #273c75;
+
+
+}
+
+.form-dynamic-control > label{
+
+    margin-bottom: 1%;
+    font-weight: bold;
+  
+
+}
+
+.labelFile{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
+    font-weight: bold;
+    background-color: #273c75;
+    color: white;
+    padding: 2px 4px 2px 4px;
+
+}
+
+.form-dynamic-control > input{
+    border: #273c75 2px solid;
+    padding: 10px 5px 10px 5px;
+    font-weight: bold;
+    outline: none;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.form-dynamic-control > input[type="file"]{
+    color: #273c75;
+    padding: 2px 4px 2px 4px;
+}
+
+.form-dynamic-control > input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.form-dynamic-control > textarea {
+    border: #273c75 2px solid;
+    padding: 10px;
+    resize: none;
+    overflow: auto;
+    height: 100px;
+    grid-column: 1/-1;
+    outline: none;
+    font-weight: bold;
+}
+
+
+.form-dynamic-footer > button {
+    font-weight: bold;
+    background-color:   #273c75;
+    color: white;
+    padding: 3% 2% 3% 2%;
+    cursor: pointer;
+    cursor: hand;
+    border-radius: 5px;
+
+}
+
+.form-dynamic-footer{
+    padding: 15px;
+    grid-column: 1/-1;
+}

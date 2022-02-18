@@ -6,12 +6,11 @@
                                     <span>#SeProgramar</span>
                                 </div>
                                 <nav class="navBar">
-                                    <a href="">
-                                        <fa-icon class="icon" [icon]="faLinkedin" size="2x"></fa-icon>
-                                    </a>
-                                    <a href="">
-                                        <fa-icon class="icon" [icon]="faGitHubSquare" size="2x"></fa-icon>
-                                    </a>
+                                    <ng-container *ngFor="let e of socialNetworks | keyvalue">
+                                        <a *ngIf="e.value" href={{e.value}} target="_blank" >
+                                            <fa-icon class="icon" [icon]="findIcon(e.key)" size="2x"></fa-icon>
+                                        </a>
+                                    </ng-container>
                                     <button [routerLink]="['/login']">Login</button>
                                 </nav>  
                             </div>

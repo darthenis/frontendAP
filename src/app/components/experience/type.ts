@@ -7,7 +7,7 @@ export interface experience {
         endDate : string,
         job : string,
         info : string,
-        urlImg : string,
+        imgUrl : string,
         edit : boolean
 
 }

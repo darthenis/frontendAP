@@ -1,0 +1,55 @@
+{
+    "controls":[
+        {
+            "name": "title",
+            "label": {
+                "english": "Title",
+                "spanish": "Título"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true
+            }
+        },
+        {
+            "name": "url",
+            "label": {
+                "english": "Url",
+                "spanish": "Url"
+            },
+            "value": "",
+            "type": "url",
+            "validators": {
+                "required": true
+            }
+        },
+        {
+            "name": "imgUrl",
+            "label": {
+                "english": "imgUrl",
+                "spanish": "imgUrl"
+            },
+            "value": "",
+            "type": "file",
+            "validators": {
+                "required": false,
+                "sizeImage": {
+                    "max": "524288"
+                }
+            }
+        },
+        {
+            "name": "info",
+            "label": {
+                "english": "Commentary",
+                "spanish": "Comentario"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true
+            }
+        }
+    ]
+}

@@ -1,7 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { education } from '../education/type';
+import { experience } from '../experience/type';
 import { FormControls, FormData } from './interfaces';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { skill } from '../skills/type';
+import { project } from '../projects/type';
+import { AboutMe } from '../about-me/type';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -12,21 +18,28 @@ import { FormControls, FormData } from './interfaces';
 export class DynamicFormComponent implements OnInit {
 
   @Input() formData! : FormData
-  @Input() editData! : education;
+  @Input() editData! : education | experience | skill | project | AboutMe;
+  @Input() formTitle : string = "";
   @Output() cancel = new EventEmitter()
+
+  idUser : number = 1;
+
+  
+
+  faTimes = faTimes;
 
   public myForm : FormGroup = this.fb.group({});
 
-  constructor(private fb : FormBuilder) { }
-
-  event(){
-
-    console.log(this.formData)
-
-  }
+  constructor(private fb : FormBuilder, private storageService : StorageService) { }
 
  ngOnInit(): void {
      this.createForm(this.formData.controls)
+
+     if(this.formData){
+
+      this.myForm.patchValue(this.editData)
+      
+     }
  }
 
 
@@ -64,11 +77,56 @@ export class DynamicFormComponent implements OnInit {
 
  }
 
+ getMyForm( name : string) {
+
+  return this.myForm.get(name)
+
+}
+
+
 
  onSubmit(){
 
   console.log('Form valid: ', this.myForm.valid)
   console.log('Form values: ', this.myForm.value)
+
+ }
+
+
+ uploadImage(event : any, name : string, maxSize : number){
+
+    let file = event.target.files[0];
+
+    if(file.size > maxSize){
+
+            return this.myForm.get(name)?.setErrors({sizeImage: true});
+
+    } else {
+
+            return this.myForm.get(name)?.setErrors(null);
+    }
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+
+        console.log('img size: ', event.target.files[0].size)
+
+        /*this.storageService.uploadImage( this.idUser + '_' + Date.now(), reader.result)
+                .then(url => { 
+
+                            if(url!==null){
+
+                              console.log('url', url)
+
+                          } else { 
+
+                            console.log('error')
+                          }
+                        }
+                      )*/
+
+    }
 
  }
 

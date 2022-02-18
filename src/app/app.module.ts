@@ -18,13 +18,12 @@ import { ButtonComponent } from './components/modules/button/button.component';
 import { LoginComponent } from './components/login/login.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { FormComponent } from './components/experience/form/form.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EduFormComponent } from './components/education/edu-form/edu-form.component';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { AddSectionComponent } from './components/modules/add-section/add-section.component';
 
 
 @NgModule({
@@ -42,9 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     PortfolioComponent,
     RegistrationComponent,
-    FormComponent,
-    EduFormComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    AddSectionComponent
   ],
   imports: [
     BrowserModule,

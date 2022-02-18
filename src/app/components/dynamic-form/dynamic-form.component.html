@@ -1,9 +1,56 @@
-<form action="" [formGroup]="myForm" ngSubmit="onSubmit()">
-    <div class="form-control" *ngFor="let control of formData?.controls">
-        <label for="">{{ control.label.spanish }}</label>
-        <input  [type]="control.type" 
-                [formControlName]="control.name" 
-                [value]="control.value">
+<div class="form-dynamic-container">
+
+    <div>
+        <div class="form-dynamic-header">
+            <div class="form-dynamic-header-title">
+                <h1>{{formTitle}}</h1>
+            </div>
+
+            <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit()"></fa-icon>
+        </div>
+
+        <form action="" [formGroup]="myForm" ngSubmit="onSubmit()">
+
+            <div    class="form-dynamic-control" 
+                    *ngFor="let control of formData?.controls"
+                    [ngStyle]="{'grid-column': control.type === 'textarea' ? '1/-1' : 'auto'}"
+                   >
+                <label>{{ control.label.spanish }}</label>
+
+
+                <input  *ngIf="
+                                [
+                                    'text',
+                                    'password',
+                                    'email',
+                                    'number',
+                                    'date',
+                                    'search',
+                                    'url',
+                                    'file'
+                                ].includes(control.type)
+                            " 
+                        accept="{{control.type === 'file' ? '.png, .jpg, .jpeg' : ''}}"
+                        [type]="control.type" 
+                        [formControlName]="control.name" 
+                        [value]="control.value"
+                        (change)="control.type === 'file' ? uploadImage($event, control.name, control.validators.sizeImage.max) : ''"
+                    >
+
+                <textarea 
+                        *ngIf="control.type === 'textarea'"
+                        [formControlName]="control.name"
+                        [value]="control.value">
+                </textarea>
+
+                <p *ngIf="getMyForm(control.name)?.hasError('sizeImage')" [ngStyle]="{'color': 'red', 'font-weight' : 'bold'}">files less 512kb</p>
+            </div>
+
+            <div class="form-dynamic-footer">
+                <button type="submit">Guardar</button>
+            </div>  
+
+        </form>
+
     </div>
-    <button type="submit">Submit</button>
-</form>
+</div>

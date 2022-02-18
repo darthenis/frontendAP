@@ -2,14 +2,17 @@
         <span>Projects</span>
         <div class="projects__content">
             <article *ngFor='let e of elements'>
+
+                <app-dynamic-form *ngIf="e.edit || newSection" [editData]="e" [formTitle]="'Projectos'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
+              
                 <div class="projects__content-item">
                     <div class="projects__content-item-image">
-                        <img src="/assets/empty.png" alt="">
+                        <img [src]='e.imgUrl || "/assets/empty.png"' alt="">
                     </div>
                     <div class="projects-header-buttons">
-                        <app-edit-buttons></app-edit-buttons>
+                        <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
                     </div>
-                    <a href=e.url>{{e.url}}</a>
+                    <a href={{e.url}}>{{e.url}}</a>
                     <div class="projects__content-item-text">
                         <h3>{{e.title}}</h3>
                         <p>{{e.info}}</p>
@@ -18,3 +21,5 @@
             </article>
         </div>
 </section>
+
+<app-dynamic-form *ngIf="newSection" [formTitle]="'Proyectos'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

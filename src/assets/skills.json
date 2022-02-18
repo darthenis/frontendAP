@@ -1,0 +1,28 @@
+{
+    "controls":[
+        {
+            "name": "name",
+            "label": {
+                "english": "Hability",
+                "spanish": "Habilidad"
+            },
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true
+            }
+        },
+        {
+            "name": "porcent",
+            "label": {
+                "english": "Porcent",
+                "spanish": "Porcentaje"
+            },
+            "value": "",
+            "type": "number",
+            "validators": {
+                "required": true
+            }
+        }
+    ]
+}

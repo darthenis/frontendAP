@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {faPenSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs/internal/Subject';
+import { FormData } from '../dynamic-form/interfaces';
 import { experience } from './type';
 
 @Component({
@@ -7,7 +10,13 @@ import { experience } from './type';
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css']
 })
-export class ExperienceComponent implements OnInit {
+export class ExperienceComponent implements OnInit, OnChanges {
+
+  @Input() subAddSection! : Subject<string> | undefined;
+
+  public formData! : FormData;
+
+  newSection : boolean = false;
 
   edit(id : number){
 
@@ -16,6 +25,13 @@ export class ExperienceComponent implements OnInit {
       if(e.id === id) return {...e, edit : !e.edit}
       return e;
       })
+  }
+
+  cancelNewForm(){
+
+    this.newSection = false;
+
+
   }
 
   delete(){
@@ -31,11 +47,11 @@ export class ExperienceComponent implements OnInit {
       id: 1,
       title : "Supermercado",
       name : "Argenchino",
-      initDate : "julio - 2019",
-      endDate : "diciembre - 2020",
+      initDate : "2019-01-01",
+      endDate : "2020-01-20",
       job : "Repositor",
       info : "Encargado de reponer y limpieza",
-      urlImg : "img",
+      imgUrl : "",
       edit : false
       
     },
@@ -43,20 +59,43 @@ export class ExperienceComponent implements OnInit {
       id : 2,
       title : "Desarrollador web",
       name : "Financias SA",
-      initDate : "enero - 2021",
-      endDate : "enero - 2022",
+      initDate : "2021-01-01",
+      endDate : "2022-01-20",
       job : "desarrollo en frontend",
       info : "Encargado diseño e implementación de soluciones para usuarios con una buena experiencia",
-      urlImg : "img",
+      imgUrl : "",
       edit : false
     }]
 
 
   display = this.elements.length ? 'block' : 'none';
 
-  constructor() { }
+  constructor(private http : HttpClient ) { }
 
   ngOnInit(): void {
+
+    this.http
+    .get('/assets/experience.json')
+    .subscribe( (formData : any) => {
+
+        this.formData = formData;
+        
+    });
+
+  }
+
+  ngOnChanges(changes : SimpleChanges){
+
+    changes['subAddSection']?.currentValue?.subscribe( (section : string) => {
+
+      if(section === 'experience'){
+
+        this.newSection = true;
+
+      }
+
+    })
+
   }
 
 }

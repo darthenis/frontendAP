@@ -5,9 +5,10 @@
      box-sizing: border-box; 
 }
 
-html{
+html, body{
 
     width: 100%;
     background-color: rgb(228, 228, 228);
+    overflow: hidden;
 
 }

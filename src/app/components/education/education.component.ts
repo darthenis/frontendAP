@@ -1,16 +1,21 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormData } from '../dynamic-form/interfaces';
 import { HttpClient} from '@angular/common/http'
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.css']
 })
-export class EducationComponent implements OnInit {
+export class EducationComponent implements OnInit, OnChanges {
+
+  @Input() subAddSection! : Subject<string> | undefined;
 
   public formData! : FormData;
+
+  newSection : boolean = false;
 
   edit(id : number){
 
@@ -21,6 +26,13 @@ export class EducationComponent implements OnInit {
 
   }
 
+  cancelNewForm(){
+
+    this.newSection = false;
+
+
+  }
+
   elements : any[] =[{
     id: 1,
     title: "Secundario",
@@ -28,6 +40,7 @@ export class EducationComponent implements OnInit {
     initDate : "marzo - 2007",
     endDate : "diciembre - 2010",
     carrer : "Bachillerato en economía y gestión de empresas",
+    imgUrl: "",
     edit : false
   },
   {
@@ -37,6 +50,7 @@ export class EducationComponent implements OnInit {
     initDate : "marzo - 2019",
     endDate : "noviembre - 2019",
     career : "Programacion",
+    imgUrl: "",
     edit: false
   }]
 
@@ -53,6 +67,19 @@ export class EducationComponent implements OnInit {
 
           console.log(this.formData)
       });
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+
+    changes['subAddSection']?.currentValue?.subscribe( (section : string) => {
+
+      if(section === 'education'){
+
+        this.newSection = true;
+
+      }
+
+    })
   }
 
   delete(){}

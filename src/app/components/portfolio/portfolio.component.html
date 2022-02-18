@@ -1,11 +1,13 @@
-<app-header></app-header>
-<div class="layout">
-    <div class="container-app">   
-        <app-about-me></app-about-me>
-        <app-experience></app-experience>
-        <app-education></app-education>
-        <app-skills></app-skills>
-        <app-projects></app-projects>
+<div class="container" >
+    <app-header [subject]="subject"></app-header>
+    <div class="layout" >
+        <div class="container-app">   
+            <app-about-me  (onAddSection)="handleAddSection($event)" (onInfo)="handleInfo($event)"></app-about-me>
+            <app-experience [subAddSection]="subAddSection"></app-experience>
+            <app-education [subAddSection]="subAddSection"></app-education>
+            <app-skills [subAddSection]="subAddSection"></app-skills>
+            <app-projects [subAddSection]="subAddSection"></app-projects>
+        </div>
+        <app-footer></app-footer>
     </div>
-    <app-footer></app-footer>
 </div>

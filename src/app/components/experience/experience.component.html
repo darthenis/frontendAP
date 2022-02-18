@@ -5,11 +5,11 @@
 
                                 <!--EDIT MODE-->
 
-                                <app-form *ngIf="e.edit" (cancel)="edit(e.id)" [editData]="e"></app-form>
+                                <app-dynamic-form *ngIf="e.edit" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Experiencia'"></app-dynamic-form>
 
                                 <!--END EDIT MODES-->
 
-                                <div class="logo-exp"><img src="/assets/empty.png" alt=""></div>
+                                <div class="logo-exp"><img [src]="e.imgUrl || '/assets/empty.png'" alt=""></div>
                                 <div class="info-container">
                                     <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
                                     <ul>
@@ -24,3 +24,5 @@
 
                       <!-- End of experience-container -->
 </section>
+
+<app-dynamic-form *ngIf="newSection" [formTitle]="'Experiencia'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

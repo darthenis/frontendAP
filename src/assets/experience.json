@@ -17,8 +17,8 @@
         {
             "name": "name",
             "label": {
-                "english": "Institute",
-                "spanish": "instituto"
+                "english": "Company",
+                "spanish": "Empresa"
             },
             "value": "",
             "type": "text",
@@ -30,10 +30,10 @@
         },
         
         {
-            "name": "career",
+            "name": "job",
             "label": {
-                "english": "Career",
-                "spanish": "Carrera"
+                "english": "Job",
+                "spanish": "Puesto"
             },
             "value": "",
             "type": "text",
@@ -82,6 +82,18 @@
             "type": "file",
             "validators": {
                 "required": false
+            }
+        },
+        {
+            "name": "comentary",
+            "label":{
+                "english": "Comentary",
+                "spanish": "Comentario"
+            },
+            "value": "",
+            "type": "textarea",
+            "validators": {
+                "maxLength": 255
             }
         }
         
