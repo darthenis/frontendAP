@@ -45,7 +45,7 @@ elements : any[] = [{
             id : 1,
             title : "Mi portfolio",
             url : "http://www.miportfolio.com",
-            imgUrl: "",
+            img: "",
             info: "Mi proyecto de portfolio en React",
             edit: false
 },
@@ -82,25 +82,14 @@ display = this.elements.length ? 'block' : 'none';
 
       if(section === 'project'){
 
+        console.log('contador!')
+
         this.newSection = true;
 
       }
 
     })
       
-  }
-
-
-  newAddSection(){
-
-      console.log("subAddSection: ", this.subAddSection);
-
-      this.subAddSection?.subscribe( (section : string) => {
-        
-        
-      })
-
-
   }
 
 }

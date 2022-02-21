@@ -1,23 +1,33 @@
 .form-dynamic-container{
 
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     background: rgba(0, 0, 0, 0.5);
-    width: 100%;
     height: 100%;
+    width: 100%;
+    min-height: fit-content;
     z-index: 1111;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 100%;
+    align-items: center;
+    overflow: auto;
+   
+}
+
+.form-dynamic-container > div{
+    align-self: center;
+    justify-self: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
+    max-width: 500px;
 }
 
 .form-dynamic-header > fa-icon{
 
     color: white;
-    background-color: red;
+    background-color: rgb(179, 0, 0);
     padding: 2px 4px 2px 4px;
     position: absolute;
     right: 0px;
@@ -27,10 +37,17 @@
 
 }
 
+.form-dynamic-header > fa-icon:hover{
+
+    background-color: red;
+
+}
+
 .form-dynamic-header{
     text-align: center;
     position: relative;
-    padding: 5% 0% 5% 0%;
+    padding: 2% 5% 2% 5%;
+    width: 100%;
     min-width: 300px;
     background: #273c75;
     color: white;
@@ -40,12 +57,10 @@
 
 
 
-
 .form-dynamic-container > div > form{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: relative;
-    max-height: 90vh;
+    column-gap: 2px;
     min-width: 300px;
     background-color: white;
     color: black;
@@ -57,11 +72,11 @@
 
 
 .form-dynamic-control{
-
+    padding: 2% 2% 2% 2%;
     display: flex;
     flex-direction: column;
     min-width: 200px;
-    padding: 15px;
+    margin-top: calc(0px + .1vh);
     color: #273c75;
 
 
@@ -91,7 +106,7 @@
 
 .form-dynamic-control > input{
     border: #273c75 2px solid;
-    padding: 10px 5px 10px 5px;
+    padding: 5px;
     font-weight: bold;
     outline: none;
     height: 30px;
@@ -102,10 +117,45 @@
 
 }
 
-.form-dynamic-control > input[type="file"]{
-    color: #273c75;
-    padding: 2px 4px 2px 4px;
+.container-inputfile > input[type="file"]{
+  
+    visibility: hidden;
+
 }
+
+.container-inputfile > input[type='text']{
+
+        outline: none;
+        border: none;
+        padding-left: 5px;
+        font-weight: bold;
+
+}
+
+.container-inputfile > label{
+
+    position: absolute;
+    background-color: #273c75;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 12px;
+    padding: 0px 5px 0px 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+.container-inputfile{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    height: 30px;
+    border: #273c75 2px solid;
+}
+
 
 .form-dynamic-control > input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -115,7 +165,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .form-dynamic-control > textarea {
     border: #273c75 2px solid;
-    padding: 10px;
+    padding: 5px;
     resize: none;
     overflow: auto;
     height: 100px;

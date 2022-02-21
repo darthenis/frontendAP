@@ -4,11 +4,11 @@
         <h2>Añadir sección</h2>
         <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit()"></fa-icon>
         <ul>
-        
+            <li (click)="addSection('project')">Projectos</li>
             <li (click)="addSection('experience')">Experiencia</li>
             <li (click)="addSection('education')">Educación</li>
             <li (click)="addSection('skill')">Habilidades</li>
-            <li (click)="addSection('project')">Projectos</li>
+            
         </ul>
     </div>
 </div>

@@ -25,10 +25,10 @@
             }
         },
         {
-            "name": "imgUrl",
+            "name": "img",
             "label": {
-                "english": "imgUrl",
-                "spanish": "imgUrl"
+                "english": "Picture",
+                "spanish": "Foto"
             },
             "value": "",
             "type": "file",

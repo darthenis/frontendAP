@@ -81,7 +81,10 @@
             "value": "",
             "type": "file",
             "validators": {
-                "required": false
+                "required": false,
+                "sizeImage": {
+                    "max": "524288"
+                }
             }
         }
         

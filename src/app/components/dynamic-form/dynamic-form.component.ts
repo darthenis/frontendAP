@@ -24,6 +24,8 @@ export class DynamicFormComponent implements OnInit {
 
   idUser : number = 1;
 
+  fileName : string = 'vacio'
+
   
 
   faTimes = faTimes;
@@ -35,11 +37,7 @@ export class DynamicFormComponent implements OnInit {
  ngOnInit(): void {
      this.createForm(this.formData.controls)
 
-     if(this.formData){
-
-      this.myForm.patchValue(this.editData)
-      
-     }
+     
  }
 
 
@@ -77,40 +75,32 @@ export class DynamicFormComponent implements OnInit {
 
  }
 
- getMyForm( name : string) {
 
-  return this.myForm.get(name)
+ onSubmit(event : FormDataEvent){
 
-}
-
-
-
- onSubmit(){
-
-  console.log('Form valid: ', this.myForm.valid)
-  console.log('Form values: ', this.myForm.value)
+  event.preventDefault()
+  console.log('Form values: ', this.myForm)
 
  }
 
 
  uploadImage(event : any, name : string, maxSize : number){
 
-    let file = event.target.files[0];
+    const file = event.target.files[0] as File;
 
-    if(file.size > maxSize){
+    this.myForm.get(name)?.patchValue(file)
 
-            return this.myForm.get(name)?.setErrors({sizeImage: true});
+    this.fileName = file.name
 
-    } else {
+    console.log('fileName: ', this.fileName)
+    
+    console.log('file input: ', this.myForm.get(name)?.value.name)
 
-            return this.myForm.get(name)?.setErrors(null);
-    }
+    
 
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-
-        console.log('img size: ', event.target.files[0].size)
 
         /*this.storageService.uploadImage( this.idUser + '_' + Date.now(), reader.result)
                 .then(url => { 

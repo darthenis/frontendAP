@@ -1,6 +1,8 @@
 <div class="form-dynamic-container">
 
+    
     <div>
+
         <div class="form-dynamic-header">
             <div class="form-dynamic-header-title">
                 <h1>{{formTitle}}</h1>
@@ -9,11 +11,11 @@
             <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit()"></fa-icon>
         </div>
 
-        <form action="" [formGroup]="myForm" ngSubmit="onSubmit()">
+        <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
 
             <div    class="form-dynamic-control" 
                     *ngFor="let control of formData?.controls"
-                    [ngStyle]="{'grid-column': control.type === 'textarea' ? '1/-1' : 'auto'}"
+                    [ngStyle]="{'grid-column': control.type === 'textarea' ? '1/-1' : 'auto', 'padding' : control.type === 'textarea' ? '2% 2% 2% 2%' : '2% 4% 2% 4%'}"
                    >
                 <label>{{ control.label.spanish }}</label>
 
@@ -27,15 +29,27 @@
                                     'date',
                                     'search',
                                     'url',
-                                    'file'
                                 ].includes(control.type)
                             " 
-                        accept="{{control.type === 'file' ? '.png, .jpg, .jpeg' : ''}}"
+                        
                         [type]="control.type" 
                         [formControlName]="control.name" 
                         [value]="control.value"
-                        (change)="control.type === 'file' ? uploadImage($event, control.name, control.validators.sizeImage.max) : ''"
+                       
                     >
+
+                    <div *ngIf="control.type==='file'" class="container-inputfile">
+                        <input  id='{{control.name}}' 
+                                [type]="control.type"
+                                accept=".png, .jpg, .jpeg"
+                                (change)="uploadImage($event, control.name, control.validators.sizeImage.max)">
+                        <label for="{{control.name}}">Cargar</label>
+                        <input  type="text"
+                                [formControlName]="control.name"
+                                placeholder="Cargue su foto"jh54jk
+                                [value]="myForm.get('title')?.value || 'cargue imagen'"
+                                readonly>
+                    </div>
 
                 <textarea 
                         *ngIf="control.type === 'textarea'"
@@ -43,7 +57,7 @@
                         [value]="control.value">
                 </textarea>
 
-                <p *ngIf="getMyForm(control.name)?.hasError('sizeImage')" [ngStyle]="{'color': 'red', 'font-weight' : 'bold'}">files less 512kb</p>
+                <p *ngIf="myForm.get(control.name)?.hasError('sizeImage')" [ngStyle]="{'color': 'red', 'font-weight' : 'bold'}">files less 512kb</p>
             </div>
 
             <div class="form-dynamic-footer">
@@ -53,4 +67,5 @@
         </form>
 
     </div>
+
 </div>
