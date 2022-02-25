@@ -2,7 +2,7 @@ export interface project {
     id: number;
     title: string;
     url: string;
-    imgUrl: string;
+    img: string;
     info: string;
     edit: boolean;
 }

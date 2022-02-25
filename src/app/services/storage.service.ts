@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -12,23 +13,37 @@ export class StorageService {
 
   storageRef = firebase.app().storage().ref();
 
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
 
-  async uploadImage(image:string, imgBase64:any){
+  async uploadImage(base64 : string, urlRef? : string){
 
-      try{
-          const imageRef = this.storageRef.child(`users/images/${image}`);
-          await imageRef.putString(imgBase64, 'data_url');
-          return imageRef.getDownloadURL();
-      } catch(error){
-          console.log(error);
-          return null;
-      }
+    let id = this.authService.getIdUser();
 
+    let name = id + "_" + Date.now();
 
+    try{
+        let imageRef = await this.storageRef.child("users/"+id+"/"+name).putString(base64, 'data_url');
+        return await imageRef.ref.getDownloadURL();
+    } catch(error){
+        console.log('error: ', error);
+        return '';
+    }
 
   }
+
+  async deleteImage(url:string){
+      
+        try{
+            const imageRef = this.storageRef.child(url);
+            await imageRef.delete();
+            return true;
+        } catch(error){
+            console.log(error);
+            return false;
+        }
+  
+    }
 
 
 }

@@ -1,0 +1,28 @@
+
+[
+  
+    {
+      "id": 1,
+      "title" : "Supermercado",
+      "name" : "Argenchino",
+      "initDate" : "2019-01-01",
+      "endDate" : "2020-01-20",
+      "job" : "Repositor",
+      "commentary" : "Encargado de reponer y limpieza",
+      "logoUrl" : "",
+      "edit" : false
+      
+    },
+    {
+      "id" : 2,
+      "title" : "Desarrollador web",
+      "name" : "Financias SA",
+      "initDate" : "2021-01-01",
+      "endDate" : "2022-01-20",
+      "job" : "desarrollo en frontend",
+      "commentary" : "Encargado diseño e implementación de soluciones para usuarios con una buena experiencia",
+      "logoUrl" : "",
+      "edit" : false
+    }
+  
+  ]

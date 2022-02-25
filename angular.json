@@ -28,8 +28,9 @@
             "assets": [
               "src/favicon.ico",
               "src/github-square-brands.svg",
-              "src/assets",
-              "src/assets/icons/*"
+              "src/assets/",
+              "src/assets/icons/*",
+              "src/assets/datainit/*"
             ],
             "styles": [
               "src/styles.css"

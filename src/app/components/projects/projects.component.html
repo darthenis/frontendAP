@@ -1,16 +1,16 @@
-<section class="projects" [ngStyle]="{'display': display}">
+<section class="projects" [ngStyle]="{'display': projects ? 'block' : 'none'}">
         <span>Projects</span>
         <div class="projects__content">
-            <article *ngFor='let e of elements'>
+            <article *ngFor='let e of projects'>
 
                 <app-dynamic-form *ngIf="e.edit || newSection" [editData]="e" [formTitle]="'Projectos'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
-              
+
                 <div class="projects__content-item">
                     <div class="projects__content-item-image">
-                        <img [src]='e.imgUrl || "/assets/empty.png"' alt="">
+                        <img [src]='e.img || "/assets/empty.png"' alt="">
                     </div>
                     <div class="projects-header-buttons">
-                        <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
+                        <app-edit-buttons *ngIf="authUser" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
                     </div>
                     <a href={{e.url}}>{{e.url}}</a>
                     <div class="projects__content-item-text">
@@ -23,3 +23,4 @@
 </section>
 
 <app-dynamic-form *ngIf="newSection" [formTitle]="'Proyectos'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
+              

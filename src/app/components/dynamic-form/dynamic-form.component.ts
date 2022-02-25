@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { education } from '../education/type';
 import { experience } from '../experience/type';
-import { FormControls, FormData } from './interfaces';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FilesUpdate, FormControls, FormData } from './interfaces';
+import { faTimes, faArrowUp, faCamera, faGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
 import { skill } from '../skills/type';
 import { project } from '../projects/type';
 import { AboutMe } from '../about-me/type';
 import { StorageService } from 'src/app/services/storage.service';
+
 
 @Component({
   selector: 'app-dynamic-form',
@@ -18,27 +19,43 @@ import { StorageService } from 'src/app/services/storage.service';
 export class DynamicFormComponent implements OnInit {
 
   @Input() formData! : FormData
-  @Input() editData! : education | experience | skill | project | AboutMe;
+  @Input() editData! : education | experience | skill | project | AboutMe | any;
   @Input() formTitle : string = "";
   @Output() cancel = new EventEmitter()
+  @Output() formSubmit = new EventEmitter<any>()
+  @Output() formEditSubmit = new EventEmitter<any>()
+  @ViewChild('fileInput')
+  fileInput!: ElementRef;
 
   idUser : number = 1;
 
-  fileName : string = 'vacio'
+  fileName : File | null = null
+
+  filesUpdate : FilesUpdate [] = []
+
+  readingFile = false;
 
   
 
   faTimes = faTimes;
+  faArrowUp = faArrowUp;
+  faCamera = faCamera;
 
   public myForm : FormGroup = this.fb.group({});
 
-  constructor(private fb : FormBuilder, private storageService : StorageService) { }
+  constructor(private fb : FormBuilder, private storageService : StorageService) { 
+
+
+  
+
+  }
 
  ngOnInit(): void {
      this.createForm(this.formData.controls)
 
-     
+     this.myForm.patchValue(this.editData)
  }
+
 
 
  createForm(controls : FormControls[]){
@@ -76,47 +93,63 @@ export class DynamicFormComponent implements OnInit {
  }
 
 
- onSubmit(event : FormDataEvent){
+ onSubmit(){
 
-  event.preventDefault()
-  console.log('Form values: ', this.myForm)
+  if(!this.readingFile) {
+
+  this.formEditSubmit.emit(this.myForm.value)
+
+  }
+
+
+  //TODO  : add loading effect with spinner
 
  }
 
 
- uploadImage(event : any, name : string, maxSize : number){
+ checkImage(event : any, name : string, sizeMax : number){
 
-    const file = event.target.files[0] as File;
+    const file = event.target?.files[0] as File;
 
-    this.myForm.get(name)?.patchValue(file)
+    if(file.size > sizeMax){
 
-    this.fileName = file.name
+        return this.myForm.get(name)?.setErrors({'maxSize': true})
 
-    console.log('fileName: ', this.fileName)
-    
-    console.log('file input: ', this.myForm.get(name)?.value.name)
+    } else {
 
-    
-
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-
-        /*this.storageService.uploadImage( this.idUser + '_' + Date.now(), reader.result)
-                .then(url => { 
-
-                            if(url!==null){
-
-                              console.log('url', url)
-
-                          } else { 
-
-                            console.log('error')
-                          }
-                        }
-                      )*/
+        this.readFile(file, name)
 
     }
+    
+ }
+
+
+ readFile(file : File, name : string){
+
+  this.readingFile = true;
+
+  const reader = new FileReader();
+
+  reader.readAsDataURL(file);
+  reader.onloadend = () => {
+  
+      this.myForm.get(name)?.setValue(reader.result)
+        
+  }
+
+  this.readingFile = false;
+
+ }
+
+
+
+ deleteFile(name : string){
+
+  this.myForm.get(name)?.setValue('')
+
+  this.fileInput.nativeElement.value = ''
+
+  this.filesUpdate = this.filesUpdate.filter(e => e.name !== name)
 
  }
 

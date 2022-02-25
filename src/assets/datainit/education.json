@@ -1,0 +1,26 @@
+
+
+
+[
+  {
+    "id": 1,
+    "title": "Secundario",
+    "name" : "Media 31, ex comercial San Martin",
+    "initDate" : "marzo - 2007",
+    "endDate" : "diciembre - 2010",
+    "career" : "Bachillerato en economía y gestión de empresas",
+    "logoUrl": "",
+    "edit" : false
+  },
+  {
+    "id" : 2,
+    "title": "Curso",
+    "name" : "Centro de formación n451",
+    "initDate" : "marzo - 2019",
+    "endDate" : "noviembre - 2019",
+    "career" : "Programacion",
+    "logoUrl": "",
+    "edit": false
+  }
+
+]

@@ -1,22 +1,22 @@
-<section class="app-experience" [ngStyle]="{'display': display }">
+<section class="app-experience" [ngStyle]="{'display': experiences ? 'block' : 'none' }">
                     <span>Experiencia</span>
-                        <article class="experience-container" *ngFor="let e of elements">
+                        <article class="experience-container" *ngFor="let e of experiences">
                             <div class="experience-item">
 
                                 <!--EDIT MODE-->
 
-                                <app-dynamic-form *ngIf="e.edit" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Experiencia'"></app-dynamic-form>
+                                <app-dynamic-form *ngIf="e.edit" (formEditSubmit)="updateData($event, e.id)" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Experiencia'"></app-dynamic-form>
 
                                 <!--END EDIT MODES-->
 
-                                <div class="logo-exp"><img [src]="e.imgUrl || '/assets/empty.png'" alt=""></div>
+                                <div class="logo-exp"><img [src]="e.logoUrl || '/assets/empty.png'" alt=""></div>
                                 <div class="info-container">
-                                    <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
+                                    <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons *ngIf="authUser" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
                                     <ul>
                                         <li><strong>Empresa</strong>: {{e.name}}</li>
                                         <li><strong>Fecha</strong>: {{e.initDate}} a {{e.endDate}}</li>
                                         <li><strong>Puesto</strong>: {{e.job}} </li>
-                                        <li><strong>Info</strong>: {{e.info}}</li>
+                                        <li><strong>Info</strong>: {{e.commentary}}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -25,4 +25,4 @@
                       <!-- End of experience-container -->
 </section>
 
-<app-dynamic-form *ngIf="newSection" [formTitle]="'Experiencia'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
+<app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Experiencia'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

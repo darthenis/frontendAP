@@ -24,6 +24,7 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
 
 import { HttpClientModule } from '@angular/common/http';
 import { AddSectionComponent } from './components/modules/add-section/add-section.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AddSectionComponent } from './components/modules/add-section/add-sectio
     PortfolioComponent,
     RegistrationComponent,
     DynamicFormComponent,
-    AddSectionComponent
+    AddSectionComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {faPenSquare, faCamera } from '@fortawesome/free-solid-svg-icons';
+import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
 import { socialNetWorks } from '../interfaces/socialNetWorks';
+import { AboutMe } from './type';
 
 
 
@@ -19,6 +22,14 @@ export class AboutMeComponent implements OnInit {
 
 @Output() onAddSection = new EventEmitter<string>();
 
+@Output() userExist = new EventEmitter();
+
+@Input() authUser! : boolean;
+
+aboutMe! : AboutMe;
+
+isAuthenticated = false;
+
 socialNetworks! : socialNetWorks;
 
   faPenSquare = faPenSquare;
@@ -28,7 +39,13 @@ socialNetworks! : socialNetWorks;
 
   formData! : FormData;
 
+  typePicture : string = '';
+
+  addPhotoForm! : FormData;
+
   editMode = false;
+
+  editPicture = false;
 
   edit(){
 
@@ -42,25 +59,6 @@ socialNetworks! : socialNetWorks;
 
   }
 
-  aboutMe = {
-      id: 1,
-      name: 'Juan Carlos',
-      lastName: 'Gonzalez',
-      title: 'Full Stack Developer',
-      country: 'Mexico',
-      state: 'Guadalajara',
-      city: 'Jalisco',
-      avatarUrl : '',
-      bannerUrl : '',
-      aboutMe : 'I am a full stack developer with a passion for creating beautiful and intuitive user interfaces I have a background in business and marketing, and I am currently pursuing a degree in computer science. I am currently working on a project that will all',
-      facebook: 'https://www.facebook.com/juan.gonzalez.9',
-      twitter: 'https://twitter.com/juan_gonzalez_',
-      instagram: 'https://www.instagram.com/juan_gonzalez_/',
-      linkedin: 'https://www.linkedin.com/in/juan-carlos-gonzalez-a9a8b5a9/',
-      github: ''
-
-      }
-  
 
   newSection() {
     this.section = !this.section;
@@ -68,17 +66,22 @@ socialNetworks! : socialNetWorks;
 
   loadNetworks() {
 
-    this.socialNetworks = {
-      facebook: this.aboutMe.facebook,
-      twitter: this.aboutMe.twitter,
-      instagram: this.aboutMe.instagram,
-      linkedin: this.aboutMe.linkedin,
-      github: this.aboutMe.github
-    }
+      this.socialNetworks = {
+        facebook: this.aboutMe?.facebook,
+        twitter: this.aboutMe?.twitter,
+        instagram: this.aboutMe?.instagram,
+        linkedin: this.aboutMe?.linkedin,
+        github: this.aboutMe?.github
+      }
+
+      this.onInfo.emit(this.socialNetworks);
 
   }
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private router : Router) {
+
+
+   }
 
   ngOnInit(): void {
 
@@ -88,9 +91,57 @@ socialNetworks! : socialNetWorks;
           this.formData = data
         })
 
-    this.loadNetworks();
+    this.http
+        .get('/assets/addPhoto.json')
+        .subscribe((data : any) => {
+          this.addPhotoForm = data
+        })
 
-    this.onInfo.emit(this.socialNetworks);
+
+    this.route.params.subscribe( (param : any) => {
+
+          const {username} = param;
+  
+          this.userDataService.getAboutMe$(username).subscribe( (aboutMe : any) => { 
+            
+          if(aboutMe.error) {
+  
+            this.router.navigate(['/not-found'])
+  
+          } else {
+  
+            this.aboutMe = aboutMe; 
+
+            this.loadNetworks();
+
+            this.userExist.emit();
+          }
+  
+          })
+  
+          
+  
+    })
+  
+
+     
+  }
+
+
+  
+  changePic(type : string){
+
+    console.log(this.addPhotoForm)
+
+    this.editPicture = true;
+
+    
+
+  }
+
+  cancelPic(){
+
+    this.editPicture = false;
 
   }
 

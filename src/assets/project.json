@@ -46,7 +46,7 @@
                 "spanish": "Comentario"
             },
             "value": "",
-            "type": "text",
+            "type": "textarea",
             "validators": {
                 "required": true
             }

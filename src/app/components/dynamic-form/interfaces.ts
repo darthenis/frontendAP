@@ -42,3 +42,11 @@ export interface FormControls{
 export interface FormData{
     controls : FormControls[]
 }
+
+
+export interface FilesUpdate{
+
+            file : File,
+            name : string
+
+}

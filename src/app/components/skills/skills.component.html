@@ -1,8 +1,8 @@
-<section class="skill-container" [ngStyle]="{'display': display}">
+<section class="skill-container" [ngStyle]="{'display': skills ? 'block' : 'none'}">
     <span>Skills</span>
     <div class="skills-container">
 
-        <article class="skill-item"  *ngFor="let e of elements">
+        <article class="skill-item"  *ngFor="let e of skills">
 
             <app-dynamic-form *ngIf="e.edit" [editData]="e" [formTitle]="'Habilidades'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
 
@@ -14,7 +14,7 @@
                             [radius]="70" 
                             [stroke]="10"
                             [color]="colorCircle"></round-progress>
-            <app-edit-buttons (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
+            <app-edit-buttons *ngIf="authUser" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
         </article>
 
     </div>

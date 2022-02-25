@@ -1,0 +1,20 @@
+{
+    "controls" :[
+        {
+            "name": "img",
+            "label": {
+                "english": "Picture",
+                "spanish": "Foto"
+            },
+            "value": "",
+            "type": "file",
+            "validators": {
+                "required": false,
+                "sizeImage": {
+                    "max": "524288"
+                }
+            }
+        }
+            
+    ]
+}

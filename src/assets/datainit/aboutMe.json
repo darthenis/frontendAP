@@ -1,0 +1,17 @@
+{
+    "id": 1,
+    "name": "Juan Carlos",
+    "lastName": "Gonzalez",
+    "title": "Full Stack Developer",
+    "country": "Mexico",
+    "state": "Guadalajara",
+    "city": "Jalisco",
+    "profileUrl" : "",
+    "bannerUrl" : "",
+    "aboutMe" : "I am a full stack developer with a passion for creating beautiful and intuitive user interfaces I have a background in business and marketing, and I am currently pursuing a degree in computer science. I am currently working on a project that will all",
+    "facebook": "https://www.facebook.com/juan.gonzalez.9",
+    "twitter": "https://twitter.com/juan_gonzalez_",
+    "instagram": "https://www.instagram.com/juan_gonzalez_/",
+    "linkedin": "https://www.linkedin.com/in/juan-carlos-gonzalez-a9a8b5a9/",
+    "github": ""
+}

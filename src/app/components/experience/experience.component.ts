@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {faPenSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
+import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
 import { experience } from './type';
 
@@ -12,15 +17,19 @@ import { experience } from './type';
 })
 export class ExperienceComponent implements OnInit, OnChanges {
 
-  @Input() subAddSection! : Subject<string> | undefined;
+
+  @Input() subAddSection! : Subject<string>;
+  @Input() authUser : boolean = false;
 
   public formData! : FormData;
 
   newSection : boolean = false;
 
+  experiences! : experience[];
+
   edit(id : number){
 
-    this.elements = this.elements.map(e => {
+    this.experiences = this.experiences.map((e : experience) => {
     
       if(e.id === id) return {...e, edit : !e.edit}
       return e;
@@ -43,34 +52,14 @@ export class ExperienceComponent implements OnInit, OnChanges {
   faPenSquare = faPenSquare;
   faTimes = faTimes;
 
-  elements: experience [] =[{
-      id: 1,
-      title : "Supermercado",
-      name : "Argenchino",
-      initDate : "2019-01-01",
-      endDate : "2020-01-20",
-      job : "Repositor",
-      info : "Encargado de reponer y limpieza",
-      imgUrl : "",
-      edit : false
-      
-    },
-    {
-      id : 2,
-      title : "Desarrollador web",
-      name : "Financias SA",
-      initDate : "2021-01-01",
-      endDate : "2022-01-20",
-      job : "desarrollo en frontend",
-      info : "Encargado diseño e implementación de soluciones para usuarios con una buena experiencia",
-      imgUrl : "",
-      edit : false
-    }]
+  display : string = 'block';
+
+ 
+
+  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private storageService : StorageService ) { 
 
 
-  display = this.elements.length ? 'block' : 'none';
-
-  constructor(private http : HttpClient ) { }
+  }
 
   ngOnInit(): void {
 
@@ -81,6 +70,19 @@ export class ExperienceComponent implements OnInit, OnChanges {
         this.formData = formData;
         
     });
+
+    this.route.params.subscribe( (params : any) => {
+
+      const { username } = params; 
+
+      this.userDataService.getExperience$().subscribe( (data : experience[]) => {
+
+            this.experiences = data;
+
+      })
+
+    })
+    
 
   }
 
@@ -97,5 +99,31 @@ export class ExperienceComponent implements OnInit, OnChanges {
     })
 
   }
+
+
+  async updateData(data : experience, id : number){
+
+   this.storageService.uploadImage(data.logoUrl).then( (url : string) => {
+
+    data.logoUrl = url;
+
+   })
+
+
+  }
+
+
+ newData(data : experience){
+
+  this.route.params.subscribe( (params : any) => {
+
+    const { username } = params;
+
+    //this.experiences = this.userDataService.getData(username, 'experience');
+
+  })
+
+ }
+
 
 }

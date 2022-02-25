@@ -11,7 +11,7 @@
             <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit()"></fa-icon>
         </div>
 
-        <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
+        <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
             <div    class="form-dynamic-control" 
                     *ngFor="let control of formData?.controls"
@@ -39,16 +39,23 @@
                     >
 
                     <div *ngIf="control.type==='file'" class="container-inputfile">
-                        <input  id='{{control.name}}' 
-                                [type]="control.type"
-                                accept=".png, .jpg, .jpeg"
-                                (change)="uploadImage($event, control.name, control.validators.sizeImage.max)">
-                        <label for="{{control.name}}">Cargar</label>
-                        <input  type="text"
-                                [formControlName]="control.name"
-                                placeholder="Cargue su foto"jh54jk
-                                [value]="myForm.get('title')?.value || 'cargue imagen'"
+                       
+                        <label>
+                            <fa-icon [icon]="faCamera"></fa-icon>
+                           <input   #fileInput
+                                    class="inputfile"
+                                    [type]="control.type"
+                                    accept=".png, .jpg, .jpeg"
+                                    (change)="checkImage($event, control.name, control.validators.sizeImage.max)"
+                                    [value]="control.value"
+                                >
+                        </label>
+                        <input 
+                                type="text"
+                                placeholder="Cargue su foto"
+                                [value]="myForm.get(control.name)?.value.name|| 'cargue imagen'"
                                 readonly>
+                        <fa-icon *ngIf="myForm.get(control.name)?.value.name" [icon]="faTimes" size="lg" (click)="deleteFile(control.name)"></fa-icon>
                     </div>
 
                 <textarea 
@@ -57,7 +64,7 @@
                         [value]="control.value">
                 </textarea>
 
-                <p *ngIf="myForm.get(control.name)?.hasError('sizeImage')" [ngStyle]="{'color': 'red', 'font-weight' : 'bold'}">files less 512kb</p>
+                <p *ngIf="myForm.get(control.name)?.hasError('maxSize')" [ngStyle]="{'color': 'red', 'font-weight' : 'bold'}">files less 512kb</p>
             </div>
 
             <div class="form-dynamic-footer">

@@ -2,39 +2,40 @@
 
 
     <div class="banner">
-        <img [src]=" aboutMe.bannerUrl || '/assets/banner.png'" alt="">
-        <fa-icon [icon]="faCamera" size="2x"></fa-icon>
+        <img [src]=" aboutMe?.bannerUrl || '/assets/banner.png'" alt="">
+        <fa-icon  *ngIf='authUser' [icon]="faCamera" size="2x" (click)="changePic('banner')"></fa-icon>
     </div>
     
     <div class="about">
         <div class="header-about">
             <div class="container-avatar">
                 <div class="card-avatar">
-                    <img [src]=" aboutMe.avatarUrl || '/assets/nonAvatar.png'" alt="">
+                    <img [src]=" aboutMe?.profileUrl || '/assets/nonAvatar.png'" alt=""> 
                 </div>
-                <fa-icon class="edit-avatar" [icon]="faCamera" size="2x"></fa-icon>
+                <fa-icon *ngIf="authUser" class="edit-avatar" [icon]="faCamera" size="2x" (click)="changePic('avatar')"></fa-icon>
             </div>
-            <fa-icon [icon]="faPenSquare" size="lg" (click)="edit()"></fa-icon>
+            <fa-icon [ngStyle]="{'visibility': authUser ? 'visible' : 'hidden'}" [icon]="faPenSquare" size="lg" (click)="edit()"></fa-icon>
         </div>
 
         <app-dynamic-form *ngIf="editMode" [formData]="formData" [editData]='aboutMe' [formTitle]="'Datos Personales'" (cancel)="edit()"></app-dynamic-form>
+        <app-dynamic-form *ngIf="editPicture" [formData]="addPhotoForm" [formTitle]="'Elija una nueva foto/imagen'" (cancel)="cancelPic()"></app-dynamic-form>
 
         <div class="about-me-container">
             <div class="profile">
                
-                    <div><span class="name">{{aboutMe.name + ' ' + aboutMe.lastName}}</span></div>
-                    <div><span class="title">{{aboutMe.title}}</span></div>
-                    <div><span class="location">{{aboutMe.country + ', ' + aboutMe.state + ', ' + aboutMe.city}}</span></div>
+                    <div><span class="name">{{aboutMe?.name + ' ' + aboutMe?.lastName}}</span></div>
+                    <div><span class="title">{{aboutMe?.title}}</span></div>
+                    <div><span class="location">{{aboutMe?.country + ', ' + aboutMe?.state + ', ' + aboutMe?.city}}</span></div>
               
             </div>
             <div class="about-me">
                 <span>Sobre mí</span>   
-                <p>{{aboutMe.aboutMe}}</p>
+                <p>{{aboutMe?.aboutMe}}</p>
             </div>
         </div>
         <div>
             <app-button class="section-button" [name]="'Añadir Sección'" (click)="newSection()"></app-button>
-            <app-button class="contact-button" [name]="'Contacto'"></app-button>
+            <app-button *ngIf="authUser" class="contact-button" [name]="'Contacto'"></app-button>
         </div>
 
     </div>
@@ -42,4 +43,3 @@
 </section>
 
 <app-add-section *ngIf="section" (onAddSection)='addSection($event)' (cancel)="newSection()"></app-add-section>
-

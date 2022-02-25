@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/internal/Subject';
+import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
+import { project } from './type';
 
 @Component({
   selector: 'app-projects',
@@ -10,19 +13,17 @@ import { FormData } from '../dynamic-form/interfaces';
 })
 export class ProjectsComponent implements OnInit, OnChanges {
 
- @Input() subAddSection! : Subject<string> | undefined;
-
- addSection! : string;
-
+ @Input() subAddSection! : Subject<string>;
+ 
+ @Input() authUser : boolean = false;
+ 
  public formData! : FormData;
-
 
  newSection : boolean = false;
 
-
  edit(id:number){
 
-    this.elements = this.elements.map(e => {
+    this.projects = this.projects.map((e : project) => {
 
       if(e.id === id) return {...e, edit : !e.edit}
       return e;
@@ -41,38 +42,33 @@ export class ProjectsComponent implements OnInit, OnChanges {
     console.log("delete")
   }
 
-elements : any[] = [{
-            id : 1,
-            title : "Mi portfolio",
-            url : "http://www.miportfolio.com",
-            img: "",
-            info: "Mi proyecto de portfolio en React",
-            edit: false
-},
+projects! : project[];
 
-{
-  id : 2,
-  title : "Calculator app",
-  url : "http://www.calculator.com",
-  imgUrl: "",
-  info: "Mi proyecto de calculadora en Java",
-  edit: false
-
-}]
-
-display = this.elements.length ? 'block' : 'none';
-
-  constructor(private http : HttpClient) {}
+  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute) {}
 
 
 
   ngOnInit(): void {
+
+    this.route.params.subscribe( (param : any) => {
+
+      const { username } = param;
+
+      this.userDataService.getProject$().subscribe( (data : any) => {
+
+          this.projects = data;
+
+    });
+
+      })
 
     this.http
       .get('/assets/project.json')
       .subscribe( (formData : any) => {
           this.formData = formData;
       });
+
+    
 
   }
 
@@ -81,8 +77,6 @@ display = this.elements.length ? 'block' : 'none';
     changes['subAddSection']?.currentValue?.subscribe( (section : string) => {
 
       if(section === 'project'){
-
-        console.log('contador!')
 
         this.newSection = true;
 

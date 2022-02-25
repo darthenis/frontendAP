@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs/internal/Subject';
+import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
+import { skill } from './type';
 
 @Component({
   selector: 'app-skills',
@@ -11,8 +14,10 @@ import { FormData } from '../dynamic-form/interfaces';
 })
 export class SkillsComponent implements OnInit, OnChanges {
 
-  @Input() subAddSection! : Subject<string> | undefined;
+  @Input() subAddSection! : Subject<string>;
 
+  @Input() authUser : boolean = false;
+ 
   faTimes = faTimes;
 
   public formData! : FormData;
@@ -21,10 +26,12 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   colorCircle = '#273c75';
 
+  skills! :  skill[];
+
 
   edit(id : number){
 
-    this.elements = this.elements.map(e => {
+    this.skills = this.skills.map((e : skill) => {
 
       if(e.id === id) return {...e, edit : !e.edit}
       return e;
@@ -45,28 +52,10 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   }
 
-  elements : any[] = [{
-          id : 1,
-          name : "HTML",
-          porcent: 90,
-          edit: false
-  },
-  {
-          id : 2,
-          name : "CSS",
-          porcent: 70,
-          edit: false
-  },
-  {
-          id : 3,
-          name : "JS",
-          porcent: 70,
-          edit: false
-}]
 
-display = this.elements.length ? 'block' : 'none';
 
-  constructor(private http : HttpClient) { }
+
+  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -75,6 +64,18 @@ display = this.elements.length ? 'block' : 'none';
       .subscribe( (formData : any) => {
         this.formData = formData;
       });
+
+      this.route.params.subscribe( (params : any) => { 
+
+        const { username } = params;
+
+        this.userDataService.getSkill$().subscribe( (skills : any) => {
+
+          this.skills = skills;
+
+        } ); 
+
+       } )
 
   }
 

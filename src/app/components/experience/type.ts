@@ -6,8 +6,8 @@ export interface experience {
         initDate : string,
         endDate : string,
         job : string,
-        info : string,
-        imgUrl : string,
+        commentary : string,
+        logoUrl : any,
         edit : boolean
 
 }
