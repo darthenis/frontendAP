@@ -14,7 +14,7 @@
                             [radius]="70" 
                             [stroke]="10"
                             [color]="colorCircle"></round-progress>
-            <app-edit-buttons *ngIf="authUser" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
+            <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
         </article>
 
     </div>

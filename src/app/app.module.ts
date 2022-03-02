@@ -22,9 +22,13 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddSectionComponent } from './components/modules/add-section/add-section.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { UserDataService } from './services/user-data.service';
+import { InterceptorJwtService } from './services/interceptorjwt.service';
+import { InterceptorHttpErrorService } from './services/interceptor-http-error.service';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 
 
 @NgModule({
@@ -44,7 +48,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     RegistrationComponent,
     DynamicFormComponent,
     AddSectionComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ConfirmEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [  UserDataService,
+             {  provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi: true},
+             { provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

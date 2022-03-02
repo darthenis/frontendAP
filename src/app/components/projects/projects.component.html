@@ -10,7 +10,7 @@
                         <img [src]='e.img || "/assets/empty.png"' alt="">
                     </div>
                     <div class="projects-header-buttons">
-                        <app-edit-buttons *ngIf="authUser" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
+                        <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
                     </div>
                     <a href={{e.url}}>{{e.url}}</a>
                     <div class="projects__content-item-text">

@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { education } from './type';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-education',
@@ -18,11 +19,15 @@ export class EducationComponent implements OnInit, OnChanges {
 
   @Input() authUser : boolean = false;
 
+  profileActived! : string;
+
   public formData! : FormData;
 
   newSection : boolean = false;
 
   public educations! : education[];
+
+  logged$ = this.authService.currentUser$;
 
   edit(id : number){
     
@@ -45,13 +50,14 @@ export class EducationComponent implements OnInit, OnChanges {
 
   }
 
- 
+
 
   display = 'block';
 
   constructor(private http : HttpClient, 
               private userDataService : UserDataService,
-              private route : ActivatedRoute){
+              private route : ActivatedRoute,
+              private authService : AuthService){
 
                 
 
@@ -75,6 +81,8 @@ export class EducationComponent implements OnInit, OnChanges {
               this.educations = data;
   
         })
+
+        this.profileActived = username;
   
       })
 

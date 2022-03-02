@@ -15,13 +15,39 @@ export class StorageService {
 
   constructor(private authService : AuthService) { }
 
+  readerImage(file : File){
 
-  async uploadImage(base64 : string, urlRef? : string){
+    const reader = new FileReader();
 
-    let id = this.authService.getIdUser();
+    return new Promise((resolve, reject) => {
+
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+
+            resolve(reader.result as string)
+
+          }
+
+      })
+
+  }
+
+
+  async uploadImage(file : File, urlRef? : string){
+
+    let base64 : any;
+
+    let id = this.authService.currentUserValue.id;
 
     let name = id + "_" + Date.now();
 
+    await this.readerImage(file).then((result) => {
+
+      base64 = result;
+
+    })
+
+   
     try{
         let imageRef = await this.storageRef.child("users/"+id+"/"+name).putString(base64, 'data_url');
         return await imageRef.ref.getDownloadURL();

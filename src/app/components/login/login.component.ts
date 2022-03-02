@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faUser, faKey, faEye, faEyeSlash, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -17,6 +19,8 @@ export class LoginComponent implements OnInit {
   faEyeSlash = faEyeSlash;
   faSpinner = faSpinner;
 
+  logged$ = this.authService.currentUser$
+
   passwordHide = true;
 
   loading = false;
@@ -31,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   iconPassword = this.passwordHide ? faEye : faEyeSlash;
 
-  constructor(private fb : FormBuilder) {
+  constructor(private fb : FormBuilder, private authService : AuthService, private router : Router) {
 
 
     this.form = this.fb.group({
@@ -45,20 +49,20 @@ export class LoginComponent implements OnInit {
 
   get Password() { return this.form.get('password'); }
 
-  onSubmit() {
+  async onSubmit() {
 
-      this.loading = true;
+    this.authService.login(this.form.value).subscribe( () => {
 
-      setTimeout(() => { 
+      this.router.navigate(['/user/', this.form.value.username]);
 
-        this.loading = false
-        console.log(this.form.value); 
-      } , 3000);
-  
-    
+    })
+
   }
 
   ngOnInit(): void {
+
+  
+
   }
 
 }

@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs/internal/Subject';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
 import { skill } from './type';
@@ -25,6 +26,10 @@ export class SkillsComponent implements OnInit, OnChanges {
   newSection : boolean = false;
 
   colorCircle = '#273c75';
+
+  logged$ = this.authService.currentUser$
+
+  profileActived! : string;
 
   skills! :  skill[];
 
@@ -55,7 +60,7 @@ export class SkillsComponent implements OnInit, OnChanges {
 
 
 
-  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute) { }
+  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private authService : AuthService) { }
 
   ngOnInit(): void {
 
@@ -73,7 +78,9 @@ export class SkillsComponent implements OnInit, OnChanges {
 
           this.skills = skills;
 
-        } ); 
+        });
+        
+        this.profileActived = username;
 
        } )
 

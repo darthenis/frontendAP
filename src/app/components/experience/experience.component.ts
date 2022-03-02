@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {faPenSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -19,9 +18,14 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
 
   @Input() subAddSection! : Subject<string>;
+
   @Input() authUser : boolean = false;
 
+  logged$ = this.authService.currentUser$
+
   public formData! : FormData;
+
+  profileActived! : string;
 
   newSection : boolean = false;
 
@@ -56,7 +60,7 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
  
 
-  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private storageService : StorageService ) { 
+  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private storageService : StorageService, private authService : AuthService ) { 
 
 
   }
@@ -81,6 +85,8 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
       })
 
+      this.profileActived = username;
+
     })
     
 
@@ -101,25 +107,27 @@ export class ExperienceComponent implements OnInit, OnChanges {
   }
 
 
-  async updateData(data : experience, id : number){
+  updateData(data : experience, id : number){
 
-   this.storageService.uploadImage(data.logoUrl).then( (url : string) => {
-
-    data.logoUrl = url;
-
-   })
-
+   
 
   }
 
 
- newData(data : experience){
+ async newData(data : experience){
 
-  this.route.params.subscribe( (params : any) => {
+  console.log('newData', data)
+
+  this.route.params.subscribe( (params : any)  => {
 
     const { username } = params;
 
-    //this.experiences = this.userDataService.getData(username, 'experience');
+    this.storageService.uploadImage(data.logoUrl).then(url => {
+
+      console.log('url', url)
+
+
+    })
 
   })
 

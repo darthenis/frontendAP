@@ -1,6 +1,8 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { faGithubSquare, faLinkedin, faInstagramSquare, faFacebookSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { Subject } from 'rxjs/internal/Subject';
+import { AuthService } from 'src/app/services/auth.service';
 import { socialNetWorks } from '../interfaces/socialNetWorks';
 
 
@@ -12,6 +14,8 @@ import { socialNetWorks } from '../interfaces/socialNetWorks';
 export class HeaderComponent implements OnInit {
 
   @Input() subject!: Subject<socialNetWorks>;
+
+  logged$ = this.authService.currentUser$
 
   socialNetworks! : socialNetWorks;
  
@@ -50,9 +54,9 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  constructor() {
+  constructor(private router : Router, public authService : AuthService) { }
 
-  }
+
 
   ngOnInit(): void {
 
@@ -62,8 +66,17 @@ export class HeaderComponent implements OnInit {
 
     });
 
+  }
 
+  login(){
 
+      this.router.navigate(['/login']);
+
+  }
+
+  logout(){
+
+    this.authService.logout();
 
   }
 

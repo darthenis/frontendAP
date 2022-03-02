@@ -7,7 +7,7 @@
         <div class="education-item">
             <div class="logo-exp"><img [src]="e.logoUrl || '/assets/empty.png'" alt=""></div>
             <div class="info-container">
-                <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons *ngIf="authUser" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
+                <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
                 <ul>
                     <li><strong>Institución</strong>: {{e.name}}</li>
                     <li><strong>Fecha</strong>: {{e.initDate}} a {{e.endDate}}</li>

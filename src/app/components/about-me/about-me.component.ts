@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, EventEmitter, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {faPenSquare, faCamera } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
 import { socialNetWorks } from '../interfaces/socialNetWorks';
@@ -45,6 +46,10 @@ socialNetworks! : socialNetWorks;
 
   editMode = false;
 
+  logged$ = this.authService.currentUser$
+  
+  profileActived! : string;
+
   editPicture = false;
 
   edit(){
@@ -78,7 +83,7 @@ socialNetworks! : socialNetWorks;
 
   }
 
-  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private router : Router) {
+  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private router : Router, private authService : AuthService) {
 
 
    }
@@ -101,6 +106,8 @@ socialNetworks! : socialNetWorks;
     this.route.params.subscribe( (param : any) => {
 
           const {username} = param;
+
+          this.profileActived = username;
   
           this.userDataService.getAboutMe$(username).subscribe( (aboutMe : any) => { 
             

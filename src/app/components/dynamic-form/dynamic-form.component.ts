@@ -8,6 +8,7 @@ import { skill } from '../skills/type';
 import { project } from '../projects/type';
 import { AboutMe } from '../about-me/type';
 import { StorageService } from 'src/app/services/storage.service';
+import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 
 @Component({
@@ -93,18 +94,15 @@ export class DynamicFormComponent implements OnInit {
  }
 
 
- onSubmit(){
+  onSubmit(){
 
-  if(!this.readingFile) {
+    console.log('submit')
 
-  this.formEditSubmit.emit(this.myForm.value)
-
-  }
-
+    this.formSubmit.emit(this.myForm.value)
 
   //TODO  : add loading effect with spinner
 
- }
+  }  //onSubmit
 
 
  checkImage(event : any, name : string, sizeMax : number){
@@ -115,31 +113,48 @@ export class DynamicFormComponent implements OnInit {
 
         return this.myForm.get(name)?.setErrors({'maxSize': true})
 
-    } else {
-
-        this.readFile(file, name)
-
     }
+
+      this.myForm.get(name)?.setValue(file) 
     
  }
 
+/*async uploadImage(){
 
- readFile(file : File, name : string){
+    let images = this.formData.controls.filter(e => e.type === 'file')
 
-  this.readingFile = true;
+    for (let image of images){
+
+        await this.readerImage(image.name)
+
+    }
+
+}
+
+
+/*readerImage(name : string){
 
   const reader = new FileReader();
 
-  reader.readAsDataURL(file);
-  reader.onloadend = () => {
-  
-      this.myForm.get(name)?.setValue(reader.result)
-        
-  }
+    return new Promise((resolve, reject) => {
 
-  this.readingFile = false;
+      reader.readAsDataURL(this.myForm.get(name)?.value as File);
+      reader.onloadend = () => {
 
- }
+        this.storageService.uploadImage(reader.result as string, this.editData ? this.editData[name] : '')
+          .then( url => {
+
+            resolve(this.myForm.get(name)?.setValue(url))
+
+          })
+
+      }
+
+  })
+
+}*/
+
+
 
 
 

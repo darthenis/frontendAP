@@ -23,8 +23,6 @@ export class PortfolioComponent implements OnInit {
 
   subAddSection = new Subject<string>();
 
-  authenticatedUser : boolean = false
-
   aboutme! : AboutMe;
 
   handleInfo(info: socialNetWorks) {
@@ -46,7 +44,7 @@ export class PortfolioComponent implements OnInit {
 
         const {username} = param;
 
-        this.authUser = this.authService.isAuthenticated() && username === this.authService.getUsername();
+        this.authUser = this.authService.currentUserValue && username === this.authService.currentUserValue.username;
 
         })
 

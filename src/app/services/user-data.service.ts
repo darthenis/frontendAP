@@ -14,7 +14,7 @@ constructor(private http : HttpClient) { }
 
 getAboutMe$(username : string):Observable<any>
 {
-  if(username === 'darthenis') return this.http.get('assets/datainit/aboutMe.json');
+  if(username === 'emi') return this.http.get('assets/datainit/aboutMe.json');
 
   return this.http.get('assets/datainit/error.json');
 
@@ -46,7 +46,7 @@ getProject$():Observable<any>
 setExperience(experience: experience){
 
   let data = {
-      id : experience.id,
+      id : experience.id || 0,
       title : experience.title,
       name : experience.name,
       initDate : experience.initDate,
