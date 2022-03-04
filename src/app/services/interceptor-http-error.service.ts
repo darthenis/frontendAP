@@ -22,7 +22,7 @@ export class InterceptorHttpErrorService implements HttpInterceptor{
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
             console.error(
-              `Backend returned code ${error.status}, ` +
+              `Backend returned code ${error.status === 401}, ` + //return true
               `body was: ${error.error}`);
           }
         })
