@@ -1,6 +1,8 @@
+import { registerLocaleData } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { faCheckCircle, faTimesCircle, faCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-registration',
@@ -41,13 +43,9 @@ export class RegistrationComponent implements OnInit {
       
     } else{
 
-      this.loading = true;
+      //this.loading = true;
 
-      setTimeout(() => { 
-
-        this.loading = false
-        console.log(this.form.value.username); 
-      } , 3000);
+      this.registerService.register(this.form.value)
 
     }
 
@@ -57,7 +55,7 @@ export class RegistrationComponent implements OnInit {
   form : FormGroup;
 
 
-  constructor(private fb : FormBuilder) { 
+  constructor(private fb : FormBuilder, private registerService : RegisterService) { 
 
     this.form = this.fb.group({
 

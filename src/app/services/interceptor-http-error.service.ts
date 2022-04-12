@@ -1,29 +1,37 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, retry, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
+import { AlertifyService } from './alertify.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorHttpErrorService implements HttpInterceptor{
 
-  constructor() {}
+  constructor(private alertifyService : AlertifyService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
+      catchError((res: HttpErrorResponse) => {
+
+        console.log(res)
 
         return throwError(() => {
 
-          if (error.error instanceof ErrorEvent) {
+          if (res.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error('An error occurred:', res.error.message);
+          }else if (res.error.path === '/auth/login'){
+
+              console.error('login error')
+              this.alertifyService.error(res.error.message)
+
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
             console.error(
-              `Backend returned code ${error.status === 401}, ` + //return true
-              `body was: ${error.error}`);
+              `Backend returned code ${res.status === 401}, ` + //return true
+              `body was: ${res.error.message}`);
           }
         })
 

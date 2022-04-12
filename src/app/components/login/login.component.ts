@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faUser, faKey, faEye, faEyeSlash, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -35,7 +36,10 @@ export class LoginComponent implements OnInit {
 
   iconPassword = this.passwordHide ? faEye : faEyeSlash;
 
-  constructor(private fb : FormBuilder, private authService : AuthService, private router : Router) {
+  constructor(private fb : FormBuilder, 
+              private authService : AuthService, 
+              private router : Router,
+              private alertifyService : AlertifyService) {
 
 
     this.form = this.fb.group({

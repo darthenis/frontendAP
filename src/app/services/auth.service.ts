@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AuthUser } from '../components/interfaces/authUser';
 
 
@@ -23,10 +23,12 @@ export class AuthService {
       return this.httpClient.post(this.url, credentials).pipe(
         
           map( (response : any) => {
+
+              console.log('response: ', response)
     
-              let authUser : AuthUser = {...response, username : credentials.username };
-        
               if(response){
+
+                let authUser : AuthUser = {...response, username : credentials.username };
         
                 this.currentUser.next(authUser);
                 sessionStorage.setItem('currentUser', JSON.stringify(authUser));

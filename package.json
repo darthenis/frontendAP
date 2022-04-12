@@ -23,6 +23,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@types/alertify": "^0.3.31",
+    "alertifyjs": "^1.13.1",
     "angular-svg-round-progressbar": "^8.0.0",
     "firebase": "^9.6.7",
     "font-awesome": "^4.7.0",

@@ -29,6 +29,7 @@ import { UserDataService } from './services/user-data.service';
 import { InterceptorJwtService } from './services/interceptorjwt.service';
 import { InterceptorHttpErrorService } from './services/interceptor-http-error.service';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { AlertifyService } from './services/alertify.service';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.
   ],
   providers: [  UserDataService,
              {  provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi: true},
-             { provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true }],
+             {  provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true },
+                AlertifyService],
 
   bootstrap: [AppComponent]
 })
