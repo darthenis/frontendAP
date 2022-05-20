@@ -1,19 +1,25 @@
+h3{
+    margin: 0;
+    font-weight: bold;
+}
+
 .skill-container{
 
     background: white;
     position: relative;
     width: 100%;
     max-width: 1200px;
-    padding: 2%;
+    padding: 1.5%;
     border-radius: 20px;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     font-family: sans-serif;
+    margin-top: 10px;
 
 }
 
 .skill-container > span {
 
-    font-size: 1.7rem;
+    font-size: 25px;
     font-weight: bold;
     color: rgb(0 0 0 / 50%);
 }
@@ -77,3 +83,26 @@
     right: 0px;
 
 }
+
+.resume-click{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    cursor: hand;
+    margin-top: 20px;
+   
+}
+
+.cdk-drag-preview{
+    background-color: white;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 8px 16px rgb(0 0 0 / 20%);
+}
+
+.cdk-drop-list-dragging{
+    cursor: move;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }

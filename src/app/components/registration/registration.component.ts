@@ -1,8 +1,11 @@
-import { registerLocaleData } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faCheckCircle, faTimesCircle, faCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { RegisterService } from 'src/app/services/register.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { FocusInput } from './registrationType';
 
 @Component({
   selector: 'app-registration',
@@ -18,8 +21,16 @@ export class RegistrationComponent implements OnInit {
 
 
   loading = false;
+  done = false;
 
-
+  focusInput : FocusInput = {
+      username: false,
+      password: false,
+      passwordConfirm: false,
+      name: false,
+      lastname: false,
+      email: false
+  }
 
 
   checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
@@ -33,34 +44,22 @@ export class RegistrationComponent implements OnInit {
 
   invalidForm : boolean = false;
   
-
-
-  onSubmit() {
-
-    if(!this.form.valid) {
-      
-      this.invalidForm = true;
-      
-    } else{
-
-      //this.loading = true;
-
-      this.registerService.register(this.form.value)
-
-    }
-
-  }
-
  
   form : FormGroup;
 
+  strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/
 
-  constructor(private fb : FormBuilder, private registerService : RegisterService) { 
+
+  constructor(private fb : FormBuilder, private authService : AuthService, private router: Router, private alertify : AlertifyService){ 
 
     this.form = this.fb.group({
 
       username : ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
-      password : ['',  [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+      password : ['',  [Validators.required, 
+                        Validators.minLength(8), 
+                        Validators.maxLength(16), 
+                        Validators.pattern(this.strongRegex)
+                        ]],
       passwordConfirm : ['',  Validators.required],
       name : ['', [Validators.required, Validators.minLength(3)]],
       lastname : ['',  [Validators.required, Validators.minLength(3)]],
@@ -73,6 +72,31 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
       
+
+  }
+
+  onSubmit() {
+
+    if(!this.form.valid) {
+      
+      this.invalidForm = true;
+      
+    } else{
+
+      this.loading = true;
+
+      this.authService.signUp(this.form.value).subscribe({
+
+        next : response => {  this.loading = false;
+
+                              this.done = true;},
+
+        error : error => this.loading = false
+   
+      
+      });
+
+    }
 
   }
   
@@ -88,6 +112,12 @@ export class RegistrationComponent implements OnInit {
 
   get Email() { return this.form.get('email'); }
 
-  
+  focus(input : string) {
+
+    console.log('focus: ', input);
+
+    this.focusInput[input] = !this.focusInput[input];
+
+  }
 
 }

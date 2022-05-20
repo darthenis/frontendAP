@@ -1,26 +1,37 @@
-<section class="projects" [ngStyle]="{'display': projects ? 'block' : 'none'}">
-        <span>Projects</span>
-        <div class="projects__content">
-            <article *ngFor='let e of projects'>
+<section *ngIf="!(isLoading$ | async)" class="projects" [ngStyle]="{'display': projects.length ? 'block' : 'none'}">
+        <span>Proyectos</span>
+        <div class="projects__content" cdkDropListGroup>
 
-                <app-dynamic-form *ngIf="e.edit || newSection" [editData]="e" [formTitle]="'Projectos'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
+            <article *ngFor='let e of getProjects(); index as i' cdkDropList  cdkDropListOrientation="horizontal"
+            [cdkDropListData]="{item:e,index:i}" (cdkDropListDropped)="onDrop($event)">
 
-                <div class="projects__content-item">
+                <app-dynamic-form *ngIf="e.edit" [editData]="e" [formTitle]="'Projectos'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
+
+                <div class="projects__content-item"
+                    [cdkDragDisabled]="!((logged$ | async).username === profileActived) || e.edit"
+                    [ngStyle]="{'cursor' : ((logged$ | async).username === profileActived && !e.edit)  ? 'move' : 'auto' }"
+                    cdkDrag>
+                    <div *cdkDragPlaceholder></div>
                     <div class="projects__content-item-image">
                         <img [src]='e.img || "/assets/empty.png"' alt="">
                     </div>
                     <div class="projects-header-buttons">
-                        <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
+                        <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete(e.id)" (editEvent)="edit(e.id)"></app-edit-buttons>
                     </div>
-                    <a href={{e.url}}>{{e.url}}</a>
+                    
                     <div class="projects__content-item-text">
                         <h3>{{e.title}}</h3>
-                        <p>{{e.info}}</p>
+                        <ul>
+                            <li>{{e.date || "fecha"}}</li>
+                            <li>{{e.info}}</li>
+                            <li><a href={{e.url}}>{{e.url}}</a></li>
+                        </ul>
                     </div>
                 </div>
             </article>
         </div>
+        <app-arrow-resume *ngIf="projects.length >= 4" (eventResume)="resumeChange($event)"></app-arrow-resume>
 </section>
 
-<app-dynamic-form *ngIf="newSection" [formTitle]="'Proyectos'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
+<app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Proyectos'" (cancel)="cancelNewForm($event)" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
               

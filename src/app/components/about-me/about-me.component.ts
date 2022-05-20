@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {faPenSquare, faCamera } from '@fortawesome/free-solid-svg-icons';
+import {faPenSquare, faCamera, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
 import { socialNetWorks } from '../interfaces/socialNetWorks';
@@ -19,22 +21,21 @@ import { AboutMe } from './type';
 
 export class AboutMeComponent implements OnInit {
 
-@Output() onInfo = new EventEmitter<socialNetWorks>();
-
 @Output() onAddSection = new EventEmitter<string>();
 
 @Output() userExist = new EventEmitter();
 
 @Input() authUser! : boolean;
 
-aboutMe! : AboutMe;
+aboutMe : AboutMe = {} as AboutMe;
 
-isAuthenticated = false;
+isAuthenticated$! : boolean;
 
 socialNetworks! : socialNetWorks;
 
   faPenSquare = faPenSquare;
   faCamera = faCamera;
+  faSpinner = faSpinner;
 
   section = false;
 
@@ -47,6 +48,8 @@ socialNetworks! : socialNetWorks;
   editMode = false;
 
   logged$ = this.authService.currentUser$
+
+  isLoading$ = this.loadingService.isLoadingGet;
   
   profileActived! : string;
 
@@ -66,27 +69,45 @@ socialNetworks! : socialNetWorks;
 
 
   newSection() {
+
     this.section = !this.section;
   }
 
   loadNetworks() {
 
-      this.socialNetworks = {
-        facebook: this.aboutMe?.facebook,
-        twitter: this.aboutMe?.twitter,
-        instagram: this.aboutMe?.instagram,
-        linkedin: this.aboutMe?.linkedin,
-        github: this.aboutMe?.github
+      return {
+          github : this.aboutMe.github,
+          linkedin : this.aboutMe.linkedin,
+          instagram : this.aboutMe.instagram,
+          facebook : this.aboutMe.facebook,
+          twitter : this.aboutMe.twitter
       }
+  }
 
-      this.onInfo.emit(this.socialNetworks);
+  areNetworks(){
+
+    if(this.aboutMe.instagram || this.aboutMe.facebook || this.aboutMe.twitter || this.aboutMe.linkedin || this.aboutMe.github){
+
+      return true;
+
+    }else{
+
+      return false;
+
+    }
 
   }
 
-  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private router : Router, private authService : AuthService) {
+  constructor(private http : HttpClient, 
+              private userDataService : UserDataService, 
+              private route : ActivatedRoute, 
+              private router : Router, 
+              private authService : AuthService,
+              private storageService : StorageService,
+              private loadingService : LoadingService) { 
 
 
-   }
+              }
 
   ngOnInit(): void {
 
@@ -109,40 +130,32 @@ socialNetworks! : socialNetWorks;
 
           this.profileActived = username;
   
-          this.userDataService.getAboutMe$(username).subscribe( (aboutMe : any) => { 
+          this.userDataService.getAboutMe$(username).subscribe({ 
             
-          if(aboutMe.error) {
-  
-            this.router.navigate(['/not-found'])
-  
-          } else {
-  
-            this.aboutMe = aboutMe; 
+            next: aboutMe => {
 
-            this.loadNetworks();
-
-            this.userExist.emit();
-          }
+                this.aboutMe = {...aboutMe}; 
+    
+                this.loadNetworks();
+    
+                this.userExist.emit();
+            },
+            error: err => this.router.navigate(['/not-found'])
   
           })
   
           
   
     })
-  
-
-     
+    
   }
 
 
-  
   changePic(type : string){
 
-    console.log(this.addPhotoForm)
+    this.typePicture = type;
 
     this.editPicture = true;
-
-    
 
   }
 
@@ -152,4 +165,71 @@ socialNetworks! : socialNetWorks;
 
   }
 
+ async newPic( pic : any){
+    
+    this.loadingService.setLoadingPost(true);
+
+    if(this.typePicture === 'profile'){
+
+      this.aboutMe.profile = await this.storageService.uploadImage(pic.img);
+
+    }else{
+
+      this.aboutMe.banner = await this.storageService.uploadImage(pic.img);
+    }
+
+      this.userDataService.editAboutme(this.aboutMe).subscribe({
+
+            next: () => {
+                          this.loadingService.setLoadingPost(false);
+                          this.editPicture = false;},
+
+            error: error => console.log(error)
+      })
+
+    }
+
+   
+
+  async newData(data : AboutMe){
+    
+    let newData = {...this.aboutMe};
+
+    newData = {...newData, ...data};
+
+    console.log(newData);
+
+    this.userDataService.editAboutme(newData).subscribe({
+
+        next: () => {
+            this.aboutMe = {...newData};
+            this.editMode = false;
+          },
+        error: () => console.log('error')
+
+      })
+
+  }
+
+  isOpenContact = false;
+
+  isOpenNetworks = false;
+
+  openContact(){
+
+    this.isOpenContact = !this.isOpenContact;
+
+  }
+
+  openNetworks(){
+
+    this.isOpenNetworks = !this.isOpenNetworks;
+
+  }
+
+  getNetworks(){
+
+    return [this.aboutMe.instagram, this.aboutMe.facebook, this.aboutMe.twitter, this.aboutMe.linkedin, this.aboutMe.github];
+
+  }
 }

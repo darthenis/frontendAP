@@ -35,6 +35,7 @@ export interface FormControls{
     value : string,
     type : string,
     options? : FormControlOptions,
+    selectOptions? : selectOptions[],
     required : boolean,
     validators : FormValidators
 }
@@ -49,4 +50,9 @@ export interface FilesUpdate{
             file : File,
             name : string
 
+}
+
+interface selectOptions{
+    value : string,
+    label : string
 }

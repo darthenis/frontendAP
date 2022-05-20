@@ -6,15 +6,16 @@
                                     <span>#SeProgramar</span>
                                 </div>
                                 <nav class="navBar">
-                                    <ng-container *ngFor="let e of socialNetworks | keyvalue">
-                                        <a *ngIf="e.value" href={{e.value}} target="_blank" >
-                                            <fa-icon class="icon" [icon]="findIcon(e.key)" size="2x"></fa-icon>
-                                        </a>
-                                    </ng-container>
-                                    <button *ngIf='!(logged$ | async).id' (click)="login()">Login</button>
+                                    <div id="container-messages" *ngIf="(logged$ | async).username"> 
+                                        <fa-icon class="icon"  [icon]="faEnvelope" (click)="openMessages()"></fa-icon>
+                                        <span id="iconAlert">{{newMessages}}</span>
+                                    </div>
+                                    <button *ngIf="!(logged$ | async).id" (click)="login()">Login</button>
                                     <button *ngIf="(logged$ | async).id" (click)="logout()">Logout</button>
                                 </nav>  
                             </div>
                         </header>
+
+                        <app-messages></app-messages>
                         
 

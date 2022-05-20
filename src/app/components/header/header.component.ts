@@ -1,9 +1,7 @@
-import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faGithubSquare, faLinkedin, faInstagramSquare, faFacebookSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
-import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
-import { socialNetWorks } from '../interfaces/socialNetWorks';
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -13,58 +11,23 @@ import { socialNetWorks } from '../interfaces/socialNetWorks';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() subject!: Subject<socialNetWorks>;
-
-  logged$ = this.authService.currentUser$
-
-  socialNetworks! : socialNetWorks;
- 
-  faGitHubSquare = faGithubSquare;
-  faLinkedin = faLinkedin;
-  faFacebookSquare = faFacebookSquare;
-  faTwitterSquare = faTwitterSquare;
-  faInstagramSquare = faInstagramSquare;
-
-
-  findIcon(name: string) {
-
-    if(name === 'github') {
-      return this.faGitHubSquare;
-    }
-
-    if(name === 'facebook') {
-      return this.faFacebookSquare;
-    }
-
-    if(name === 'twitter') {
-      return this.faTwitterSquare;
-    }
-
-    if(name === 'instagram') {
-      return this.faInstagramSquare;
-    }
-
-    else {
-
-      return this.faLinkedin;
-      
-    }
-
-
-
-  }
-
   constructor(private router : Router, public authService : AuthService) { }
 
+  logged$ = this.authService.currentUser$;
 
+  faEnvelope = faEnvelope;
+
+  newMessages = 0;
 
   ngOnInit(): void {
 
-    this.subject.subscribe( (data : socialNetWorks) => {
+  }
 
-        this.socialNetworks = data;
 
-    });
+  openMessages(){
+
+    alert("Messages");
+
 
   }
 

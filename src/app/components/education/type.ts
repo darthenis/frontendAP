@@ -8,6 +8,7 @@ export interface education{
     initDate : string,
     endDate : string,
     career : string,
-    logoUrl : string,
-    edit : boolean
+    logoUrl : any,
+    edit : boolean,
+    order : number,
 }

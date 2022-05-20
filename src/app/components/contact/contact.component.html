@@ -1,0 +1,42 @@
+<div id="container-black" (click)="cancel()">
+    <div id="container-contact" (click)="$event.stopPropagation()">
+        
+        <div id="container-contact-title">
+            <h1>Mensaje</h1>
+            <fa-icon id="iconX" [icon]="faTimes" size="lg" (click)="cancel()"></fa-icon>
+        </div>
+        <div id="container-contact-form">
+            <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" placeholder="Escriba su nombre" formControlName="name">
+                    <p [ngStyle]="{'visibility': Name?.errors && Name?.value ? 'visible' : 'hidden'}">Solo carácteres alfabéticos</p>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Escriba su email" formControlName="email">
+                    <p [ngStyle]="{'visibility': Email?.errors && Email?.value ? 'visible' : 'hidden'}">Solo formato email</p>
+                </div>
+                <div class="form-group span2 heigth100">
+                    <label for="message">Mensaje</label>
+                    <textarea class="form-control" id="message" rows="3" placeholder="Escriba su mensaje" formControlName="message"></textarea>
+                </div>
+                <button type="submit" class="btn">
+                    <fa-icon
+                    *ngIf="isLoading$"
+                    [icon]="faSpinner"
+                    [spin]="true"
+                  ></fa-icon>
+                  <span *ngIf="!isLoading$">Enviar</span>
+                </button>
+            </form>
+            <p>Todos los campos son obliatorios</p>
+            <div *ngIf="send" id="send-cover">
+                <span>Mensaje enviado</span>
+                <fa-icon id="checkCircle" [icon]="faCheckCircle"></fa-icon>
+            </div>
+        </div>
+        
+    </div>
+</div>
+

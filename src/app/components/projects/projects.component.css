@@ -1,16 +1,23 @@
+h3{
+
+    margin: 0;
+}
+
 .projects{
     background: white;
     width: 100%;
     max-width: 1200px;
     padding: 1.5%;
     border-radius: 20px;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     font-family: sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .projects > span{
 
-    font-size: 1.7rem;
+    font-size: 25px;
     font-weight: bold;
     color: rgb(0 0 0 / 50%);
 }
@@ -31,12 +38,12 @@
 }
 
 .projects__content{
-    padding: 5%;
+    padding: 1%;
     width: 90%;
     margin: 0 auto;
     height: 100%;
     display: grid;
-    grid-template-columns: minmax( 1em, 40em) minmax( 1em, 40em);
+    grid-template-columns: minmax( 1em, 20em) minmax( 1em, 20em) minmax( 1em, 20em);
     column-gap: 20px;
     justify-content: space-between;
 }
@@ -45,6 +52,7 @@
 
     display: flex;
     flex-direction: column;
+    padding: 10px;
 
 }
 
@@ -59,3 +67,25 @@
     object-fit: fill;
    
 }
+
+.projects__content-item-text > ul {
+    list-style: none;
+}
+
+.projects__content-item-text > h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cdk-drag-preview{
+    background-color: white;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 8px 16px rgb(0 0 0 / 20%);
+}
+
+.cdk-drop-list-dragging{
+    cursor: move;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }

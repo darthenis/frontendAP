@@ -3,11 +3,20 @@ export interface experience {
         id : number,
         title : string,
         name : string,
-        initDate : string,
-        endDate : string,
+        dateInit : string,
+        dateEnd : string,
         job : string,
-        commentary : string,
+        info : string,
         logoUrl : any,
-        edit : boolean
+        edit : boolean,
+        order : number
 
 }
+
+export interface names {
+
+        name : string;
+        level : string;
+        id : number;
+    
+      }

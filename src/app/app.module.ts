@@ -30,6 +30,22 @@ import { InterceptorJwtService } from './services/interceptorjwt.service';
 import { InterceptorHttpErrorService } from './services/interceptor-http-error.service';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { AlertifyService } from './services/alertify.service';
+import { LoadingInterceptorService } from './services/loading-interceptor.service';
+import { SkeletonComponent } from './components/about-me/skeleton/skeleton.component';
+import { ArrowResumeComponent } from './components/modules/arrow-resume/arrow-resume.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDividerModule } from '@angular/material/divider';
+import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.component';
+import { CodeInputModule } from 'angular-code-input';
+import { ContactComponent } from './components/contact/contact.component';
+import { SocialNetworksComponent } from './components/social-networks/social-networks.component';
+
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+
+import { environment } from '../environments/environment';
+import { MessagesComponent } from './components/messages/messages.component';
 
 
 @NgModule({
@@ -50,7 +66,13 @@ import { AlertifyService } from './services/alertify.service';
     DynamicFormComponent,
     AddSectionComponent,
     NotFoundComponent,
-    ConfirmEmailComponent
+    ConfirmEmailComponent,
+    SkeletonComponent,
+    ArrowResumeComponent,
+    RecoveryPassComponent,
+    ContactComponent,
+    SocialNetworksComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -59,13 +81,23 @@ import { AlertifyService } from './services/alertify.service';
     RoundProgressModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatDividerModule,
+    CodeInputModule,
+    RecaptchaV3Module
 
   ],
   providers: [  UserDataService,
              {  provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi: true},
              {  provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true },
-                AlertifyService],
+             {  provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi:true },
+                AlertifyService,
+                {
+                  provide: RECAPTCHA_V3_SITE_KEY,
+                  useValue: environment.reCaptcha.siteKey,
+                }],
 
   bootstrap: [AppComponent]
 })

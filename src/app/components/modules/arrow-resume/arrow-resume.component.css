@@ -1,0 +1,10 @@
+.resume-click{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    cursor: hand;
+    margin-top: 10px;
+    color: rgb(0 0 0 / 80%);
+   
+}

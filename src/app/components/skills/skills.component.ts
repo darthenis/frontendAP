@@ -1,9 +1,11 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faTimes, faArrowDown, faArrowUp, faAngleDown, faAngleUp} from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
 import { skill } from './type';
@@ -29,9 +31,111 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   logged$ = this.authService.currentUser$
 
+  isLoading$ = this.loadingService.isLoadingGet;
+
   profileActived! : string;
 
-  skills! :  skill[];
+  skills :  skill[] = [];
+
+  resume = true;
+
+  setSkills(skills : skill[]){
+
+    skills.sort( (a : skill, b : skill) => a.order - b.order );
+
+    this.skills = skills;
+
+  }
+
+  getSkills(){
+
+    if(this.resume){
+
+      let newArray : skill[]= [];
+
+      let count = 0;
+      
+      this.skills.forEach( (e : skill) => {
+
+        if(count < 3){
+
+          newArray.push(e);
+          count++;
+
+        }
+
+      } );
+
+      return newArray;
+
+    }
+
+    return this.skills;
+
+  }
+
+  resumeChange(e : boolean){
+
+    this.resume = e;
+
+  }
+
+  overMouse : boolean = false;
+
+  itemOvered : number = 0;
+
+  getNames(id : number){
+
+    if(this.overMouse && this.itemOvered === id){
+
+      let porcent = this.skills.find( (e : skill) => e.id === id )?.porcent!;
+
+      if(porcent <= 25){
+
+        return "Trainee";
+
+      } else if(porcent <= 50){
+
+        return "Junior";
+
+      } else if(porcent <= 75){
+
+        return "SSenior";
+
+      } else if(porcent <= 100){
+
+        return "Senior";
+
+      }
+
+    }
+
+    return this.skills.find( (e : skill) => e.id === id )?.name;
+
+  }
+
+  over(id : number){
+
+    this.overMouse = !this.overMouse;
+
+    this.itemOvered = this.itemOvered === 0 ? id : 0;
+
+  }
+
+  hoverColor(id : number){
+
+    if(id === this.itemOvered){
+
+      return '#3e61c2';
+
+    } else {
+        
+        return '#273c75';
+  
+      }
+
+
+  }
 
 
   edit(id : number){
@@ -44,6 +148,7 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   }
 
+
   cancelNewForm(){
 
     this.newSection = false;
@@ -51,16 +156,30 @@ export class SkillsComponent implements OnInit, OnChanges {
   }
 
 
-  delete(){
+  delete(id : number){
 
-    console.log("delete")
+    this.userDataService.deleteSkill(id).subscribe( {
+
+      next : () => {
+          
+         this.skills = this.skills.filter( (e : skill) => e.id !== id );
+  
+      },
+      error : (error) => console.log(error)
+
+
+    })
 
   }
 
 
 
 
-  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private authService : AuthService) { }
+  constructor(private http : HttpClient, 
+              private userDataService : UserDataService, 
+              private route : ActivatedRoute, 
+              private authService : AuthService,
+              private loadingService : LoadingService) { }
 
   ngOnInit(): void {
 
@@ -74,9 +193,9 @@ export class SkillsComponent implements OnInit, OnChanges {
 
         const { username } = params;
 
-        this.userDataService.getSkill$().subscribe( (skills : any) => {
+        this.userDataService.getSkill$(username).subscribe( (skills : any) => {
 
-          this.skills = skills;
+          this.setSkills(skills);
 
         });
         
@@ -95,6 +214,47 @@ export class SkillsComponent implements OnInit, OnChanges {
         this.newSection = true;
 
       }
+
+    })
+
+  }
+
+  newData(data : skill){
+
+    data.order = this.skills.length + 1;
+
+    this.userDataService.createSkill(data).subscribe( {
+
+      next : (data : any) => {
+
+          this.setSkills(data);
+
+          this.newSection = false;
+
+      },
+      error: (error) => console.log(error)
+
+    } )
+
+  }
+
+  onDrop(event : CdkDragDrop<any>){
+
+    this.skills[event.previousContainer.data.index] = event.container.data.item;
+    
+    this.skills[event.container.data.index] = event.previousContainer.data.item;
+
+    this.skills = this.skills.map(e => {
+            
+            e.order = this.skills.indexOf(e) + 1;
+
+            return e;
+
+    })
+
+    this.userDataService.editSkills(this.skills).subscribe({
+
+      error: () => console.log('error')
 
     })
 

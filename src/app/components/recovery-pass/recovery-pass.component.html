@@ -1,0 +1,52 @@
+<div id="recoveryPassLayout">
+    <div id="recoveryPassContainer">
+        <div id="recoveryPassHeader">
+            <h1>Recuperar contraseña</h1>
+        </div>
+        <form *ngIf="!checkCode && !changePass && !done" (ngSubmit)="onSubmit()">
+            <h3>Ingrese el correo de su cuenta</h3>
+            <input class="border-bottom" type="email" name="email" value="email" [(ngModel)]="email" placeholder="ejemplo@ejemplo.com">
+            <button [disabled]="checkEmail() ? false : true" type="submit">
+                <fa-icon *ngIf="loading$ | async" [icon]="faSpinner" [spin]="true"></fa-icon>
+                <span *ngIf="!(loading$ | async)">Enviar</span>
+            </button>
+        </form>
+
+        <form *ngIf="checkCode" (ngSubmit)="onSubmit()">
+            <label>Introduzca el código enviado a su email</label>
+            <code-input [isCodeHidden]="true"
+                        [codeLength]="6"
+                        (codeCompleted)="onCodeCompleted($event)">
+            </code-input>
+            <button (click)="resendEmail()">
+                <fa-icon *ngIf="resendLoading" [icon]="faSpinner" [spin]="true"></fa-icon>
+                <span *ngIf="!resendLoading">Reenviar código</span>
+            </button>
+        </form>
+
+        <form *ngIf="changePass" (ngSubmit)="onSubmitPass()">
+            <h2>Escriba su nueva contraseña</h2>
+            <div class="container__input border-bottom">
+                <input  autocomplete="disabled" [type]="!passwordHide['pass'] ? 'password' : 'text'" id="login__password"  name="password" class="login__input padding" placeholder="Contraseña" [(ngModel)]="password">
+                <fa-icon [icon]="faCheckCircle" *ngIf="!checkPassValue() && password" class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="checkPassValue()" class="red"></fa-icon>
+            </div>
+            <div class="container__input border-bottom">
+                <input  autocomplete="disabled" [type]="!passwordHide['rPass'] ? 'password' : 'text'" id="login__password" name="rPassword" class="login__input padding" placeholder="Repita su contraseña" [(ngModel)]="rPassword">
+                <fa-icon [icon]="faCheckCircle" *ngIf="checkPass() && rPassword" class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="!checkPass() && rPassword" class="red"></fa-icon>
+            </div>
+            <button type="submit">
+                <fa-icon *ngIf="loading$ | async" [icon]="faSpinner" [spin]="true"></fa-icon>
+                <span *ngIf="!(loading$ | async)">Enviar</span>
+            </button>
+            <p [ngStyle]="{'visibility' : checkPassValue() ? 'visible' : 'hidden'}">La contraseña debe contener al menos 1 mayuscula, 1 minuscula, 1 número, 1 carácter especial y tener entre 8 y 16 carácteres</p>
+        </form>
+
+        <div *ngIf="done">
+            <p>Contraseña Cambiada por favor logeese</p>
+            <a [routerLink]="['/login']">Logearse</a>
+        </div>
+
+    </div>
+</div>

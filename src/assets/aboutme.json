@@ -40,7 +40,7 @@
             "validators": {
                 "required": true,
                 "minLength": 4,
-                "maxLength": 15
+                "maxLength": 35
             }
         },
         
@@ -88,7 +88,7 @@
         },
 
         {
-            "name": "aboutMe",
+            "name": "info",
             "label": {
                 "english": "About me",
                 "spanish": "Sobre mí"
@@ -110,9 +110,8 @@
                         "value": "",
                         "type": "url",
                         "validators": {
-                            "required": false,
-                            "minLength": 4,
-                            "maxLength": 15
+                            "url": true,
+                            "required": false
                             }
                         },  
                         {
@@ -124,9 +123,8 @@
                             "value": "",
                             "type": "url",
                             "validators": {
-                                "required": false,
-                                "minLength": 4,
-                                "maxLength": 15
+                                "url": true,
+                                "required": false
                             }
                         },
                         {
@@ -138,9 +136,8 @@
                             "value": "",
                             "type": "url",
                             "validators": {
-                                "required": false,
-                                "minLength": 4,
-                                "maxLength": 15
+                                "url": true,
+                                "required": false
                             }
                         },
                         {
@@ -152,9 +149,8 @@
                             "value": "",
                             "type": "url",
                             "validators": {
-                                "required": false,
-                                "minLength": 4,
-                                "maxLength": 15
+                                "true": true,
+                                "required": false
                             }
                         }
         

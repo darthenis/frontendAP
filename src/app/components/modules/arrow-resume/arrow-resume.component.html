@@ -1,0 +1,6 @@
+<div    class="resume-click" 
+            (click)="resumeChange()" 
+            [ngStyle]="{'display': 'flex', 'flex-direction': resume ? 'column' : 'column-reverse'}">
+                        {{resume ? "Ver más" : "Ver menos"}}
+                        <fa-icon [icon]="resume ? faAngleDown : faAngleUp" size="lg"></fa-icon>
+    </div>

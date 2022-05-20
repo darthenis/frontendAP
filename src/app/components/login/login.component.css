@@ -40,7 +40,7 @@
     justify-content: center;
     align-items: center;
     padding: 5%;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -51,7 +51,6 @@
 
 .container__input{
     margin: 2%;
-    display: flex;
     border-bottom: 1px solid #273c75;
     position: relative;
 
@@ -96,6 +95,15 @@
 
 }
 
+input:-webkit-autofill,
+                input:-webkit-autofill:hover, 
+                input:-webkit-autofill:focus{
+                    -webkit-text-fill-color: #3958ad;
+                    box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
+                    -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
+                    transition: background-color 5000s ease-in-out 0s;
+}
+
 #login-form > button{
 
     padding: 3% 2% 3% 2%;
@@ -112,6 +120,12 @@
 
 }
 
+#login-form > button:disabled{
+
+    cursor: not-allowed;
+
+}
+
 #login-form > button:hover{
 
     background-color: #273c75;
@@ -121,8 +135,22 @@
 #footer-login{
 
     color: #3958ad; 
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
 
+
+}
+
+#passRecovery > a{
+
+    text-decoration: none;
+
+}
+
+#passRecovery:hover{
+
+    text-decoration: underline;
 
 }

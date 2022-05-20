@@ -3,14 +3,15 @@
 <div class="registration-container">
 
     <div class="registration-title">
-        <h1>Crea tu cuenta en Apportfolios</h1>
+        <h1 *ngIf="!done">Crea tu cuenta en Apportfolios</h1>
+        <h1 *ngIf="done">Confirmación de email</h1>
     </div>
 
-    <form action="" class="registration" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form *ngIf="!done" action="" class="registration" [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <div class="form-container">
-            <div class="form-group">
-                <input type="text" id="name" name="name" placeholder='Nombre' class="input-registration" formControlName="name">
+            <div class="form-group" [ngStyle]="{'outline': focusInput['name'] ? Name?.errors && Name?.value ? '2px solid red' : Name?.value && !Name?.errors ? '2px solid green': '2px solid #3958ad' : Name?.value && !Name?.errors ? '2px solid green': '2px solid rgb(0 0 0 / 15%)'}">
+                <input (focus)="focus('name')" (focusout)="focus('name')" type="text" id="name" name="name" placeholder='Nombre' class="input-registration" formControlName="name">
                 <fa-icon [icon]="faCheckCircle" *ngIf="!Name?.hasError('minlength') && Name?.value " class="green"></fa-icon>
                 <fa-icon [icon]="faTimesCircle" *ngIf="Name?.hasError('minlength') && Name?.touched" class="red"></fa-icon>
             </div>
@@ -18,8 +19,8 @@
         </div>
 
         <div class="form-container">
-            <div class="form-group">
-                <input type="text" id="login" name="login" placeholder='Usuario' class="input-registration" formControlName="username">
+            <div class="form-group" [ngStyle]="{'outline': focusInput['username'] ? Username?.errors && Username?.value ? '2px solid red' : Username?.value && !Username?.errors ? '2px solid green': '2px solid #3958ad' : Username?.value && !Username?.errors ? '2px solid green': '2px solid rgb(0 0 0 / 15%)'}">
+                <input  (focus)="focus('username')" (focusout)="focus('username')" type="text" id="login" name="login" placeholder='Usuario' class="input-registration" formControlName="username">
                 <fa-icon [icon]="faCheckCircle" *ngIf="!Username?.errors && Username?.value " class="green"></fa-icon>
                 <fa-icon [icon]="faTimesCircle" *ngIf="Username?.errors && Username?.touched && Username?.value" class="red"></fa-icon>
             </div>
@@ -27,26 +28,26 @@
         </div>
 
         <div class="form-container">
-            <div class="form-group">
-                <input type="text" id="last_name" name="last_name" placeholder='Apellido' class="input-registration" formControlName="lastname">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!Lastname?.hasError('minlength') && Lastname?.value " class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="Lastname?.hasError('minlength') && Lastname?.value" class="red"></fa-icon>
+            <div class="form-group" [ngStyle]="{'outline': focusInput['lastname'] ? Lastname?.errors && Lastname?.value ? '2px solid red' : Lastname?.value && !Lastname?.errors ? '2px solid green': '2px solid #3958ad' : Lastname?.value && !Lastname?.errors ? '2px solid green': '2px solid rgb(0 0 0 / 15%)'}">
+                <input (focus)="focus('lastname')" (focusout)="focus('lastname')" type="text" id="last_name" name="last_name" placeholder='Apellido' class="input-registration" formControlName="lastname">
+                <fa-icon [icon]="faCheckCircle" *ngIf="!Lastname?.errors && Lastname?.value " class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="Lastname?.errors && Lastname?.value" class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : !Lastname?.hasError('minlength') ? 'hidden' : 'visible'}">3 carácteres mínimo</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : Lastname?.errors && Lastname?.value ? 'visible' : 'hidden'}">3 carácteres mínimo</p>
         </div>
 
         <div class="form-container">
-            <div class="form-group">
-                <input type="password" id="password" name="password" placeholder='Contraseña' class="input-registration" formControlName="password">
-                <fa-icon [icon]="faCheckCircle" *ngIf="!Password?.hasError('minlength') && Password?.value" class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="Password?.hasError('minlength') && Password?.value " class="red"></fa-icon>
+            <div class="form-group" [ngStyle]="{'outline': focusInput['password'] ? Password?.errors && Password?.value ? '2px solid red' : Password?.value && !Password?.errors ? '2px solid green': '2px solid #3958ad' : Password?.value && !Password?.errors ? '2px solid green': '2px solid rgb(0 0 0 / 15%)'}">
+                <input (focus)="focus('password')" (focusout)="focus('password')" type="password" id="password" name="password" placeholder='Contraseña' class="input-registration" formControlName="password">
+                <fa-icon [icon]="faCheckCircle" *ngIf="!Password?.errors && Password?.value" class="green"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="Password?.errors && Password?.value " class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : !Password?.hasError('minlength') ? 'hidden' : 'visible'}">8 carácteres mínimo</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : Password?.errors && Password?.value ? 'visible' : 'hidden'}">8 carácteres mínimo</p>
         </div>
 
         <div class="form-container">
-            <div class="form-group">
-                <input type="email" id="email" name="email" placeholder='Email' class="input-registration" formControlName="email">
+            <div class="form-group" [ngStyle]="{'outline': focusInput['email'] ? Email?.errors && Email?.value ? '2px solid red' : Email?.value && !Email?.errors ? '2px solid green': '2px solid #3958ad' : Email?.value && !Email?.errors ? '2px solid green': '2px solid rgb(0 0 0 / 15%)'}">
+                <input (focus)="focus('email')" (focusout)="focus('email')" type="email" id="email" name="email" placeholder='Email' class="input-registration" formControlName="email">
                 <fa-icon [icon]="faCheckCircle" *ngIf="!Email?.hasError('email') && Email?.value" class="green"></fa-icon>
                 <fa-icon [icon]="faTimesCircle" *ngIf="Email?.hasError('email') && Email?.value " class="red"></fa-icon>
             </div>
@@ -54,12 +55,12 @@
         </div>
 
         <div class="form-container">
-            <div class="form-group">
-                <input type="password" id="password_confirm" name="password_confirm" placeholder='Repetir Contraseña' class="input-registration" formControlName="passwordConfirm">
+            <div class="form-group" [ngStyle]="{'outline': focusInput['passwordConfirm'] ? PasswordConfirm?.errors && PasswordConfirm?.value ? '2px solid red' : PasswordConfirm?.value && !PasswordConfirm?.errors ? '2px solid green': '2px solid #3958ad' : PasswordConfirm?.value && !PasswordConfirm?.errors ? '2px solid green': '2px solid rgb(0 0 0 / 15%)'}">
+                <input (focus)="focus('passwordConfirm')" (focusout)="focus('passwordConfirm')" type="password" id="password_confirm" name="password_confirm" placeholder='Repetir Contraseña' class="input-registration" formControlName="passwordConfirm">
                 <fa-icon [icon]="faCheckCircle" *ngIf="!form?.hasError('notSame') && PasswordConfirm?.value" class="green"></fa-icon>
-                <fa-icon [icon]="faTimesCircle" *ngIf="form?.hasError('notSame')" class="red"></fa-icon>
+                <fa-icon [icon]="faTimesCircle" *ngIf="form?.hasError('notSame') && PasswordConfirm?.value" class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : !form?.hasError('notSame') ? 'hidden' : 'visible'}">Las contraseñas deben coincidir</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : form?.hasError('notSame') && PasswordConfirm?.value ? 'visible' : 'hidden'}">Las contraseñas deben coincidir</p>
         </div>
 
         <div class="form-footer">
@@ -77,7 +78,7 @@
 
     </form>
 
-      
+    <p *ngIf="done">Para poder logearse, por favor, revice su email y confirme su dirección haciendo click en el link que le hemos enviado.</p>
 
 </div>
 

@@ -1,0 +1,245 @@
+
+.app-about-me{
+    display: grid;
+    grid-template-rows: 5fr 2.5fr .5fr;
+    position: relative;
+    width: 100%;
+    height: 800px;
+    max-height: 500px;
+    margin-top: 20px;
+    font-family: sans-serif;
+    background-color: transparent;
+ 
+
+}
+
+.banner{
+    overflow: hidden;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgb(163, 163, 163);
+}
+
+.about{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+
+.about-me-container{
+
+    display: flex;
+    margin-top: 2%;
+
+}
+
+
+.header-about{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 2%;
+    padding-right: 2%;
+
+}
+
+
+
+
+.card-avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgb(168, 168, 168);
+}
+
+
+
+.container-avatar{
+    position: absolute;
+    top: -120px;
+    left: 4%;
+}
+
+
+.profile{
+    margin-left: 4%;
+    margin-top: 4%;
+    padding-right: 2%;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+
+}
+
+
+.about-me-container{
+
+    grid-column: 1 span;
+    margin-left: 0%;
+    width: 200px;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 20px;
+ 
+}
+
+.line {
+
+    background-color: rgb(163, 163, 163);
+    height: 10px;
+    width: 200px;
+    margin-top: 10px;
+
+}
+
+.lineAbout{
+
+    background-color: rgb(163, 163, 163);
+    height: 10px;
+    width: 400px;
+    margin-top: 10px;
+}
+
+
+.section-button{
+
+    margin-right: 1%;
+
+
+}
+
+#buttons-aboutme{
+    position: relative;
+    margin-left: 20px;
+    padding-left: 10%;
+    justify-self: flex-end;
+    height: 15px;
+    width: 50px;
+    background-color: rgb(163, 163, 163);
+
+}
+
+.app-education{
+
+    background-color: transparent;
+    width: 100%;
+    padding: 1.5%;
+    border-radius: 20px;
+    font-family: sans-serif;
+    margin-top: 10px;
+
+
+}
+
+.title{
+
+    height: 20px;
+    width: 100px;
+    background-color: rgb(163, 163, 163);
+
+}
+
+.app-education > h1 {
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+
+.header-container{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 1%;
+    justify-content: space-between;
+
+}
+
+.header-right-container > span{
+
+    margin: 5px;
+
+
+}
+
+.education-container{
+
+    padding: 1%;
+
+}
+
+.info-container > ul{
+
+    list-style: none;
+}
+
+.education-item{
+
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+
+}
+
+.header-item{
+
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+
+}
+
+
+.info-container{
+
+    margin-left: 2%;
+    width: 100%;
+
+}
+
+.logo-exp{
+
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    background-color: rgb(163, 163, 163);
+    
+
+
+}
+
+.logo-exp > img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+}
+
+
+.pulse {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation-delay: 0.5s;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

@@ -1,21 +1,32 @@
-<section class="app-education" [ngStyle]="{'display': educations ? 'block' : 'none'}">
+<section  *ngIf="!(isLoading$ | async)" class="app-education" [ngStyle]="{'display': educations.length ? 'block' : 'none'}">
     <span>Educación</span>
-    <div class="education-container" *ngFor="let e of educations">
+    
+    <div cdkDropList (cdkDropListDropped)="onDrop($event)" >
 
-        <app-dynamic-form *ngIf="e.edit" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Educación'"></app-dynamic-form>
+        <div    class="education-container" 
+                *ngFor="let e of getEducations(); first as first" 
+                cdkDrag 
+                [cdkDragDisabled]="!((logged$ | async).username === profileActived) || e.edit"
+                [ngStyle]="{'cursor' : ((logged$ | async).username === profileActived && !e.edit)  ? 'move' : 'auto' }">
 
-        <div class="education-item">
-            <div class="logo-exp"><img [src]="e.logoUrl || '/assets/empty.png'" alt=""></div>
-            <div class="info-container">
-                <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
-                <ul>
-                    <li><strong>Institución</strong>: {{e.name}}</li>
-                    <li><strong>Fecha</strong>: {{e.initDate}} a {{e.endDate}}</li>
-                    <li><strong>Carrera</strong>: {{e.career}} </li>
-                </ul>
-            </div>
-        </div>
-    </div>  <!-- End of education-container -->
+                <app-dynamic-form  *ngIf="e.edit" (formSubmit)="editData($event, e.id)" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Educación'"></app-dynamic-form>
+
+                <div class="education-item">
+                    <div class="logo-exp"><img [src]="e.logoUrl || '/assets/empty.png'" alt=""></div>
+                    <div class="info-container">
+                        <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete(e.id)" (editEvent)="edit(e.id)"></app-edit-buttons></div>
+                        <ul>
+                            <li><strong>Institución</strong>: {{e.name}}</li>
+                            <li><strong>Fecha</strong>: {{changeFormatDate(e.initDate)}} a {{changeFormatDate(e.endDate) || "la actualidad"}}</li>
+                            <li><strong>Carrera</strong>: {{e.career}} </li>
+                        </ul>
+                    </div>
+                </div>
+            
+        </div>  <!-- End of education-container -->
+
+    </div> <!-- End of education-container -->
+    <app-arrow-resume *ngIf="educations.length >= 3" (eventResume)="resumeChange($event)"></app-arrow-resume>
 </section>
 
-<app-dynamic-form *ngIf="newSection" [formTitle]="'Educación'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
+<app-dynamic-form *ngIf="newSection" [formTitle]="'Educación'" (cancel)="cancelNewForm($event)" [formData]="formData" (formSubmit)="newData($event)"></app-dynamic-form> <!-- NEW FORM -->

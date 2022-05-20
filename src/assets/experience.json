@@ -67,7 +67,6 @@
             "value": "",
             "type": "date",
             "validators": {
-                "required": true,
                 "minLength": 4,
                 "maxLength": 15
             }
@@ -88,7 +87,7 @@
             }
         },
         {
-            "name": "commentary",
+            "name": "info",
             "label":{
                 "english": "Comentary",
                 "spanish": "Comentario"

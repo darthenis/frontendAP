@@ -1,0 +1,31 @@
+.confirm-container{
+    position: absolute;
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    padding-bottom: 2%;
+}
+.confirm-container > div > p{
+
+    margin-bottom: 20px;
+}
+
+.confirm-title{
+    width: 100%;
+    min-height: 100px;
+    background-color: #273c75;
+    text-align: center; 
+    color: white;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%/0 0 30px 30px;
+    
+}

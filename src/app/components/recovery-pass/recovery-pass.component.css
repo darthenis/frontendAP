@@ -1,0 +1,128 @@
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+}
+
+#recoveryPassLayout{
+
+    height: 100vh;
+    width: 100vw;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#recoveryPassContainer{
+    background-color: white;
+    min-width: 500px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 8px 16px rgb(0 0 0 / 20%);
+
+}
+
+#recoveryPassContainer > form{
+    height: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+input{
+    margin-top: 5px;
+    position: relative;
+    width: 250px;
+    border: none;
+    color: #3958ad;
+    font-size: calc(1rem + .2vw);
+    outline: none;
+
+}
+
+.container__input{
+
+    width: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.container__input > fa-icon{
+
+    position: absolute;
+    right: 0px;
+    font-size: 20px;
+
+}
+
+.red{
+
+    color: red;
+}
+
+.green{
+
+    color: green;
+
+}
+
+.border-bottom{
+
+    border-bottom: #3958ad 2px solid;
+
+}
+
+
+.padding{
+
+    padding: 0px 10px 0px 10px;
+}
+
+button{
+    background-color: #3958ad;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    padding: 5px;
+    cursor: hand;
+    cursor: pointer;
+    margin-top: 10px;   
+}
+
+button:disabled{
+
+    background-color: #7197ff;
+    cursor: auto;
+}
+
+#recoveryPassHeader{
+    padding: 10px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    background-color: #3958ad;
+
+}
+
+code-input{
+
+    max-width: 300px;
+
+}
+
+p{
+
+    font-size: 12px;
+    margin: 0;
+    color: red;
+}

@@ -1,10 +1,13 @@
-<div class="container-addSection">
+<div class="container-addSection" (click)="cancel.emit()">
 
-    <div>
-        <h2>Añadir sección</h2>
-        <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit()"></fa-icon>
+    <div (click)="$event.stopPropagation()">
+        <div class="title">
+            <h2>Añadir sección</h2>
+            <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit()"></fa-icon>
+        </div>
+        
         <ul>
-            <li (click)="addSection('project')">Projectos</li>
+            <li (click)="addSection('project')">Proyectos</li>
             <li (click)="addSection('experience')">Experiencia</li>
             <li (click)="addSection('education')">Educación</li>
             <li (click)="addSection('skill')">Habilidades</li>

@@ -3,7 +3,7 @@
         <h1>Apportfolios</h1>
         <p>Te ayudamos a crear tu propio portfolio con la cual conectar con tu siguiente empleo.</p>
     </div>
-    <form action="" id="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form id="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="container__input">
                 <fa-icon class="iconUser" [icon]="faUser"></fa-icon>
                 <input type="text" id="login__user" class="login__input" placeholder="Usuario" formControlName="username">
@@ -15,14 +15,16 @@
                 <fa-icon class="iconEye" [icon]='faEyeSlash' *ngIf="!passwordHide" (click)="hidePassword()"></fa-icon>
             </div>
             
-            <button type="submit" class="login__button">
-                <fa-icon *ngIf="loading" [icon]="faSpinner" [spin]="true"></fa-icon>
-                <span *ngIf="!loading">Iniciar Sesión</span>
+            <button type="submit" class="login__button" [disabled]="loading$ | async">
+                <fa-icon *ngIf="loading$ | async" [icon]="faSpinner" [spin]="true"></fa-icon>
+                <span *ngIf="!(loading$ | async)">Iniciar Sesión</span>
             </button>
 
-            <div id="footer-login"> ¿Usuario nuevo? <a [routerLink]="['/registration']">Registrarse</a> </div>
+            <div id="footer-login">
+                <div>¿Usuario nuevo? <a [routerLink]="['/registration']">Registrarse</a></div>
+                <div id="passRecovery"><a [routerLink]="['/auth/recoverypass']">¿Has olvidado la contraseña?</a></div>
+            </div>
+            
     </form>
-
-    
 
 </div>

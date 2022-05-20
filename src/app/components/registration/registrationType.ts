@@ -5,3 +5,9 @@ export interface registerData {
     lastname : string,
     email : string
 }
+
+
+export interface FocusInput{
+
+    [key: string] : boolean;
+}

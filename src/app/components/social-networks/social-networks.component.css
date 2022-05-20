@@ -1,0 +1,109 @@
+h2{
+    margin: 0px;
+}
+
+a{
+
+    text-decoration: none;
+    color: #273c75;
+
+}
+
+
+a:visited{
+
+
+    color: #273c75;
+
+}
+
+#container-black{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    width: 100%;
+    height: 100%;
+    z-index: 1111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family:"Times New Roman", Times, serif;  
+
+}
+
+#container-white{
+
+    position: relative;
+    min-width: 300px;
+    background-color: white;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#cointainer-title{
+
+    position: relative;
+    width: 100%;
+    background-color: #273c75;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px 5px 10px;
+
+}
+
+#container-networks{
+
+    background-color: rgb(240, 240, 240);
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    font-size: 30px;
+    color: #273c75;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#iconX{
+
+    border-radius: 50%;
+    padding: 5px 10px 5px 10px;
+
+}
+
+#iconX:hover{
+
+    border-radius: 50%;
+    padding: 5px 10px 5px 10px;
+    background-color: #3253af;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+#container-networks > a > fa-icon{
+    font-size: 30px;
+    margin: 5px;
+    cursor: hand;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+}
+
+#container-networks > a > fa-icon:hover{
+
+    color: #3a5cb8;
+    font-size: 40px;
+
+}

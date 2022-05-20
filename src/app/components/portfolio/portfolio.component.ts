@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { AboutMe } from '../about-me/type';
 import { socialNetWorks } from '../interfaces/socialNetWorks';
@@ -15,19 +17,13 @@ import { socialNetWorks } from '../interfaces/socialNetWorks';
 })
 export class PortfolioComponent implements OnInit {
 
-  subject = new Subject<socialNetWorks>()
-
   display = 'none';
 
-  authUser = false;
+  actualUserPage! : string;
 
   subAddSection = new Subject<string>();
 
   aboutme! : AboutMe;
-
-  handleInfo(info: socialNetWorks) {
-    this.subject.next(info);
-  }
 
   handleAddSection(section: string) {
 
@@ -35,20 +31,21 @@ export class PortfolioComponent implements OnInit {
   
   }
 
-  constructor(private userDataService : UserDataService, private router : Router, private authService : AuthService, private route : ActivatedRoute) { }
+  constructor(private userDataService : UserDataService, 
+              private router : Router, 
+              private authService : AuthService, 
+              private route : ActivatedRoute,
+              private loadingService : LoadingService,
+              private cdr : ChangeDetectorRef) { 
 
+
+  }
 
   ngOnInit(): void {
 
-      this.route.params.subscribe( (param : any) => {
-
-        const {username} = param;
-
-        this.authUser = this.authService.currentUserValue && username === this.authService.currentUserValue.username;
-
-        })
-
         this.subAddSection.next('portfolio');
+
+        
 
   }
 

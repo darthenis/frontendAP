@@ -1,28 +1,39 @@
-<section class="app-experience" [ngStyle]="{'display': experiences ? 'block' : 'none' }">
+<section *ngIf="!(isLoading$ | async)" class="app-experience" [ngStyle]="{'display': experiences.length ? 'block' : 'none' }">
                     <span>Experiencia</span>
-                        <article class="experience-container" *ngFor="let e of experiences">
+                    <div cdkDropList (cdkDropListDropped)="onDrop($event)">
+                        <article    class="experience-container" 
+                                    *ngFor="let e of getExperiences(); first as first"
+                                    cdkDrag 
+                                    [cdkDragDisabled]="!((logged$ | async).username === profileActived) || e.edit"
+                                    [ngStyle]="{'cursor' : ((logged$ | async).username === profileActived && !e.edit)  ? 'move' : 'auto' }">
+
+                                    
+                           
+
                             <div class="experience-item">
 
                                 <!--EDIT MODE-->
 
-                                <app-dynamic-form *ngIf="e.edit" (formEditSubmit)="updateData($event, e.id)" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Experiencia'"></app-dynamic-form>
+                                <app-dynamic-form *ngIf="e.edit" (formSubmit)="updateData($event, e.id)" (cancel)="edit(e.id)" [editData]="e" [formData]="formData" [formTitle]="'Experiencia'"></app-dynamic-form>
 
                                 <!--END EDIT MODES-->
 
                                 <div class="logo-exp"><img [src]="e.logoUrl || '/assets/empty.png'" alt=""></div>
                                 <div class="info-container">
-                                    <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons></div>
+                                    <div class="header-item"><h2>{{e.title}}</h2> <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete(e.id)" (editEvent)="edit(e.id)"></app-edit-buttons></div>
                                     <ul>
                                         <li><strong>Empresa</strong>: {{e.name}}</li>
-                                        <li><strong>Fecha</strong>: {{e.initDate}} a {{e.endDate}}</li>
+                                        <li><strong>Periodo</strong>: {{changeFormatDate(e.dateInit)}} a {{changeFormatDate(e.dateEnd) || "la actualidad"}}</li>
                                         <li><strong>Puesto</strong>: {{e.job}} </li>
-                                        <li><strong>Info</strong>: {{e.commentary}}</li>
+                                        <li *ngIf="e.info"><strong>Comentario</strong>: {{e.info}}</li>
                                     </ul>
                                 </div>
                             </div>
                         </article>
+                    </div>
 
                       <!-- End of experience-container -->
+                      <app-arrow-resume *ngIf="experiences.length >= 3" (eventResume)="resumeChange($event)"></app-arrow-resume>
 </section>
 
-<app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Experiencia'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
+<app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Experiencia'" (cancel)="cancelNewForm($event)" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

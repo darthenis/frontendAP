@@ -12,7 +12,7 @@ export class AlertifyService {
 
 
 
-  sucess(message : string){
+  success(message : string){
     alertify.set('notifier','position', 'bottom-right');
     alertify.sucess(message);
 

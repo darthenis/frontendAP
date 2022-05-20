@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { faUser, faKey, faEye, faEyeSlash, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   passwordHide = true;
 
-  loading = false;
+  loading$ = this.loadingService.isLoadingPost;
 
   form : FormGroup;
 
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb : FormBuilder, 
               private authService : AuthService, 
               private router : Router,
-              private alertifyService : AlertifyService) {
+              private alertifyService : AlertifyService,
+              public loadingService : LoadingService) {
 
 
     this.form = this.fb.group({
@@ -53,19 +55,39 @@ export class LoginComponent implements OnInit {
 
   get Password() { return this.form.get('password'); }
 
+
+
   async onSubmit() {
 
-    this.authService.login(this.form.value).subscribe( () => {
+      if(this.form.value.username === '' || this.form.value.password === '') {
 
-      this.router.navigate(['/user/', this.form.value.username]);
+        this.alertifyService.error('Por favor ingrese un usuario y su contraseña');
 
-    })
+        return;
+
+      }
+
+      this.authService.login(this.form.value).subscribe({
+  
+        next: resolve => this.router.navigate(['/user/', this.form.value.username]),
+  
+        error: error => console.log(error)
+  
+      })
 
   }
 
   ngOnInit(): void {
 
-  
+    this.logged$.subscribe(resolve => {
+
+      if(resolve.username) {
+
+        this.router.navigate(['/user/', resolve.username]);
+
+      }
+
+    })
 
   }
 

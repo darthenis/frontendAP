@@ -1,12 +1,12 @@
 <div class="container" [ngStyle]="{'display': display}">
-    <app-header [subject]="subject"></app-header>
+    <app-header></app-header>
     <div class="layout" >
-        <div class="container-app">   
-            <app-about-me (userExist)="userExist()" [authUser]="authUser" (onAddSection)="handleAddSection($event)" (onInfo)="handleInfo($event)"></app-about-me>
-            <app-experience [authUser]="authUser" [subAddSection]="subAddSection"></app-experience>
-            <app-education [authUser]="authUser" [subAddSection]="subAddSection"></app-education>
-            <app-skills [authUser]="authUser" [subAddSection]="subAddSection"></app-skills>
-            <app-projects [authUser]="authUser" [subAddSection]="subAddSection"></app-projects>
+        <div class="container-app">
+            <app-about-me (userExist)="userExist()"  (onAddSection)="handleAddSection($event)"></app-about-me>
+            <app-experience  [subAddSection]="subAddSection"></app-experience>
+            <app-education  [subAddSection]="subAddSection"></app-education>
+            <app-skills  [subAddSection]="subAddSection"></app-skills>
+            <app-projects  [subAddSection]="subAddSection"></app-projects>
         </div>
         <app-footer></app-footer>
     </div>

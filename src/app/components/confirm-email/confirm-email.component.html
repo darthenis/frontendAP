@@ -1,1 +1,17 @@
-<p>confirm-email works!</p>
+
+
+<div class="confirm-container" *ngIf="notify">
+    <h2>Confirmar Email</h2>
+    <p>Por favor, revice su email y confirme su dirección haciendo click en el link que le hemos enviado.</p>
+</div>
+
+<div class="confirm-container" *ngIf="confirm !== null">
+    <div class="confirm-title">
+        <h2>Confirmación de correo:</h2>
+    </div>
+    <div *ngIf="confirm">
+        <p>Gracias por confirmar tu Email, ahora proceda a logearse con su cuenta</p>
+        <app-button [name]="'Login'" (click)="login()"></app-button>
+    </div>
+    <p *ngIf="!confirm">El token de validación introducida ya fue usada o es inválida</p>
+</div>

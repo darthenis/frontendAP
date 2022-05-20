@@ -1,13 +1,16 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {faPenSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { FormData } from '../dynamic-form/interfaces';
 import { experience } from './type';
+
 
 @Component({
   selector: 'app-experience',
@@ -23,13 +26,58 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
   logged$ = this.authService.currentUser$
 
+  isLoading$ = this.loadingService.isLoadingGet;
+
   public formData! : FormData;
 
   profileActived! : string;
 
   newSection : boolean = false;
 
-  experiences! : experience[];
+  experiences : experience[] = [];
+
+  resume = true;
+
+  setExperiences(experiences : experience[]){
+
+    experiences.sort( (a : experience, b : experience) => a.order - b.order );
+
+    this.experiences = experiences;
+
+  }
+
+  getExperiences(){
+
+    if(this.resume){
+
+      let newArray : experience[]= [];
+
+      let count = 0;
+      
+      this.experiences.forEach( (e : experience) => {
+
+        if(count < 2){
+
+          newArray.push(e);
+          count++;
+
+        }
+
+      } );
+
+      return newArray;
+
+    }
+
+    return this.experiences;
+
+  }
+
+  resumeChange(resume : boolean){
+
+    this.resume = resume;
+
+  }
 
   edit(id : number){
 
@@ -40,16 +88,43 @@ export class ExperienceComponent implements OnInit, OnChanges {
       })
   }
 
-  cancelNewForm(){
+  checkIndex(id : number){
 
-    this.newSection = false;
+    return 0 !== this.experiences.findIndex( (e : experience) => e.id === id );
 
+  }
+  cancelNewForm(origin : string){
+
+    if(origin === 'boton'){
+
+      this.newSection = false;
+
+    }
 
   }
 
-  delete(){
+  changeFormatDate(oldDate : string){
+    if(oldDate){
 
-    console.log("delete")
+      var p = oldDate.split(/\D/g)
+      return [p[2],p[1],p[0] ].join("/")
+
+    } 
+
+    return null;
+    
+ }
+
+  delete(id : number){
+
+    this.userDataService.deleteExperience(id).subscribe({
+
+      next: () => {
+
+          this.experiences = [...this.experiences.filter( (e : experience) => e.id !== id )];
+      },
+      error: () => console.log('error')
+    });
 
   }
 
@@ -60,12 +135,19 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
  
 
-  constructor(private http : HttpClient, private userDataService : UserDataService, private route : ActivatedRoute, private storageService : StorageService, private authService : AuthService ) { 
+  constructor(private http : HttpClient, 
+              private userDataService : UserDataService, 
+              private route : ActivatedRoute, 
+              private storageService : StorageService, 
+              private authService : AuthService,
+              private loadingService : LoadingService) {
 
 
   }
 
   ngOnInit(): void {
+
+    console.log('iniciando')
 
     this.http
     .get('/assets/experience.json')
@@ -79,9 +161,9 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
       const { username } = params; 
 
-      this.userDataService.getExperience$().subscribe( (data : experience[]) => {
+      this.userDataService.getExperience$(username).subscribe( (data : experience[]) => {
 
-            this.experiences = data;
+            this.setExperiences(data);
 
       })
 
@@ -107,31 +189,63 @@ export class ExperienceComponent implements OnInit, OnChanges {
   }
 
 
-  updateData(data : experience, id : number){
+  async updateData(data : experience, id : number){
 
-   
+   data.id = id;
+
+   if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl);
+
+   this.userDataService.editExperiences([data]).subscribe({
+
+      next: () => {
+
+        this.experiences = this.experiences.map(e => e.id === id ? data : e);
+
+      },
+      error: () => console.log('error')
+
+
+   })
 
   }
 
 
- async newData(data : experience){
+  async newData(data : experience){
 
-  console.log('newData', data)
+    data.order = this.experiences.length + 1;
 
-  this.route.params.subscribe( (params : any)  => {
+    if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl);
+      
+      this.userDataService.createExperience(data).subscribe({
 
-    const { username } = params;
+          next: (response : any) => {
+              this.setExperiences(response);
+              this.newSection = false;
+            },
+          error: () => console.log('error')
 
-    this.storageService.uploadImage(data.logoUrl).then(url => {
+        })
 
-      console.log('url', url)
+  }
 
+  onDrop(event : CdkDragDrop<experience[]>){
+
+    moveItemInArray(this.experiences, event.previousIndex, event.currentIndex);
+
+    this.experiences = this.experiences.map(e => {
+            
+            e.order = this.experiences.indexOf(e) + 1;
+
+            return e;
 
     })
 
-  })
+    this.userDataService.editExperiences(this.experiences).subscribe({
 
- }
+      error: () => console.log('error')
 
+    })
+
+  }
 
 }

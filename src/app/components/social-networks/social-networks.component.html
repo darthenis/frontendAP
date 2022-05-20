@@ -1,0 +1,22 @@
+<div id="container-black">
+
+    <div id="container-white">
+
+        <div id="cointainer-title">
+            <h2>Redes sociales</h2>
+            <fa-icon id="iconX" [icon]="faTimes" size="lg" (click)="cancelEmit.emit()"></fa-icon> 
+        </div>
+
+        <div id="container-networks">
+            <a [href]="'https://'+socialNetWorks?.github" target="_blank"><fa-icon *ngIf="socialNetWorks?.github" [icon]="faGithubSquare"></fa-icon></a>
+            <a [href]="'https://'+socialNetWorks?.linkedin" target="_blank"><fa-icon *ngIf="socialNetWorks?.linkedin" [icon]="faLinkedin"></fa-icon></a>
+            <a [href]="'https://'+socialNetWorks?.instagram" target="_blank"><fa-icon *ngIf="socialNetWorks?.instagram" [icon]="faInstagramSquare"></fa-icon></a>
+            <a [href]="'https://'+socialNetWorks?.facebook" target="_blank"><fa-icon *ngIf="socialNetWorks?.facebook" [icon]="faFacebookSquare"></fa-icon></a>
+            <a [href]="'https://'+socialNetWorks?.twitter" target="_blank"><fa-icon *ngIf="socialNetWorks?.twitter" [icon]="faTwitterSquare"></fa-icon></a>
+        </div>
+
+    </div>
+
+
+
+</div>

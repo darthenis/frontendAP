@@ -8,9 +8,9 @@ export interface AboutMe {
         country : string;
         state: string;
         city : string;
-        aboutMe : string;
-        profileUrl : string;
-        bannerUrl : string;
+        info : string;
+        profile : any;
+        banner : any;
         facebook : string;
         twitter : string;
         instagram : string;

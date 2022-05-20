@@ -1,78 +1,152 @@
 <div class="form-dynamic-container">
-
-    
-    <div>
-
-        <div class="form-dynamic-header">
-            <div class="form-dynamic-header-title">
-                <h1>{{formTitle}}</h1>
-            </div>
-
-            <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit()"></fa-icon>
-        </div>
-
-        <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
-
-            <div    class="form-dynamic-control" 
-                    *ngFor="let control of formData?.controls"
-                    [ngStyle]="{'grid-column': control.type === 'textarea' ? '1/-1' : 'auto', 'padding' : control.type === 'textarea' ? '2% 2% 2% 2%' : '2% 4% 2% 4%'}"
-                   >
-                <label>{{ control.label.spanish }}</label>
-
-
-                <input  *ngIf="
-                                [
-                                    'text',
-                                    'password',
-                                    'email',
-                                    'number',
-                                    'date',
-                                    'search',
-                                    'url',
-                                ].includes(control.type)
-                            " 
-                        
-                        [type]="control.type" 
-                        [formControlName]="control.name" 
-                        [value]="control.value"
-                       
-                    >
-
-                    <div *ngIf="control.type==='file'" class="container-inputfile">
-                       
-                        <label>
-                            <fa-icon [icon]="faCamera"></fa-icon>
-                           <input   #fileInput
-                                    class="inputfile"
-                                    [type]="control.type"
-                                    accept=".png, .jpg, .jpeg"
-                                    (change)="checkImage($event, control.name, control.validators.sizeImage.max)"
-                                    [value]="control.value"
-                                >
-                        </label>
-                        <input 
-                                type="text"
-                                placeholder="Cargue su foto"
-                                [value]="myForm.get(control.name)?.value.name|| 'cargue imagen'"
-                                readonly>
-                        <fa-icon *ngIf="myForm.get(control.name)?.value.name" [icon]="faTimes" size="lg" (click)="deleteFile(control.name)"></fa-icon>
-                    </div>
-
-                <textarea 
-                        *ngIf="control.type === 'textarea'"
-                        [formControlName]="control.name"
-                        [value]="control.value">
-                </textarea>
-
-                <p *ngIf="myForm.get(control.name)?.hasError('maxSize')" [ngStyle]="{'color': 'red', 'font-weight' : 'bold'}">files less 512kb</p>
-            </div>
-
-            <div class="form-dynamic-footer">
-                <button type="submit">Guardar</button>
-            </div>  
-
-        </form>
-
+  <div (click)="$event.stopPropagation()">
+    <div class="form-dynamic-header">
+        <h1>{{ formTitle }}</h1>
+        <fa-icon [icon]="faTimes" size="lg" (click)="cancel.emit('boton')"></fa-icon>
     </div>
 
+    <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div
+        class="form-dynamic-control"
+        *ngFor="let control of formData?.controls"
+        [ngStyle]="{
+          'grid-column': control.type === 'textarea' ? '1/-1' : 'auto',
+          padding: control.type === 'textarea' ? '2% 2% 2% 2%' : '2% 4% 2% 4%'
+        }"
+      >
+        <label
+          >{{ control.label.spanish
+          }}<span [ngStyle]="{ color: 'red' }">{{
+            control.validators.required ? "*" : null
+          }}</span></label
+        >
+
+        <input
+          *ngIf="
+            ['text', 'password', 'email', 'number', 'search', 'url'].includes(
+              control.type
+            )
+          "
+          [type]="control.type"
+          [formControlName]="control.name"
+          [value]="control.value"
+        />
+
+        <input
+          *ngIf="control.type === 'date'"
+          [type]="control.type"
+          [formControlName]="control.name"
+          [value]="control.value"
+          [disabled]="checkboxFlag"
+          onkeydown="return false"
+        />
+
+        <select
+          *ngIf="control.type === 'select'"
+          [formControlName]="control.name"
+          [value]="control.value"
+        >
+          <option
+            *ngFor="let option of control.selectOptions"
+            [value]="option.value"
+          >
+            {{ option.label }}
+          </option>
+        </select>
+
+        <div *ngIf="control.type === 'file'" class="container-inputfile">
+          <label>
+            <fa-icon [icon]="faCamera"></fa-icon>
+            <input
+              #fileInput
+              class="inputfile"
+              [type]="control.type"
+              accept=".png, .jpg, .jpeg"
+              (change)="
+                checkImage(
+                  $event,
+                  control.name,
+                  control.validators.sizeImage.max
+                )
+              "
+              [value]="control.value"
+            />
+          </label>
+          <input
+            type="text"
+            placeholder="Cargue su foto"
+            [value]="myForm.get(control.name)?.value.name || 'cargue imagen'"
+            readonly
+          />
+          <fa-icon
+            *ngIf="myForm.get(control.name)?.value.name"
+            [icon]="faTimes"
+            size="lg"
+            (click)="deleteFile(control.name)"
+          ></fa-icon>
+        </div>
+
+        <textarea
+          *ngIf="control.type === 'textarea'"
+          [formControlName]="control.name"
+          [value]="control.value"
+        >
+        </textarea>
+        <div [ngStyle]="{ height: '4px' }">
+          <p
+            *ngIf="myForm.get(control.name)?.hasError('maxSize')"
+            [ngStyle]="{
+              color: 'red',
+              'font-weight': 'bold',
+              'font-size': '13px'
+            }"
+          >
+            Archivos menores a 512kb
+          </p>
+          <p
+            *ngIf="myForm.get(control.name)?.hasError('maxlength')"
+            [ngStyle]="{
+              color: 'red',
+              'font-weight': 'bold',
+              'font-size': '13px'
+            }"
+          >
+            máximo de {{ control.validators.maxLength }} carácteres
+          </p>
+          <p
+            *ngIf="myForm.get(control.name)?.hasError('minlength')"
+            [ngStyle]="{
+              color: 'red',
+              'font-weight': 'bold',
+              'font-size': '13px'
+            }"
+          >
+            mínimo de {{ control.validators.minLength }} carácteres
+          </p>
+          <p
+            *ngIf="myForm.get(control.name)?.hasError('pattern')"
+            [ngStyle]="{
+              color: 'red',
+              'font-weight': 'bold',
+              'font-size': '13px'
+            }"
+          >
+            Debe ser una url válida
+          </p>
+        </div>
+      </div>
+
+      <div class="form-dynamic-footer">
+        <button type="submit" [disabled]="myForm.invalid">
+          <fa-icon
+            *ngIf="isLoading$ | async"
+            [icon]="faSpinner"
+            [spin]="true"
+          ></fa-icon>
+          <span *ngIf="!(isLoading$ | async)">Guardar</span>
+        </button>
+        (*)Campos obligatorios
+      </div>
+    </form>
+  </div>
 </div>

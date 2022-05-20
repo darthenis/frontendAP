@@ -1,0 +1,48 @@
+<div id="container-black">
+
+    <div id="container-white">
+        <div id="title-list">
+            <h2>Mensajes</h2></div>
+        <div id="title">
+            <h2>{{messages[selectedMessage]?.name}}</h2>
+            <!--agregar icono FaTimes-->
+            <fa-icon [icon]="faTimes" id="iconX"></fa-icon>
+        </div>
+        <div id="list-messages">
+            <div    class="list-item" 
+                    *ngFor="let m of messages; let i = index" 
+                    (click)="selectedMessage = i" 
+                    [ngStyle]="{'border-left' :(selectedMessage === i) ? '#376cff solid 5px' : 'transparent solid 5px', 'background-color' : selectedMessage === i ? '#b6caff' : null}">
+                    <ul>
+                        <li>
+                            {{m.name}}
+                        </li>
+                        <li class="timeMessage">
+                            {{m.createdAt}}
+                        </li>
+                    </ul>
+                    <div id="dot"></div>
+            </div>
+        </div>
+
+        <div id="view-messages">
+     
+           <ul *ngIf="messages[0]?.name">
+                <li>
+                    <strong>Email</strong>: {{messages[selectedMessage]?.email}}
+                </li>
+                <li>
+                    <strong>Mensaje</strong>: {{messages[selectedMessage]?.message}}
+                </li>
+           </ul>
+
+           <span *ngIf="!messages[0]?.name">No hay mensajes</span>
+        
+           <div id="spinnerLoading" *ngIf="isLoading$ | async">
+               <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+           </div>
+        </div>
+
+    </div>
+
+</div>

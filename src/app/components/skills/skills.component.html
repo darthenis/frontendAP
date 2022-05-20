@@ -1,24 +1,36 @@
-<section class="skill-container" [ngStyle]="{'display': skills ? 'block' : 'none'}">
-    <span>Skills</span>
-    <div class="skills-container">
+<section *ngIf="!(isLoading$ | async)" class="skill-container" [ngStyle]="{'display': skills.length ? 'block' : 'none'}">
+    <span>Habilidades</span>
+    <div class="skills-container" cdkDropListGroup>
 
-        <article class="skill-item"  *ngFor="let e of skills">
+        <article *ngFor="let e of getSkills(); index as i" cdkDropList  cdkDropListOrientation="horizontal"
+        [cdkDropListData]="{item:e,index:i}" (cdkDropListDropped)="onDrop($event)">
 
             <app-dynamic-form *ngIf="e.edit" [editData]="e" [formTitle]="'Habilidades'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
-
-            <div class="skill-item-title">
-                <h3>{{e.name}}</h3>
+            
+        <div    class="skill-item" 
+                [cdkDragDisabled]="!((logged$ | async).username === profileActived) || e.edit"
+                [ngStyle]="{'cursor' : ((logged$ | async).username === profileActived && !e.edit)  ? 'move' : 'auto' }"
+                cdkDrag>
+            <div *cdkDragPlaceholder></div>
+            <div class="skill-item-title" >
+                <h3>{{getNames(e.id)}}</h3>
             </div>
-            <round-progress [current]=e.porcent
+            <round-progress (mouseover)="over(e.id)"
+                            (mouseout)="over(e.id)"
+                            [current]=e.porcent
                             [max]="100" 
-                            [radius]="70" 
+                            [radius]="60" 
                             [stroke]="10"
-                            [color]="colorCircle"></round-progress>
-            <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete()" (editEvent)="edit(e.id)"></app-edit-buttons>
+                            [color]="hoverColor(e.id)"></round-progress>
+            <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete(e.id)" (editEvent)="edit(e.id)"></app-edit-buttons>
+        </div>
         </article>
 
     </div>
 
+    <app-arrow-resume *ngIf="skills.length >= 4" (eventResume)="resumeChange($event)"></app-arrow-resume>
+            
+
 </section>
 
-<app-dynamic-form *ngIf="newSection" [formTitle]="'Habilidades'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
+<app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Habilidades'" (cancel)="cancelNewForm()" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

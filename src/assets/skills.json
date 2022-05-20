@@ -18,8 +18,13 @@
                 "english": "Porcent",
                 "spanish": "Porcentaje"
             },
-            "value": "",
-            "type": "number",
+            "value": 25,
+            "type": "select",
+            "selectOptions":[
+                { "value" : 25, "label" : "Trainee"},
+                { "value" : 50, "label" : "Junior"},
+                { "value" : 75, "label" : "SSenior"},
+                { "value" : 100, "label" : "Senior"}],
             "validators": {
                 "required": true
             }

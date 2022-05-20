@@ -1,19 +1,29 @@
+h2{
+    margin: 0;
+}
+
 .app-education{
 
     background-color: rgb(255, 255, 255);
     width: 100%;
     padding: 1.5%;
     border-radius: 20px;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     font-family: sans-serif;
+    margin-top: 10px;
 
 
+}
+
+.solid {
+    border-top: 2px solid rgb(233, 233, 233);
+    margin-bottom: 10px;
 }
 
 .app-education > span{
 
 
-    font-size: 1.7rem;
+    font-size: 25px;
     font-weight: bold;
     color: rgb(0 0 0 / 50%);
 
@@ -28,7 +38,7 @@
 .app-education > div {
     width: 100%;
     height: 100%;
-    display: flex;
+    
  
 }
 
@@ -37,7 +47,6 @@
     width: 100%;
     height: 100%;
     display: flex;
-    padding: 1%;
     justify-content: space-between;
 
 }
@@ -49,11 +58,6 @@
 
 }
 
-.education-container{
-
-    padding: 1%;
-
-}
 
 .info-container > ul{
 
@@ -65,6 +69,8 @@
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
+    padding: 1%;
+  
 
 }
 
@@ -101,3 +107,30 @@
     object-fit: contain;
 
 }
+
+.resume-click{
+
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.cdk-drag-preview{
+    background-color: white;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 20%);
+}
+
+.cdk-drop-list-dragging{
+    cursor: move;
+}
+
+.cdk-drag-placeholder{
+    background-color: rgb(228, 228, 228);
+    color: rgb(167, 167, 167);
+
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }

@@ -4,4 +4,5 @@ export interface skill{
     name : string;
     porcent : number;
     edit : boolean;
+    order : number
 }
