@@ -23,6 +23,12 @@ export class AuthService {
 
   constructor(private httpClient : HttpClient, private alertifyService : AlertifyService) {}
 
+  isLogged(){
+
+    return this.currentUser.value.username ? true : false;
+
+  }
+
   signUp(formData : FormData) : Observable<any>{
 
     return this.httpClient.post(this.url+'/register', formData).pipe(

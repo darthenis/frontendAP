@@ -6,16 +6,25 @@
                                     <span>#SeProgramar</span>
                                 </div>
                                 <nav class="navBar">
-                                    <div id="container-messages" *ngIf="(logged$ | async).username"> 
-                                        <fa-icon class="icon"  [icon]="faEnvelope" (click)="openMessages()"></fa-icon>
-                                        <span id="iconAlert">{{newMessages}}</span>
+                                    <div id="container-messages" *ngIf="(logged$ | async).username && !isMobile()"> 
+                                        <fa-icon class="icon"  [icon]="faEnvelope" (click)="openMessages = true"></fa-icon>
+                                        <span *ngIf="newMessages !== 0" id="iconAlert">{{newMessages}}</span>
                                     </div>
-                                    <button *ngIf="!(logged$ | async).id" (click)="login()">Login</button>
-                                    <button *ngIf="(logged$ | async).id" (click)="logout()">Logout</button>
+                                    <fa-icon id="bars-icon" *ngIf="isMobile()" [icon]="faBars" [rotate]="activeMenu ? 90 : undefined" (click)="activeMenu = !activeMenu"></fa-icon>
+                                    <button *ngIf="!(logged$ | async).id && !isMobile()" (click)="login()">Login</button>
+                                    <button *ngIf="(logged$ | async).id && !isMobile()" (click)="logout()">Logout</button>
                                 </nav>  
                             </div>
                         </header>
+                        <div id="menu-responsive" [ngStyle]="{'animation-name': (activeMenu && activeMenu !== null) ? 'translate' : 'reverse'}">
+                            <div id="container-messages" *ngIf="(logged$ | async).username"> 
+                                <fa-icon class="icon"  [icon]="faEnvelope" (click)="openMessages = true"></fa-icon>
+                                <span *ngIf="newMessages !== 0" id="iconAlert">{{newMessages}}</span>
+                            </div>
+                            <button *ngIf="!(logged$ | async).id" (click)="login()">Login</button>
+                            <button *ngIf="(logged$ | async).id" (click)="logout()">Logout</button>
+                        </div>
 
-                        <app-messages></app-messages>
+                        <app-messages *ngIf="openMessages" (seen)="newMessages = newMessages - 1" [messages]="messages" (exit)="openMessages = false"></app-messages>
                         
 

@@ -114,8 +114,6 @@ export class RegistrationComponent implements OnInit {
 
   focus(input : string) {
 
-    console.log('focus: ', input);
-
     this.focusInput[input] = !this.focusInput[input];
 
   }

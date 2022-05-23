@@ -141,6 +141,12 @@ select:-webkit-autofill:focus {
   height: 100%;
 }
 
+input[type="date"]{
+
+  user-select: none;
+
+}
+
 .container-inputfile > label {
   position: relative;
   background-color: #273c75;

@@ -238,6 +238,25 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   }
 
+  updateData(data : skill, id : number){
+
+    data.id = id;
+ 
+    this.userDataService.editSkills([data]).subscribe({
+ 
+       next: () => {
+ 
+         this.skills = this.skills.map(e => e.id === id ? data : e);
+ 
+       },
+       error: () => console.log('error')
+ 
+ 
+    })
+
+
+  }
+
   onDrop(event : CdkDragDrop<any>){
 
     this.skills[event.previousContainer.data.index] = event.container.data.item;

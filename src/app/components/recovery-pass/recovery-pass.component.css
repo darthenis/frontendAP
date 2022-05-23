@@ -2,6 +2,11 @@ h1, h2, h3, h4, h5, h6{
     margin: 0;
 }
 
+h2{
+
+    color: #3958ad;
+}
+
 #recoveryPassLayout{
 
     height: 100vh;
@@ -38,7 +43,6 @@ h1, h2, h3, h4, h5, h6{
 }
 
 input{
-    margin-top: 5px;
     position: relative;
     width: 250px;
     border: none;
@@ -48,12 +52,24 @@ input{
 
 }
 
+input[type="email"]{
+
+    padding: 5px;
+    border-radius: 10px;
+    width: 300px;
+    margin-top: 10px;
+
+}
+
 .container__input{
 
     width: 300px;
     position: relative;
+    padding: 5px;
     display: flex;
     align-items: center;
+    border-radius: 10px;
+    margin-top: 10px;
 
 }
 
@@ -78,7 +94,7 @@ input{
 
 .border-bottom{
 
-    border-bottom: #3958ad 2px solid;
+    border: #3958ad 2px solid;
 
 }
 
@@ -93,16 +109,19 @@ button{
     color: white;
     font-weight: bold;
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     cursor: hand;
     cursor: pointer;
     margin-top: 10px;   
+    border-radius: 10px;
 }
 
 button:disabled{
 
     background-color: #7197ff;
     cursor: auto;
+    box-shadow: none;
+    border: solid 1px transparent;
 }
 
 #recoveryPassHeader{
@@ -125,4 +144,53 @@ p{
     font-size: 12px;
     margin: 0;
     color: red;
+}
+
+.doneP{
+
+    color: #3958ad;
+    font-size: 20px;
+
+}
+
+.doneDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+@media screen and (max-width: 500px){
+    #recoveryPassContainer > form{
+
+        width: 100%;
+        max-width: 100%;
+
+    }
+
+    input{
+        width: 90%;
+        height: 40px;
+    }
+
+    button{
+
+        width: 90%;
+
+    }
+
+    .container__input{
+
+        padding: 5px;
+        width: 90%;
+        height: 40px;
+
+    }
+
+    .container__input > input{
+
+        height: 20px;
+    }
+
 }

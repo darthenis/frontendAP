@@ -1,10 +1,9 @@
 
 .app-about-me{
-    display: grid;
-    grid-template-rows: 5fr 2.5fr .5fr;
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: 100%;
-    max-height: 500px;
     margin-top: 20px;
     font-family: sans-serif;
     background-color: white;
@@ -27,7 +26,7 @@
 }
 
 .about{
-
+    padding: 2%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -145,7 +144,6 @@
 }
 
 .profile{
-    margin-left: 4%;
     padding-right: 2%;
     text-decoration: none;
     font-size: 20px;
@@ -218,10 +216,32 @@
 
 #buttons-aboutme{
     position: relative;
-    margin-bottom: 2%;
-    padding-left: 4%;
     align-self: center;
     width: 100%;
 
 }
 
+@media screen and (max-width: 700px){
+
+    .about-me-container{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 10px;
+
+    }
+
+    .app-about-me{
+
+        border-radius: 0px;
+
+    }
+
+    .banner{
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+
+}

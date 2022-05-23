@@ -89,6 +89,12 @@ h1, h2{
 
 }
 
+li{
+
+    max-width: 100%;
+    word-break: break-all;
+}
+
 
 .logo-exp{
 
@@ -157,4 +163,14 @@ h1, h2{
 
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media screen and (max-width: 700px) {
+
+
+    .app-experience{
+
+        border-radius: 0px;
+    }
+    
 }

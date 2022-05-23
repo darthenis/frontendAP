@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import {faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons';
+import { UserDataService } from 'src/app/services/user-data.service';
+import { Message } from '../messages/type';
 
 
 @Component({
@@ -11,23 +13,56 @@ import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router : Router, public authService : AuthService) { }
+  constructor(private router : Router, 
+              private authService : AuthService,
+              private userDataService : UserDataService) { }
 
   logged$ = this.authService.currentUser$;
 
   faEnvelope = faEnvelope;
+  faBars = faBars;
 
   newMessages = 0;
 
+  messages : Message[] = [];
+
+  openMessages = false;
+
+  getScreenWidth!: number;
+
+  getScreenHeight!: number;
+
+  activeMenu : boolean | null = null;
+
   ngOnInit(): void {
 
-  }
+    if(this.authService.isLogged()){
 
+      this.userDataService.getMessages$().subscribe({
 
-  openMessages(){
+        next: (messages) => {
+          
+            this.messages = messages
 
-    alert("Messages");
+            console.log("messages: ", this.messages)
 
+            this.messages.filter(message => message.seen === false).forEach(message => this.newMessages++);
+          
+          },
+  
+        error: (err) => console.log(err)
+  
+      });
+  
+    
+    }
+
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+
+    console.log("screen width: ", this.getScreenWidth)
+
+    
 
   }
 
@@ -43,8 +78,24 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+  }
+
+  isMobile(){
+
+    if(this.getScreenWidth < 700){
+
+      return true;
+
+    }
+
+    return false;
 
 
+  }
 
 }
 

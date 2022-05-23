@@ -20,11 +20,13 @@
 
 .login__title > h1{ 
     font-size: 3rem;
-    margin-bottom: 2%;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .login__title > p{
     font-size: 1.5rem;
+    font-weight: lighter;
     color: black;
 }
 
@@ -69,7 +71,7 @@
     left: 10%;
     border: none;
     color: #3958ad;
-    font-size: calc(1rem + .2vw);
+    font-size: 1.5rem;
     font-weight: bold;
     outline: none;
 
@@ -153,4 +155,41 @@ input:-webkit-autofill,
 
     text-decoration: underline;
 
+}
+
+@media screen and (max-width: 700px){
+
+    #login-layout{
+
+        max-width: 100%;
+    }
+
+    .container__input{
+
+       width: 90%;
+       margin-top: 25px;
+
+    }
+
+    .container__input > fa-icon{
+
+        font-size: 20px;
+    }
+
+    #login-form > button{
+        
+        width: 90%;
+    }
+
+    #footer-login{
+
+        font-size: 20px;
+    }
+
+    #footer-login > div {
+
+        margin-top: 10px;
+    }
+
+    
 }

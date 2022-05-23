@@ -69,6 +69,19 @@ sendMessage(username : string, message : any, token: string) : Observable<any>{
 
 }
 
+deleteMessage(id : number){
+
+  return this.http.delete(this.apiUrl + `/service/message/${id}`);
+
+}
+
+setSeenMessage(id : number) : Observable<any>{
+
+
+  return this.http.put(this.apiUrl + `/service/message/${id}`, {});
+
+}
+
 editAboutme(aboutMe : AboutMe){
 
   return this.http.put(this.apiUrl + `/user/person`, aboutMe);
@@ -76,6 +89,8 @@ editAboutme(aboutMe : AboutMe){
 }
 
 createExperience(experience: experience){
+
+  console.log("experience", experience);
 
   return this.http.post(this.apiUrl+'/user/experience', experience);
 

@@ -165,6 +165,8 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
             this.setExperiences(data);
 
+            console.log("experience: ", data)
+
       })
 
       this.profileActived = username;

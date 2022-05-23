@@ -63,7 +63,8 @@
             "value": "",
             "type": "textarea",
             "validators": {
-                "required": true
+                "required": true,
+                "maxLength": 255
             }
         }
     ]

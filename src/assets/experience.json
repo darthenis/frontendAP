@@ -45,7 +45,7 @@
         },
         
         {
-            "name": "initDate",
+            "name": "dateInit",
             "label": {
                 "english": "Initial Date",
                 "spanish": "Fecha de Inicio"
@@ -59,7 +59,7 @@
             }
         },
         {
-            "name": "endDate",
+            "name": "dateEnd",
             "label": {
                 "english": "Ending Date",
                 "spanish": "Fecha de Término"

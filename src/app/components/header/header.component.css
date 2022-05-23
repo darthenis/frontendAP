@@ -126,3 +126,76 @@
   font-weight: bold;
 
 }
+
+#bars-icon{
+    position: relative;
+    font-size: 30px;
+    right: 20px;
+
+}
+
+#menu-responsive{
+
+    position: absolute;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: -200px;
+    width: 100%;
+    background-color: #4366c9;
+    z-index: 11;
+    font-family: sans-serif;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    padding: 5%;
+
+
+}
+
+#menu-responsive > button {
+
+
+    width: 70%;
+    height: 40px;
+    font-size: 20px;
+
+
+}
+
+#menu-responsive > div > fa-icon{
+
+    font-size: 40px;
+
+}
+
+@media screen and (max-width: 700px){
+
+    #menu-responsive{
+
+        visibility: visible;
+
+    }
+}
+
+@keyframes translate{
+
+    0%{
+        top: -200px;
+    }
+    100%{
+       top: 70px;
+    }
+
+}
+
+@keyframes reverse {
+    0%{
+        top: 70px;
+    }
+    100%{
+       top: -200px;
+    }
+}

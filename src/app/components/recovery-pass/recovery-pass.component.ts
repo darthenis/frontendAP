@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { faSpinner, faEye, faEyeSlash, faKey, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { LoadingService } from 'src/app/services/loading.service';
-import { IHidePassword } from './type';
+import { FocusInput, IHidePassword } from './type';
 import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
@@ -46,6 +46,16 @@ export class RecoveryPassComponent implements OnInit {
   regex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
+  focusInput : FocusInput = {
+
+              email : false,
+              password : false,
+              rPassword : false
+  
+  }
+
+
 
   checkEmail(){
 
@@ -103,8 +113,6 @@ export class RecoveryPassComponent implements OnInit {
 
   onCodeCompleted(event : string){
 
-    console.log('onCodeCompleted', event)
-
     this.authService.checkCode(parseInt(event)).subscribe({
 
       next : (response) =>{  this.checkCode = false; this.changePass = true},
@@ -134,6 +142,12 @@ export class RecoveryPassComponent implements OnInit {
                 private alertifyService : AlertifyService) { }
 
   ngOnInit(): void {
+  }
+
+  focus(input : string) {
+
+    this.focusInput[input] = !this.focusInput[input];
+
   }
 
 }

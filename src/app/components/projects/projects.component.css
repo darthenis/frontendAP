@@ -43,7 +43,7 @@ h3{
     margin: 0 auto;
     height: 100%;
     display: grid;
-    grid-template-columns: minmax( 1em, 20em) minmax( 1em, 20em) minmax( 1em, 20em);
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     column-gap: 20px;
     justify-content: space-between;
 }
@@ -72,6 +72,10 @@ h3{
     list-style: none;
 }
 
+li{
+    word-break: break-all;
+}
+
 .projects__content-item-text > h3 {
     font-size: 16px;
     font-weight: bold;
@@ -88,4 +92,12 @@ h3{
 
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  @media screen and (max-width: 700px) {
+      
+    .projects{
+        border-radius: 0px;
+    }
+      
   }

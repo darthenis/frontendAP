@@ -5,7 +5,7 @@
         <article *ngFor="let e of getSkills(); index as i" cdkDropList  cdkDropListOrientation="horizontal"
         [cdkDropListData]="{item:e,index:i}" (cdkDropListDropped)="onDrop($event)">
 
-            <app-dynamic-form *ngIf="e.edit" [editData]="e" [formTitle]="'Habilidades'" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
+            <app-dynamic-form *ngIf="e.edit" [editData]="e" [formTitle]="'Habilidades'" (formSubmit)="updateData($event, e.id)" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
             
         <div    class="skill-item" 
                 [cdkDragDisabled]="!((logged$ | async).username === profileActived) || e.edit"

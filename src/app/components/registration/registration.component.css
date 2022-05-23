@@ -37,7 +37,7 @@
     
     display: grid;
     padding: 0% 5%;
-    grid-template-columns: 49% 49%;
+    grid-template-columns: 1fr;
     column-gap: 2%;
 
 }
@@ -118,7 +118,7 @@ input:-webkit-autofill,
 .registration-button{
 
     padding: 3% 2%;
-    width: 200px;
+    width: 100%;
     grid-column: 1 / 2;
     border-radius: 10px;
     background-color: #273c75;

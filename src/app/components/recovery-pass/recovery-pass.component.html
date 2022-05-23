@@ -4,12 +4,22 @@
             <h1>Recuperar contraseña</h1>
         </div>
         <form *ngIf="!checkCode && !changePass && !done" (ngSubmit)="onSubmit()">
-            <h3>Ingrese el correo de su cuenta</h3>
-            <input class="border-bottom" type="email" name="email" value="email" [(ngModel)]="email" placeholder="ejemplo@ejemplo.com">
-            <button [disabled]="checkEmail() ? false : true" type="submit">
+            <h2>Ingrese el correo de su cuenta</h2>
+            <input  [ngStyle]="{'outline': focusInput['email'] ? !checkEmail() && email ? '2px solid red' : email && checkEmail() ? '2px solid green': '2px solid #3958ad' : email && checkEmail() ? '2px solid green' : '2px solid rgb(0 0 0 / 15%)'}"
+                    (focus)="focus('email')"
+                    (focusout)="focus('email')"
+                    type="email" 
+                    name="email" 
+                    value="email" 
+                    [(ngModel)]="email" 
+                    placeholder="ejemplo@ejemplo.com">
+            <button [disabled]="checkEmail() ? false : true" 
+                    type="submit"
+                    class="buttonEmail">
                 <fa-icon *ngIf="loading$ | async" [icon]="faSpinner" [spin]="true"></fa-icon>
                 <span *ngIf="!(loading$ | async)">Enviar</span>
             </button>
+            <p [ngStyle]="{'visibility' : !checkEmail() && email ? 'visible' : 'hidden'}">Tiene que ser un email válido</p>
         </form>
 
         <form *ngIf="checkCode" (ngSubmit)="onSubmit()">
@@ -26,26 +36,26 @@
 
         <form *ngIf="changePass" (ngSubmit)="onSubmitPass()">
             <h2>Escriba su nueva contraseña</h2>
-            <div class="container__input border-bottom">
-                <input  autocomplete="disabled" [type]="!passwordHide['pass'] ? 'password' : 'text'" id="login__password"  name="password" class="login__input padding" placeholder="Contraseña" [(ngModel)]="password">
+            <div class="container__input" [ngStyle]="{'outline': focusInput['password'] ? checkPassValue() && password ? '2px solid red' : password && !checkPassValue() ? '2px solid green': '2px solid #3958ad' : password && !checkPassValue() ? '2px solid green' : '2px solid rgb(0 0 0 / 15%)'}">
+                <input  (focus)="focus('password')" (focusout)="focus('password')" autocomplete="disabled" [type]="'password'" id="login__password"  name="password" class="login__input" placeholder="Contraseña" [(ngModel)]="password">
                 <fa-icon [icon]="faCheckCircle" *ngIf="!checkPassValue() && password" class="green"></fa-icon>
                 <fa-icon [icon]="faTimesCircle" *ngIf="checkPassValue()" class="red"></fa-icon>
             </div>
-            <div class="container__input border-bottom">
-                <input  autocomplete="disabled" [type]="!passwordHide['rPass'] ? 'password' : 'text'" id="login__password" name="rPassword" class="login__input padding" placeholder="Repita su contraseña" [(ngModel)]="rPassword">
+            <div class="container__input" [ngStyle]="{'outline': focusInput['rPassword'] ? !checkPass() && rPassword ? '2px solid red' : rPassword && checkPass() ? '2px solid green': '2px solid #3958ad' : rPassword && checkPass() ? '2px solid green': '2px solid rgb(0 0 0 / 15%)'}">
+                <input  (focus)="focus('rPassword')" (focusout)="focus('rPassword')" autocomplete="disabled" [type]="'password'" id="login__password" name="rPassword" class="login__input" placeholder="Repita su contraseña" [(ngModel)]="rPassword">
                 <fa-icon [icon]="faCheckCircle" *ngIf="checkPass() && rPassword" class="green"></fa-icon>
                 <fa-icon [icon]="faTimesCircle" *ngIf="!checkPass() && rPassword" class="red"></fa-icon>
             </div>
-            <button type="submit">
+            <button type="submit" [disabled]="password && rPassword && checkPass() && !checkPassValue() ? false : true">
                 <fa-icon *ngIf="loading$ | async" [icon]="faSpinner" [spin]="true"></fa-icon>
                 <span *ngIf="!(loading$ | async)">Enviar</span>
             </button>
             <p [ngStyle]="{'visibility' : checkPassValue() ? 'visible' : 'hidden'}">La contraseña debe contener al menos 1 mayuscula, 1 minuscula, 1 número, 1 carácter especial y tener entre 8 y 16 carácteres</p>
         </form>
 
-        <div *ngIf="done">
-            <p>Contraseña Cambiada por favor logeese</p>
-            <a [routerLink]="['/login']">Logearse</a>
+        <div class="doneDiv" *ngIf="done">
+            <p class="doneP">Contraseña actualizada correctamente</p>
+            <a [routerLink]="['/login']">Login</a>
         </div>
 
     </div>
