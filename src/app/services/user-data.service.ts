@@ -6,6 +6,7 @@ import { education } from '../components/education/type';
 import { skill } from '../components/skills/type';
 import { project } from '../components/projects/type';
 import { AboutMe } from '../components/about-me/type';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ import { AboutMe } from '../components/about-me/type';
 export class UserDataService {
 
 
-apiUrl = 'http://localhost:8080/api/v1';
+apiUrl = environment.apiUrls.apiUrl;
 
 constructor(private http : HttpClient) { }
 

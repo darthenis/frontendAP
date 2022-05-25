@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthUser } from '../components/interfaces/authUser';
 import { AlertifyService } from './alertify.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { AlertifyService } from './alertify.service';
 })
 export class AuthService {
 
-  url = 'http://localhost:8080/auth';
+  url = environment.apiUrls.authUrl;
 
   private currentUser : BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser') || '{}'));
 

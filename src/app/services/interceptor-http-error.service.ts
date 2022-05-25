@@ -6,11 +6,14 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { AlertifyService } from './alertify.service';
 import { AuthService } from './auth.service';
 import { ConfirmEmailService } from './confirm-email.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorHttpErrorService implements HttpInterceptor{
+
+  authUrl = environment.apiUrls.authUrl;
 
   constructor(private alertifyService : AlertifyService, 
               private confirmEmailService : ConfirmEmailService, 
@@ -36,7 +39,7 @@ export class InterceptorHttpErrorService implements HttpInterceptor{
 
             this.authService.logout();
 
-          } else if(res.url === 'http://localhost:8080/auth/login'){
+          } else if(res.url === this.authUrl + '/login'){
 
             this.alertifyService.error('Invalid username or password');
 
