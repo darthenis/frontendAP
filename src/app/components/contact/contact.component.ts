@@ -17,14 +17,14 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class ContactComponent implements OnInit {
 
-  @Input() socialNetWorks!: AboutMe;
+  @Input() socialNetWorks : AboutMe;
   @Output() cancelEmit = new EventEmitter();
  
   faTimes = faTimes;
   faSpinner = faSpinner;
   faCheckCircle = faCheckCircle;
 
-  formGroup! : FormGroup;
+  formGroup : FormGroup;
 
   isInvalidForm = false;
 
@@ -34,7 +34,7 @@ export class ContactComponent implements OnInit {
 
   send = false;
 
-  private activedUser!: string;
+  private activedUser: string;
 
   constructor(private fb : FormBuilder, 
               private recaptchaService: ReCaptchaV3Service, 

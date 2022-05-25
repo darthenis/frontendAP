@@ -12,7 +12,7 @@ export class SocialNetworksComponent implements OnInit {
 
   @Output() cancelEmit = new EventEmitter();
 
-  @Input() socialNetWorks! : networks;
+  @Input() socialNetWorks : networks;
 
   faTimes = faTimes;
   faGithubSquare = faGithubSquare;

@@ -20,7 +20,7 @@ import { experience } from './type';
 export class ExperienceComponent implements OnInit, OnChanges {
 
 
-  @Input() subAddSection! : Subject<string>;
+  @Input() subAddSection : Subject<string>;
 
   @Input() authUser : boolean = false;
 
@@ -28,13 +28,13 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
   isLoading$ = this.loadingService.isLoadingGet;
 
-  public formData! : FormData;
+  public formData : FormData;
 
-  profileActived! : string;
+  profileActived : string;
 
   newSection : boolean = false;
 
-  experiences : experience[] = [];
+  experiences : experience[];
 
   resume = true;
 
@@ -146,8 +146,6 @@ export class ExperienceComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
-    console.log('iniciando')
 
     this.http
     .get('/assets/experience.json')

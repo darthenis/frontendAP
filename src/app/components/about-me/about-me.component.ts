@@ -25,13 +25,13 @@ export class AboutMeComponent implements OnInit {
 
 @Output() userExist = new EventEmitter();
 
-@Input() authUser! : boolean;
+@Input() authUser : boolean;
 
 aboutMe : AboutMe = {} as AboutMe;
 
-isAuthenticated$! : boolean;
+isAuthenticated$ : boolean;
 
-socialNetworks! : socialNetWorks;
+socialNetworks : socialNetWorks;
 
   faPenSquare = faPenSquare;
   faCamera = faCamera;
@@ -39,11 +39,11 @@ socialNetworks! : socialNetWorks;
 
   section = false;
 
-  formData! : FormData;
+  formData : FormData;
 
   typePicture : string = '';
 
-  addPhotoForm! : FormData;
+  addPhotoForm : FormData;
 
   editMode = false;
 
@@ -51,7 +51,7 @@ socialNetworks! : socialNetWorks;
 
   isLoading$ = this.loadingService.isLoadingGet;
   
-  profileActived! : string;
+  profileActived : string;
 
   editPicture = false;
 
@@ -196,8 +196,6 @@ socialNetworks! : socialNetWorks;
     let newData = {...this.aboutMe};
 
     newData = {...newData, ...data};
-
-    console.log(newData);
 
     this.userDataService.editAboutme(newData).subscribe({
 

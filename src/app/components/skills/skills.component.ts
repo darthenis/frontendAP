@@ -17,13 +17,13 @@ import { skill } from './type';
 })
 export class SkillsComponent implements OnInit, OnChanges {
 
-  @Input() subAddSection! : Subject<string>;
+  @Input() subAddSection : Subject<string>;
 
   @Input() authUser : boolean = false;
  
   faTimes = faTimes;
 
-  public formData! : FormData;
+  public formData : FormData;
 
   newSection : boolean = false;
 
@@ -33,9 +33,9 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   isLoading$ = this.loadingService.isLoadingGet;
 
-  profileActived! : string;
+  profileActived : string;
 
-  skills :  skill[] = [];
+  skills :  skill[];
 
   resume = true;
 

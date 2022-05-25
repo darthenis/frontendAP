@@ -12,11 +12,11 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 })
 export class RecoveryPassComponent implements OnInit {
 
-  email! : string;
+  email : string;
 
-  password! : string;
+  password : string;
 
-  rPassword! : string;
+  rPassword : string;
 
   passwordHide : IHidePassword = { pass: false,
                                    rPass: false}

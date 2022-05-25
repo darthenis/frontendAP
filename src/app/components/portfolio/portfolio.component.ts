@@ -19,11 +19,11 @@ export class PortfolioComponent implements OnInit {
 
   display = 'none';
 
-  actualUserPage! : string;
+  actualUserPage : string;
 
   subAddSection = new Subject<string>();
 
-  aboutme! : AboutMe;
+  aboutme : AboutMe;
 
   handleAddSection(section: string) {
 

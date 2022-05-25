@@ -24,13 +24,13 @@ export class HeaderComponent implements OnInit {
 
   newMessages = 0;
 
-  messages : Message[] = [];
+  messages : Message[];
 
   openMessages = false;
 
-  getScreenWidth!: number;
+  getScreenWidth: number;
 
-  getScreenHeight!: number;
+  getScreenHeight: number;
 
   activeMenu : boolean | null = null;
 
@@ -43,8 +43,6 @@ export class HeaderComponent implements OnInit {
         next: (messages) => {
           
             this.messages = messages
-
-            console.log("messages: ", this.messages)
 
             this.messages.filter(message => message.seen === false).forEach(message => this.newMessages++);
           
@@ -59,10 +57,6 @@ export class HeaderComponent implements OnInit {
 
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
-
-    console.log("screen width: ", this.getScreenWidth)
-
-    
 
   }
 

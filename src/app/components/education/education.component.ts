@@ -18,15 +18,15 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class EducationComponent implements OnInit, OnChanges {
 
-  @Input() subAddSection! : Subject<string>;
+  @Input() subAddSection : Subject<string>;
 
-  profileActived! : string;
+  profileActived : string;
 
-  public formData! : FormData;
+  public formData : FormData;
 
   newSection : boolean = false;
 
-  public educations : education[] = [];
+  public educations : education[];
 
   resume = true;
 

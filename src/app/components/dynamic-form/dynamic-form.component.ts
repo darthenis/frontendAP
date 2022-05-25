@@ -46,7 +46,7 @@ export class DynamicFormComponent implements OnInit {
 
   fileName: File | null = null;
 
-  filesUpdate: FilesUpdate[] = [];
+  filesUpdate: FilesUpdate[];
 
   readingFile = false;
 

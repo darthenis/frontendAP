@@ -17,9 +17,9 @@ import { project } from './type';
 })
 export class ProjectsComponent implements OnInit, OnChanges {
 
- @Input() subAddSection! : Subject<string>;
+ @Input() subAddSection : Subject<string>;
  
- public formData! : FormData;
+ public formData : FormData;
 
  newSection : boolean = false;
 
@@ -29,7 +29,7 @@ export class ProjectsComponent implements OnInit, OnChanges {
 
  profileActived! : string;
 
- projects : project[] = [];
+ projects : project[];
 
  setProjects(projects : project[]){
 
@@ -124,8 +124,6 @@ resume = true;
       this.userDataService.getProject$(username).subscribe( (data : any) => {
 
           this.setProjects(data);
-
-          console.log('data: ', data)
 
       });
 
