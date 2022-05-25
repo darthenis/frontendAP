@@ -28,7 +28,7 @@
                 
                         <div><span class="name">{{aboutMe?.name + ' ' + aboutMe?.lastName}}</span></div>
                         <div><span class="title">{{aboutMe?.title}}</span></div>
-                        <div><span class="location">{{(aboutMe?.country || ' ') + ', ' + (aboutMe?.state || ' ') + ', ' + (aboutMe?.city || ' ')}}</span></div>
+                        <div><span class="location">{{aboutMe?.country && aboutMe?.state && aboutMe?.city ? aboutMe?.country + ', ' + aboutMe?.state + ', ' + aboutMe?.city : ' '}}</span></div>
                 
                 </div>
                 <div class="about-me">
