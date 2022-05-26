@@ -13,7 +13,7 @@
                     cdkDrag>
                     <div *cdkDragPlaceholder></div>
                     <div class="projects__content-item-image">
-                        <img [src]='e.img || "/assets/empty.png"' alt="">
+                        <img [src]='e.picUrl || "/assets/empty.png"' alt="">
                     </div>
                     <div class="projects-header-buttons">
                         <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete(e.id)" (editEvent)="edit(e.id)"></app-edit-buttons>

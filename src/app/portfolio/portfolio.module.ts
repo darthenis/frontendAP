@@ -65,7 +65,7 @@ import { InterceptorJwtService } from '../services/interceptorjwt.service';
     RecaptchaV3Module,
     HttpClientModule
   ],
-  providers: [UserDataService, AlertifyService, LoadingService,
+  providers: [UserDataService,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi:true },
        {
          provide: RECAPTCHA_V3_SITE_KEY,

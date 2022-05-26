@@ -3,13 +3,14 @@ import { Observable } from 'rxjs';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import jwtDecode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorJwtService implements HttpInterceptor{
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService, private router : Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -18,6 +19,8 @@ export class InterceptorJwtService implements HttpInterceptor{
     if(this.isExpired(token)){
 
       this.authService.logout();
+
+      this.router.navigate(['/login']);
 
       return next.handle(req);
 

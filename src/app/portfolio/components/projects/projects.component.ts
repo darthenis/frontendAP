@@ -179,7 +179,7 @@ resume = true;
 
     data.order = this.projects.length + 1;
 
-    if(data.img) data.img = await this.storageService.uploadImage(data.img, this.authService.currentUserValue.id);
+    if(data.picUrl) data.picUrl = await this.storageService.uploadImage(data.picUrl, this.authService.currentUserValue.id);
     
     this.userDataService.createProject(data).subscribe({
 
@@ -197,7 +197,7 @@ resume = true;
 
     data.id = id;
  
-    if(data.img && !(typeof data.img == "string") ) data.img = await this.storageService.uploadImage(data.img, this.authService.currentUserValue.id);
+    if(data.picUrl && !(typeof data.picUrl == "string") ) data.picUrl = await this.storageService.uploadImage(data.picUrl, this.authService.currentUserValue.id);
  
     this.userDataService.editProjects([data]).subscribe({
  

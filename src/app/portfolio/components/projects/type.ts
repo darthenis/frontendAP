@@ -3,7 +3,7 @@ export interface project {
     title: string,
     url: string,
     date : string,
-    img: any,
+    picUrl: any,
     info: string,
     order : number,
     edit: boolean
