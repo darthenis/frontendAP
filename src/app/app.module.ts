@@ -41,14 +41,10 @@ import { environment } from 'src/environments/environment';
             RecoveryPassModule
             ],
 
-  providers: [AuthService, LoadingService, AlertifyService, UserDataService,
+  providers: [AuthService, LoadingService, AlertifyService,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi:true },
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true }, 
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi:true },
-    {
-      provide: RECAPTCHA_V3_SITE_KEY,
-      useValue: environment.reCaptcha.siteKey,
-    }],
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi:true}],
     
 
   bootstrap: [AppComponent]

@@ -67,6 +67,13 @@ import { LoadingInterceptorService } from '../services/loading-interceptor.servi
     RecaptchaV3Module,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserDataService,
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi:true },
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true }, 
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi:true},
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: environment.reCaptcha.siteKey,
+    }],
 })
 export class PortfolioModule { }
