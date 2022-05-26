@@ -13,7 +13,7 @@ export class MessagesComponent implements OnInit {
 
   @Output() exit = new EventEmitter();
   @Output() seen = new EventEmitter();
-  @Input() messages : Message[] = [];
+  @Input() messages : Message[] = [] as Message[];;
 
 
   faTimes = faTimes;
