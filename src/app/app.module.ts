@@ -33,12 +33,7 @@ import { environment } from 'src/environments/environment';
   imports: [AppRoutingModule, 
             BrowserModule, 
             BrowserAnimationsModule, 
-            HttpClientModule, 
-            PortfolioModule, 
-            LoginModule,
-            RegistrationModule,
-            ConfirmEmailModule,
-            RecoveryPassModule
+            HttpClientModule
             ],
 
   providers: [AuthService, LoadingService, AlertifyService,
