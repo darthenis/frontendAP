@@ -42,7 +42,7 @@
                 <fa-icon [icon]="faCheckCircle" *ngIf="!Password?.errors && Password?.value" class="green"></fa-icon>
                 <fa-icon [icon]="faTimesCircle" *ngIf="Password?.errors && Password?.value " class="red"></fa-icon>
             </div>
-            <p class="text-danger" [ngStyle]="{'visibility' : Password?.errors && Password?.value ? 'visible' : 'hidden'}">8 carácteres mínimo</p>
+            <p class="text-danger" [ngStyle]="{'visibility' : Password?.errors && Password?.value ? 'visible' : 'hidden'}">La contraseña debe contener al menos 1 mayuscula, 1 minuscula, 1 número, 1 carácter especial y tener entre 8 y 16 carácteres</p>
         </div>
 
         <div class="form-container">
