@@ -14,7 +14,7 @@ export const environment = {
     measurementId: "G-RFR9Y31Q51"
   },
   reCaptcha:{
-    siteKey: "6LciZvofAAAAACIaIPOQoJ8EMaXzYV_gcnzoNqEU"
+    siteKey: "6Lf6BR0gAAAAAD4b77ILGPXMT0uwZe1FxVXAJlIt"
   },
   apiUrls: { apiUrl: "http://localhost:8080/api/v1",
             authUrl: "http://localhost:8080/auth" }

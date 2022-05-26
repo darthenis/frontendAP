@@ -10,7 +10,7 @@ export const environment = {
     measurementId: "G-RFR9Y31Q51"
   },
   reCaptcha:{
-    siteKey: "6LciZvofAAAAACIaIPOQoJ8EMaXzYV_gcnzoNqEU"
+    siteKey: "6Lf6BR0gAAAAAD4b77ILGPXMT0uwZe1FxVXAJlIt"
   },
   apiUrls: { apiUrl: "https://pacific-badlands-52387.herokuapp.com/api/v1",
             authUrl: "https://pacific-badlands-52387.herokuapp.com/auth" }
