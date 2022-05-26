@@ -54,6 +54,7 @@ h2{
 #iconX{
     border-radius: 50%;
     padding: 5px 10px 5px 10px;
+    margin-right: 10px;
 }
 
 #iconX:hover{
