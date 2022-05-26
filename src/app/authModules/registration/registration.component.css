@@ -45,7 +45,7 @@
 .text-danger {
     color: #ff0000;
     padding: 1px;
-    font-weight: bold;
+    font-weight:lighter;
 }
 
 .text-pass{
@@ -60,7 +60,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 1%;
     padding: 2%;
     border-radius: 10px;
     outline: red;
@@ -72,7 +71,7 @@
 
     position: absolute;
     right: 1%;
-    bottom: 15%;
+    bottom: 20%;
 
 }
 
@@ -95,7 +94,6 @@
 .input-registration{
     font-weight: bold;
     border: none;
-    padding-top : 1%;
     font-size: calc(1rem + .1vw);
     color: #3958ad;
     width: 90%;
