@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthUser } from '../components/interfaces/authUser';
+import { AuthUser } from '../portfolio/components/interfaces/authUser';
 import { AlertifyService } from './alertify.service';
 import { environment } from 'src/environments/environment';
 

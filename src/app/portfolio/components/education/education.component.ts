@@ -26,7 +26,7 @@ export class EducationComponent implements OnInit, OnChanges {
 
   newSection : boolean = false;
 
-  public educations : education[];
+  public educations : education[] = [];
 
   resume = true;
 

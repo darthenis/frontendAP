@@ -30,7 +30,7 @@
                 </div>
             </article>
         </div>
-        <app-arrow-resume *ngIf="projects.length >= 4" (eventResume)="resumeChange($event)"></app-arrow-resume>
+        <app-arrow-resume *ngIf="projects.length >= 4 || projects.length >= 3 && screenWidth <= 609" (eventResume)="resumeChange($event)"></app-arrow-resume>
 </section>
 
 <app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Proyectos'" (cancel)="cancelNewForm($event)" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->

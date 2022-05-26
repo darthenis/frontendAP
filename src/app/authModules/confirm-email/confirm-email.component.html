@@ -11,7 +11,7 @@
     </div>
     <div *ngIf="confirm">
         <p>Gracias por confirmar tu Email, ahora proceda a logearse con su cuenta</p>
-        <app-button [name]="'Login'" (click)="login()"></app-button>
+        <button (click)="login()">Login</button>
     </div>
     <p *ngIf="!confirm">El token de validación introducida ya fue usada o es inválida</p>
 </div>

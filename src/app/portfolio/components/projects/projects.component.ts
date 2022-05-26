@@ -1,6 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
-import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, HostListener, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
@@ -29,7 +29,9 @@ export class ProjectsComponent implements OnInit, OnChanges {
 
  profileActived! : string;
 
- projects : project[];
+ projects : project[] = [];
+
+ screenWidth : number;
 
  setProjects(projects : project[]){
 
@@ -85,12 +87,21 @@ resume = true;
       
       this.projects.forEach( (e : project) => {
 
+      if(this.screenWidth > 609){
+
         if(count < 3){
 
           newArray.push(e);
           count++;
 
         }
+
+      }else if( count < 2){
+
+        newArray.push(e);
+        count++;
+
+      }
 
       } );
 
@@ -99,6 +110,13 @@ resume = true;
     }
 
     return this.projects;
+
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event : Event) {
+
+    this.screenWidth = window.innerWidth;
 
   }
 
@@ -118,6 +136,8 @@ resume = true;
 
 
   ngOnInit(): void {
+
+      this.screenWidth = window.innerWidth;
 
       let username = this.route.snapshot.paramMap.get('username')!;
 

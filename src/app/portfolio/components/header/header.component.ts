@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
   newMessages = 0;
 
-  messages : Message[];
+  messages : Message[] = [];
 
   openMessages = false;
 

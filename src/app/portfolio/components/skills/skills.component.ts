@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {faTimes, faArrowDown, faArrowUp, faAngleDown, faAngleUp} from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs/internal/Subject';
@@ -29,13 +29,15 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   colorCircle = '#273c75';
 
+  screenWidth : number;
+
   logged$ = this.authService.currentUser$
 
   isLoading$ = this.loadingService.isLoadingGet;
 
   profileActived : string;
 
-  skills :  skill[];
+  skills :  skill[] = [];
 
   resume = true;
 
@@ -57,7 +59,16 @@ export class SkillsComponent implements OnInit, OnChanges {
       
       this.skills.forEach( (e : skill) => {
 
+      if(this.screenWidth > 644){
+
         if(count < 3){
+
+          newArray.push(e);
+          count++;
+
+        }
+
+      } else if(count < 2){
 
           newArray.push(e);
           count++;
@@ -71,6 +82,13 @@ export class SkillsComponent implements OnInit, OnChanges {
     }
 
     return this.skills;
+
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event : Event) {
+
+    this.screenWidth = window.innerWidth;
 
   }
 
@@ -182,6 +200,8 @@ export class SkillsComponent implements OnInit, OnChanges {
               private loadingService : LoadingService) { }
 
   ngOnInit(): void {
+
+    this.screenWidth = window.innerWidth;
 
     this.http
       .get('/assets/skills.json')

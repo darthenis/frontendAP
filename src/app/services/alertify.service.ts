@@ -3,7 +3,7 @@ import * as alertify from 'alertifyjs';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class AlertifyService {
 

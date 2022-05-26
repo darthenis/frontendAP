@@ -1,12 +1,10 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { AboutMe } from '../about-me/type';
-import { socialNetWorks } from '../interfaces/socialNetWorks';
+import { AboutMe } from './components/about-me/type';
 
 
 

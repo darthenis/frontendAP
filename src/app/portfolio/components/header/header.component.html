@@ -16,7 +16,7 @@
                                 </nav>  
                             </div>
                         </header>
-                        <div id="menu-responsive" [ngStyle]="{'animation-name': (activeMenu && activeMenu !== null) ? 'translate' : 'reverse'}">
+                        <div id="menu-responsive" [ngStyle]="{'animation-name': activeMenu ? 'translate' : activeMenu !== null ? 'reverse' : ''}">
                             <div id="container-messages" *ngIf="(logged$ | async).username"> 
                                 <fa-icon class="icon"  [icon]="faEnvelope" (click)="openMessages = true"></fa-icon>
                                 <span *ngIf="newMessages !== 0" id="iconAlert">{{newMessages}}</span>

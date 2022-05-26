@@ -34,7 +34,7 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
   newSection : boolean = false;
 
-  experiences : experience[];
+  experiences : experience[] = [];
 
   resume = true;
 
@@ -162,8 +162,6 @@ export class ExperienceComponent implements OnInit, OnChanges {
       this.userDataService.getExperience$(username).subscribe( (data : experience[]) => {
 
             this.setExperiences(data);
-
-            console.log("experience: ", data)
 
       })
 

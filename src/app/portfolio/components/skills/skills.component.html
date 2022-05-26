@@ -28,7 +28,7 @@
 
     </div>
 
-    <app-arrow-resume *ngIf="skills.length >= 4" (eventResume)="resumeChange($event)"></app-arrow-resume>
+    <app-arrow-resume *ngIf="skills.length >= 4 || skills.length >= 3 && screenWidth >= 644" (eventResume)="resumeChange($event)"></app-arrow-resume>
             
 
 </section>

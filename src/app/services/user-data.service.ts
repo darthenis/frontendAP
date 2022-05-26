@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { experience } from '../components/experience/type';
-import { education } from '../components/education/type';
-import { skill } from '../components/skills/type';
-import { project } from '../components/projects/type';
-import { AboutMe } from '../components/about-me/type';
+import { experience } from '../portfolio/components/experience/type';
+import { education } from '../portfolio/components/education/type';
+import { skill } from '../portfolio/components/skills/type';
+import { project } from '../portfolio/components/projects/type';
+import { AboutMe } from '../portfolio/components/about-me/type';
 import { environment } from '../../environments/environment';
 
 
