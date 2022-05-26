@@ -31,6 +31,8 @@ import { PortfolioComponent } from './portfolio.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingService } from '../services/loading.service';
 import { InterceptorJwtService } from '../services/interceptorjwt.service';
+import { InterceptorHttpErrorService } from '../services/interceptor-http-error.service';
+import { LoadingInterceptorService } from '../services/loading-interceptor.service';
 
 
 @NgModule({
@@ -65,11 +67,6 @@ import { InterceptorJwtService } from '../services/interceptorjwt.service';
     RecaptchaV3Module,
     HttpClientModule
   ],
-  providers: [UserDataService,
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi:true },
-       {
-         provide: RECAPTCHA_V3_SITE_KEY,
-         useValue: environment.reCaptcha.siteKey,
-       }],
+  providers: [],
 })
 export class PortfolioModule { }

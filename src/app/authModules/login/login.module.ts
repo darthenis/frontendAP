@@ -25,6 +25,6 @@ import { LoadingInterceptorService } from 'src/app/services/loading-interceptor.
     RouterModule,
     HttpClientModule
   ],
-  providers: []
+  providers: [],
 })
 export class LoginModule { }

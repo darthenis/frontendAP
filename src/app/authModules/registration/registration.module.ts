@@ -7,8 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthService } from 'src/app/services/auth.service';
-import { AlertifyService } from 'src/app/services/alertify.service';
+
 
 
 @NgModule({
@@ -22,6 +21,6 @@ import { AlertifyService } from 'src/app/services/alertify.service';
     RouterModule,
     HttpClientModule
   ],
-  providers: [AlertifyService]
+  providers: []
 })
 export class RegistrationModule { }
