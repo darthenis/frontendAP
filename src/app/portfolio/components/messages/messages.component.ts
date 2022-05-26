@@ -30,7 +30,9 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.messages[0]?.seen !== true){
+    if(this.messages){
+
+      if(this.messages[0]?.seen !== true){
 
         this.userDataService.setSeenMessage(this.messages[0].id).subscribe({
 
@@ -47,7 +49,8 @@ export class MessagesComponent implements OnInit {
 
     }
 
-   
+
+    }
 
   }
 
