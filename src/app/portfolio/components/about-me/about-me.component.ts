@@ -171,11 +171,11 @@ socialNetworks : socialNetWorks;
 
     if(this.typePicture === 'profile'){
 
-      this.aboutMe.profile = await this.storageService.uploadImage(pic.img);
+      this.aboutMe.profile = await this.storageService.uploadImage(pic.img, this.authService.currentUserValue.id);
 
     }else{
 
-      this.aboutMe.banner = await this.storageService.uploadImage(pic.img);
+      this.aboutMe.banner = await this.storageService.uploadImage(pic.img, this.authService.currentUserValue.id);
     }
 
       this.userDataService.editAboutme(this.aboutMe).subscribe({

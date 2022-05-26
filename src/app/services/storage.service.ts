@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
 
 firebase.initializeApp(environment.firebaseConfig)
 
@@ -13,7 +12,7 @@ export class StorageService {
 
   storageRef = firebase.app().storage().ref();
 
-  constructor(private authService : AuthService) { }
+  constructor() { }
 
   readerImage(file : File){
 
@@ -33,11 +32,11 @@ export class StorageService {
   }
 
 
-  async uploadImage(file : File, urlRef? : string){
+  async uploadImage(file : File, userId : number, urlRef? : string, ){
 
     let base64 : any;
 
-    let id = this.authService.currentUserValue.id;
+    let id = userId;
 
     let name = id + "_" + Date.now();
 

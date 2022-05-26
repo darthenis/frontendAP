@@ -191,7 +191,7 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
    data.id = id;
 
-   if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl);
+   if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl, this.authService.currentUserValue.id);
 
    this.userDataService.editExperiences([data]).subscribe({
 
@@ -212,7 +212,7 @@ export class ExperienceComponent implements OnInit, OnChanges {
 
     data.order = this.experiences.length + 1;
 
-    if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl);
+    if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl, this.authService.currentUserValue.id);
       
       this.userDataService.createExperience(data).subscribe({
 

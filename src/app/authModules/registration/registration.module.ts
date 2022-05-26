@@ -22,6 +22,6 @@ import { AlertifyService } from 'src/app/services/alertify.service';
     RouterModule,
     HttpClientModule
   ],
-  providers: [AuthService, AlertifyService]
+  providers: [AlertifyService]
 })
 export class RegistrationModule { }

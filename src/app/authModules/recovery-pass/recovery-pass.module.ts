@@ -23,6 +23,6 @@ import { LoadingService } from 'src/app/services/loading.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, AlertifyService, LoadingService]
+  providers: [AlertifyService, LoadingService]
 })
 export class RecoveryPassModule { }

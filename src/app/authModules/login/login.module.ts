@@ -9,9 +9,9 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { InterceptorHttpErrorService } from 'src/app/services/interceptor-http-error.service';
 import { LoadingInterceptorService } from 'src/app/services/loading-interceptor.service';
+
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import { LoadingInterceptorService } from 'src/app/services/loading-interceptor.
     RouterModule,
     HttpClientModule
   ],
-  providers: [AuthService, LoadingService, AlertifyService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true }, 
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi:true }]
+  providers: []
 })
 export class LoginModule { }

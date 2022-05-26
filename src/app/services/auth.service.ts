@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 
 @Injectable({
-  providedIn: 'platform'
+  providedIn: 'root'
 })
 export class AuthService {
 
@@ -22,7 +22,9 @@ export class AuthService {
   
   currentUser$ = this.currentUser.asObservable();
 
-  constructor(private httpClient : HttpClient, private alertifyService : AlertifyService) {}
+  constructor(private httpClient : HttpClient, private alertifyService : AlertifyService) {
+
+  }
 
   isLogged(){
 

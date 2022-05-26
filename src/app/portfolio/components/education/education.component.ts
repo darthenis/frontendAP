@@ -217,7 +217,7 @@ export class EducationComponent implements OnInit, OnChanges {
 
   async newData(data : education){
 
-    if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl);
+    if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl, this.authService.currentUserValue.id);
 
     data.order = this.educations.length + 1;
       
@@ -240,7 +240,7 @@ export class EducationComponent implements OnInit, OnChanges {
 
     data.id = id;
       
-    if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl);
+    if(data.logoUrl && !(typeof data.logoUrl == "string") ) data.logoUrl = await this.storageService.uploadImage(data.logoUrl, this.authService.currentUserValue.id);
       
       this.userDataService.editEducation([data]).subscribe({
 
