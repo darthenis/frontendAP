@@ -33,6 +33,27 @@ export class ProjectsComponent implements OnInit, OnChanges {
 
  screenWidth : number;
 
+ zoomActived : boolean = false;
+
+ target = "";
+
+ zoomActive(url : string){
+      if(url){
+
+        this.target = url;
+
+        this.zoomActived = true;
+        
+      }
+
+ }
+
+ desactiveZoom(){
+
+    this.zoomActived = false;
+
+ }
+
  setProjects(projects : project[]){
 
   projects.sort((a, b) => a.order - b.order);

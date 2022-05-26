@@ -2,7 +2,7 @@
         <span>Proyectos</span>
         <div class="projects__content" cdkDropListGroup>
 
-            <article *ngFor='let e of getProjects(); index as i' cdkDropList  cdkDropListOrientation="horizontal"
+            <article *ngFor="let e of getProjects(); index as i" cdkDropList  cdkDropListOrientation="horizontal"
             [cdkDropListData]="{item:e,index:i}" (cdkDropListDropped)="onDrop($event)">
 
                 <app-dynamic-form *ngIf="e.edit" [editData]="e" [formTitle]="'Projectos'" (formSubmit)="updateData($event, e.id)" (cancel)="edit(e.id)" [formData]="formData"></app-dynamic-form>
@@ -12,7 +12,7 @@
                     [ngStyle]="{'cursor' : ((logged$ | async).username === profileActived && !e.edit)  ? 'move' : 'auto' }"
                     cdkDrag>
                     <div *cdkDragPlaceholder></div>
-                    <div class="projects__content-item-image">
+                    <div class="projects__content-item-image" (click)="zoomActive(e.picUrl)">
                         <img [src]='e.picUrl || "/assets/empty.png"' alt="">
                     </div>
                     <div class="projects-header-buttons">
@@ -33,5 +33,10 @@
         <app-arrow-resume *ngIf="projects.length >= 4 || projects.length >= 3 && screenWidth <= 609" (eventResume)="resumeChange($event)"></app-arrow-resume>
 </section>
 
-<app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Proyectos'" (cancel)="cancelNewForm($event)" [formData]="formData"></app-dynamic-form> <!-- NEW FORM -->
-              
+<app-dynamic-form *ngIf="newSection" (formSubmit)="newData($event)" [formTitle]="'Proyectos'" (cancel)="cancelNewForm($event)" [formData]="formData"></app-dynamic-form>
+
+<div id="bg-zoom" *ngIf="zoomActived" (click)="desactiveZoom()">
+
+            <img id="img-zoom" [src]='target || "/assets/empty.png"' alt="">
+
+</div>
