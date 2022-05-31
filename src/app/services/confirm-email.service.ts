@@ -1,12 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, BehaviorSubject } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfirmEmailService {
+
+  url = environment.apiUrls.authUrl;
 
   constructor(private httpClient : HttpClient)  { }
 
@@ -26,15 +28,13 @@ export class ConfirmEmailService {
 
   }
 
-  confirmEmail(token : string): void {
+  confirmEmail(token : string): Observable<any>{
 
-    this.httpClient.get(environment.apiUrls.authUrl + `/confirm?token=${token}`).subscribe({ 
-                  
-                  next: () => this.confirm(), 
-                  error: () => this.error()
-                
-                
-                }); 
+   return this.httpClient.get(this.url + "/confirm?token=" +token, {
+    headers: new HttpHeaders({ 
+      "Access-Control-Allow-Origin":"*"
+    })
+  });
 
   }
 

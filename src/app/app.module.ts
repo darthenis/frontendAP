@@ -11,14 +11,7 @@ import { AlertifyService } from './services/alertify.service';
 import { InterceptorJwtService } from './services/interceptorjwt.service';
 import { InterceptorHttpErrorService } from './services/interceptor-http-error.service';
 import { LoadingInterceptorService } from './services/loading-interceptor.service';
-import { PortfolioModule } from './portfolio/portfolio.module';
-import { LoginModule } from './authModules/login/login.module';
-import { RegistrationModule } from './authModules/registration/registration.module';
-import { ConfirmEmailModule } from './authModules/confirm-email/confirm-email.module';
-import { RecoveryPassModule } from './authModules/recovery-pass/recovery-pass.module';
-import { UserDataService } from './services/user-data.service';
-import { RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
-import { environment } from 'src/environments/environment';
+import { ConfirmEmailService } from './services/confirm-email.service';
 
 
 
@@ -36,7 +29,7 @@ import { environment } from 'src/environments/environment';
             HttpClientModule
             ],
 
-  providers: [AuthService, LoadingService, AlertifyService,
+  providers: [AuthService, LoadingService, AlertifyService, ConfirmEmailService,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorJwtService, multi:true },
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorHttpErrorService, multi: true }, 
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi:true}],
