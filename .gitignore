@@ -47,4 +47,4 @@ Thumbs.db
 
 
 # config data - should be hidden
-configEng.ts
+configEnv.ts
