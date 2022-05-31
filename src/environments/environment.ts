@@ -2,16 +2,17 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { firebase } from '../../configEnv.js';
+
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyA8JTmof80A4m6P5LrOGcxFNTrdn65oNh0",
-    authDomain: "portfolioapp-307c0.firebaseapp.com",
-    projectId: "portfolioapp-307c0",
-    storageBucket: "portfolioapp-307c0.appspot.com",
-    messagingSenderId: "834177610946",
-    appId: "1:834177610946:web:dbbfcc5e3a9de5a87f775b",
-    measurementId: "G-RFR9Y31Q51"
+    apiKey: firebase.API_KEY,
+    authDomain: firebase.AUTH_DOMAIN,
+    projectId: firebase.PROJECT_ID,
+    storageBucket: firebase.STORAGE_BUCKET,
+    messagingSenderId: firebase.MESSAGING_SENDER_ID,
+    appId: firebase.APP_ID
   },
   reCaptcha:{
     siteKey: "6Lcoth8gAAAAAAno_dldxYth8mhm4nMtcjQJHqlT"
