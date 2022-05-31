@@ -1,5 +1,5 @@
 
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormData } from '../dynamic-form/interfaces';
 import { HttpClient} from '@angular/common/http'
 import { Subject } from 'rxjs/internal/Subject';
@@ -14,7 +14,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
-  styleUrls: ['./education.component.css']
+  styleUrls: ['./education.component.css'],
 })
 export class EducationComponent implements OnInit, OnChanges {
 

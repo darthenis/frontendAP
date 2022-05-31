@@ -19,7 +19,7 @@
                             (mouseout)="over(e.id)"
                             [current]=e.porcent
                             [max]="100" 
-                            [radius]="60" 
+                            [radius]="screenWidth > 700 ? 60 : 40" 
                             [stroke]="10"
                             [color]="hoverColor(e.id)"></round-progress>
             <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete(e.id)" (editEvent)="edit(e.id)"></app-edit-buttons>
