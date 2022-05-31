@@ -1,13 +1,15 @@
+
+
 export const environment = {
   production: true,
   firebaseConfig : {
-    apiKey: "AIzaSyA8JTmof80A4m6P5LrOGcxFNTrdn65oNh0",
-    authDomain: "portfolioapp-307c0.firebaseapp.com",
-    projectId: "portfolioapp-307c0",
-    storageBucket: "portfolioapp-307c0.appspot.com",
-    messagingSenderId: "834177610946",
-    appId: "1:834177610946:web:dbbfcc5e3a9de5a87f775b",
-    measurementId: "G-RFR9Y31Q51"
+    apiKey: "AIzaSyCljuFQCIsvjT_nPZt6DT7PGmwjPcGTxvE",
+    authDomain: "portfolioap-102b7.firebaseapp.com",
+    projectId: "portfolioap-102b7",
+    storageBucket: "portfolioap-102b7.appspot.com",
+    messagingSenderId: "910789963007",
+    appId: "1:910789963007:web:9edb2a52fe35643c4fb0ca"
+  
   },
   reCaptcha:{
     siteKey: "6Lf6BR0gAAAAAD4b77ILGPXMT0uwZe1FxVXAJlIt"

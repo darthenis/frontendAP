@@ -20,7 +20,7 @@
                 <div class="form-group span2 heigth100">
                     <label for="message">Mensaje</label>
                     <textarea class="form-control" id="message" rows="3" placeholder="Escriba su mensaje" formControlName="message"></textarea>
-                    <span>{{formGroup.get('message').value.length}}/255</span>
+                    <span>{{formGroup.get('message').value.length || 0}}/255</span>
                 </div>
                 <button type="submit" class="btn">
                     <fa-icon

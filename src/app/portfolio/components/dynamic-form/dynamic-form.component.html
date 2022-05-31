@@ -94,7 +94,7 @@
         </textarea>
         <div [ngStyle]="{'margin': '0px', 'text-align': 'right', 'float': 'right', 'display': 'flex', 'justify-content': 'space-between'}" *ngIf="control.type === 'textarea'">
           <span [ngStyle]="{'color': 'red', 'visibility': myForm.get(control.name)?.hasError('maxlength') ? 'visible' : 'hidden'}">máximo de {{ control.validators.maxLength }} carácteres</span>
-          <span>{{myForm.get(control.name)?.value.length}}/{{control.validators.maxLength}}</span>
+          <span>{{myForm.get(control.name)?.value.length || 0}}/{{control.validators.maxLength}}</span>
         </div>
         <div [ngStyle]="{ height: '4px' }">
           <p

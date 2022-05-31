@@ -200,6 +200,8 @@ resume = true;
 
     data.order = this.projects.length + 1;
 
+    this.loadingService.setLoadingPost(true);
+
     if(data.picUrl) data.picUrl = await this.storageService.uploadImage(data.picUrl, this.authService.currentUserValue.id);
     
     this.userDataService.createProject(data).subscribe({
@@ -217,6 +219,8 @@ resume = true;
   async updateData(data : project, id : number){
 
     data.id = id;
+
+    this.loadingService.setLoadingPost(true);
  
     if(data.picUrl && !(typeof data.picUrl == "string") ) data.picUrl = await this.storageService.uploadImage(data.picUrl, this.authService.currentUserValue.id);
  

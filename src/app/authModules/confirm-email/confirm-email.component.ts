@@ -23,6 +23,8 @@ export class ConfirmEmailComponent implements OnInit, OnChanges {
 
     this.route.params.subscribe( params => {
 
+      console.log('token: ', params['token']);
+
       if(params['token']) {
 
           this.notify = false;

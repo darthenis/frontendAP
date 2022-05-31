@@ -29,6 +29,7 @@
     "alertifyjs": "^1.13.1",
     "angular-code-input": "^1.6.0",
     "angular-svg-round-progressbar": "^8.0.0",
+    "dotenv": "^16.0.1",
     "firebase": "^9.6.7",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",

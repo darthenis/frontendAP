@@ -30,11 +30,7 @@ export class ConfirmEmailService {
 
   confirmEmail(token : string): Observable<any>{
 
-   return this.httpClient.get(this.url + "/confirm?token=" +token, {
-    headers: new HttpHeaders({ 
-      "Access-Control-Allow-Origin":"*"
-    })
-  });
+   return this.httpClient.post(this.url + "/confirm", token);
 
   }
 
