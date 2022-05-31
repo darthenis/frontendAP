@@ -61,9 +61,9 @@ export class RegistrationComponent implements OnInit {
                         Validators.pattern(this.strongRegex)
                         ]],
       passwordConfirm : ['',  Validators.required],
-      name : ['', [Validators.required, Validators.minLength(3)]],
-      lastname : ['',  [Validators.required, Validators.minLength(3)]],
-      email : ['',  [Validators.required, Validators.email]]
+      name : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(13)]],
+      lastname : ['',  [Validators.required, Validators.minLength(3), Validators.maxLength(13)]],
+      email : ['',  [Validators.required, Validators.email, Validators.maxLength(30)]],
 
     } , {validators: this.checkPasswords });
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class ConfirmEmailService {
 
   confirmEmail(token : string): void {
 
-    this.httpClient.get(`http://localhost:8080/auth/confirm?token=${token}`).subscribe({ 
+    this.httpClient.get(environment.apiUrls.authUrl + `/confirm?token=${token}`).subscribe({ 
                   
                   next: () => this.confirm(), 
                   error: () => this.error()

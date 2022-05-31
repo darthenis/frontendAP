@@ -15,7 +15,7 @@
             }
         },
         {
-            "name": "date",
+            "name": "atCreated",
             "label": {
                 "english": "Date",
                 "spanish": "Fecha de publicación"

@@ -2,7 +2,7 @@ export interface project {
     id: number,
     title: string,
     url: string,
-    date : string,
+    atCreated : string,
     picUrl: any,
     info: string,
     order : number,

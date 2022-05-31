@@ -44,8 +44,8 @@ export class ContactComponent implements OnInit {
               private loadingService : LoadingService){ 
 
     this.formGroup = this.fb.group({
-                  name : ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-                  email : ['', [Validators.required, Validators.email]],
+                  name : ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)], Validators.maxLength(30)],
+                  email : ['', [Validators.required, Validators.email, Validators.maxLength(30)]],
                   message : ['', Validators.required]
     });
 
