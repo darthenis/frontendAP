@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmEmailService } from 'src/app/services/confirm-email.service';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-confirm-email',
@@ -16,6 +17,8 @@ export class ConfirmEmailComponent implements OnInit, OnChanges {
   confirm: boolean | null = null;
 
   current$ : any;
+
+  faSpinner = faSpinner;
 
   constructor(private confirmEmailService : ConfirmEmailService, private route : ActivatedRoute, private router : Router) { }
 
