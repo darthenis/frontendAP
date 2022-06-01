@@ -3,10 +3,8 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,13 +15,11 @@ import {
   faTimes,
   faArrowUp,
   faCamera,
-  faGrinTongueSquint,
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import { skill } from '../skills/type';
 import { project } from '../projects/type';
 import { AboutMe } from '../about-me/type';
-import { StorageService } from 'src/app/services/storage.service';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -47,10 +43,6 @@ export class DynamicFormComponent implements OnInit {
   fileName: File | null = null;
 
   filesUpdate: FilesUpdate[];
-
-  readingFile = false;
-
-  checkboxFlag = false;
 
   isLoading$ = this.loadingService.isLoadingPost;
 

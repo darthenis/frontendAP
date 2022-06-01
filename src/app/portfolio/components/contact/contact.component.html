@@ -10,17 +10,19 @@
                 <div class="form-group">
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" id="name" placeholder="Escriba su nombre" formControlName="name">
-                    <p [ngStyle]="{'visibility': Name?.errors && Name?.value ? 'visible' : 'hidden'}">Solo carácteres alfabéticos, 30 characteres máximo</p>
+                    <p [ngStyle]="{'visibility': Name?.errors && Name?.value ? 'visible' : 'hidden'}">30 carácteres máximo</p>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Escriba su email" formControlName="email">
-                    <p [ngStyle]="{'visibility': Email?.errors && Email?.value ? 'visible' : 'hidden'}">Solo formato email, 30 characteres máximo</p>
+                    <p [ngStyle]="{'visibility': Email?.errors && Email?.value ? 'visible' : 'hidden'}">Email inválido</p>
                 </div>
                 <div class="form-group span2 heigth100">
                     <label for="message">Mensaje</label>
                     <textarea class="form-control" id="message" rows="3" placeholder="Escriba su mensaje" formControlName="message"></textarea>
-                    <span>{{formGroup.get('message').value.length || 0}}/255</span>
+                    <div  id="counterTextarea">
+                        {{formGroup.get('message').value.length || 0}}/255
+                    </div>
                 </div>
                 <button type="submit" class="btn">
                     <fa-icon

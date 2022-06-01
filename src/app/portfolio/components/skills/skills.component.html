@@ -19,7 +19,7 @@
                             (mouseout)="over(e.id)"
                             [current]=e.porcent
                             [max]="100" 
-                            [radius]="screenWidth > 700 ? 60 : 40" 
+                            [radius]="60" 
                             [stroke]="10"
                             [color]="hoverColor(e.id)"></round-progress>
             <app-edit-buttons *ngIf="(logged$ | async).username === profileActived" (deleteEvent)="delete(e.id)" (editEvent)="edit(e.id)"></app-edit-buttons>
@@ -28,7 +28,7 @@
 
     </div>
 
-    <app-arrow-resume *ngIf="skills.length >= 4 || skills.length >= 3 && screenWidth >= 644" (eventResume)="resumeChange($event)"></app-arrow-resume>
+    <app-arrow-resume *ngIf="skills.length >= 4 || (skills.length >= 3 && screenWidth <= 644)" (eventResume)="resumeChange($event)"></app-arrow-resume>
             
 
 </section>

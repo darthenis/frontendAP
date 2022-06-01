@@ -39,9 +39,13 @@ export class InterceptorHttpErrorService implements HttpInterceptor{
 
             this.authService.logout();
 
+          } else if(res.url === this.authUrl + '/login' && res.error.message?.includes("User's email is not confirmed")){
+
+            this.alertifyService.error('Debe confirmar su correo electrónico para poder iniciar sesión.');
+
           } else if(res.url === this.authUrl + '/login'){
 
-            this.alertifyService.error('Invalid username or password');
+            this.alertifyService.error('Usuario o contraseña incorrectos.');
 
           } else if(res.error.path === '/auth/confirm'){
 

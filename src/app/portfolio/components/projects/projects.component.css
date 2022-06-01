@@ -135,5 +135,11 @@ li{
     .projects{
         border-radius: 0px;
     }
+
+    .skill-item > h3 {
+
+        font-size: 12px;
+
+    }
       
   }

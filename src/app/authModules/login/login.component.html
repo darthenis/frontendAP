@@ -15,7 +15,7 @@
                 <fa-icon class="iconEye" [icon]='faEyeSlash' *ngIf="!passwordHide" (click)="hidePassword()"></fa-icon>
             </div>
             
-            <button type="submit" class="login__button" [disabled]="loading$ | async">
+            <button type="submit" class="login__button" [ngStyle]="{'background-color': (loading$ | async) ? '#273c75' : '#3958ad'}" [disabled]="loading$ | async">
                 <fa-icon *ngIf="loading$ | async" [icon]="faSpinner" [spin]="true"></fa-icon>
                 <span *ngIf="!(loading$ | async)">Iniciar Sesión</span>
             </button>

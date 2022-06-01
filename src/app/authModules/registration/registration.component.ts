@@ -64,6 +64,9 @@ export class RegistrationComponent implements OnInit {
       name : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(13)]],
       lastname : ['',  [Validators.required, Validators.minLength(3), Validators.maxLength(13)]],
       email : ['',  [Validators.required, Validators.email, Validators.maxLength(30)]],
+      country : ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
+      state : ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
+      city : ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
 
     } , {validators: this.checkPasswords });
 
@@ -111,6 +114,12 @@ export class RegistrationComponent implements OnInit {
   get Lastname() { return this.form.get('lastname'); }
 
   get Email() { return this.form.get('email'); }
+
+  get Country() { return this.form.get('country'); }
+
+  get State() { return this.form.get('state'); }
+
+  get City() { return this.form.get('city'); }
 
   focus(input : string) {
 

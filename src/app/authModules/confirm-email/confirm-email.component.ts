@@ -1,15 +1,19 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmEmailService } from 'src/app/services/confirm-email.service';
+import { LoadingService } from 'src/app/services/loading.service';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-confirm-email',
   templateUrl: './confirm-email.component.html',
   styleUrls: ['./confirm-email.component.css']
 })
-export class ConfirmEmailComponent implements OnInit, OnChanges {
+export class ConfirmEmailComponent implements OnInit {
 
-  loading = true;
+  faSpinner = faSpinner;
+
+  loading = this.loadingService.isLoadingGet;
 
   notify : boolean = false;
 
@@ -17,13 +21,14 @@ export class ConfirmEmailComponent implements OnInit, OnChanges {
 
   current$ : any;
 
-  constructor(private confirmEmailService : ConfirmEmailService, private route : ActivatedRoute, private router : Router) { }
+  constructor(private confirmEmailService : ConfirmEmailService, 
+              private route : ActivatedRoute, 
+              private router : Router, 
+              private loadingService : LoadingService) { }
 
   ngOnInit(): void {
 
     this.route.params.subscribe( params => {
-
-      console.log('token: ', params['token']);
 
       if(params['token']) {
 
@@ -44,23 +49,11 @@ export class ConfirmEmailComponent implements OnInit, OnChanges {
 
     this.current$ = this.confirmEmailService.currentConfirmed$.subscribe( (confirm : boolean | null) => {
 
-      confirm === null ? this.loading = true : this.loading = false;
-
       this.confirm = confirm;
 
     } );
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    
-   changes['current$'].currentValue( (confirm : boolean | null) => {
-
-     confirm === null ? this.loading = true : this.loading = false;
-
-     this.confirm = confirm;
-
-   } );
-  }
 
   login() {
 

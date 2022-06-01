@@ -141,12 +141,6 @@ select:-webkit-autofill:focus {
   height: 100%;
 }
 
-input[type="date"]{
-
-  user-select: none;
-
-}
-
 .container-inputfile > label {
   position: relative;
   background-color: #273c75;
@@ -185,12 +179,6 @@ input[type="date"]{
   cursor: pointer;
 }
 
-.form-dynamic-control > input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-}
-
 .form-dynamic-control > textarea {
   border: 2px solid rgb(0 0 0 / 15%);
   border-radius: 10px;
@@ -225,3 +213,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 15px;
   grid-column: 1/-1;
 }
+
+
+@media screen and (max-width: 450px) {
+ 
+  .form-dynamic-container > div{
+    position: relative;
+    top: 0;
+    width: 100vw;
+  
+  }
+
+  .form-dynamic-container > div > form{
+    grid-template-columns: 100%;
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .container-inputfile{
+
+    justify-content: flex-start;
+  }
+
+  .container-inputfile > input[type="text"]{
+
+    width: 100%;
+
+  }
+
+}
+  

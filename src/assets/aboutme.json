@@ -48,7 +48,7 @@
             "name": "country",
             "label": {
                 "english": "Country",
-                "spanish": "Nacionalidad"
+                "spanish": "País"
             },
             "value": "",
             "type": "text",
@@ -97,15 +97,14 @@
             "type": "textarea",
             "validators": {
                 "required": true,
-                "minLength": 4,
                 "maxLength": 250
             }
         },
         {
-                        "name": "facebook",
+                        "name": "linkedin",
                         "label": {
-                            "english": "Facebook",
-                            "spanish": "Facebook"
+                            "english": "Linkedin",
+                            "spanish": "Linkedin"
                             },
                         "value": "",
                         "type": "url",

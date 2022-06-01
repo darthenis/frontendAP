@@ -37,7 +37,6 @@
     background-color: #fff;
     border-radius: 10px;
     width: 100%;
-    margin-top:10%;
     display: flex;
     align-self: center;
     flex-direction: column;
@@ -112,7 +111,6 @@ input:-webkit-autofill,
 
     padding: 3% 2% 3% 2%;
     margin: 4% 0% 1% 0%;
-    background-color: #3958ad;
     border: none;
     border-radius: 10px;
     width: 200px;
@@ -176,6 +174,13 @@ input:-webkit-autofill,
     .container__input > fa-icon{
 
         font-size: 20px;
+    }
+
+    input:focus{
+
+        width: 100%;
+        background-color:transparent;
+
     }
 
     #login-form > button{

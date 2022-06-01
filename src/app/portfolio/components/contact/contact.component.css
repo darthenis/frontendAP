@@ -90,6 +90,11 @@ form{
 
 }
 
+#counterTextarea{
+    width: 100%;
+    text-align: right;
+}
+
 label{
     text-align: left;
     display: inline;

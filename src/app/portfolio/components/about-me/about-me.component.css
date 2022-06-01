@@ -146,6 +146,7 @@
 
 .profile{
     padding-right: 2%;
+    min-height: 50px;
     text-decoration: none;
     font-size: 20px;
     display: flex;
