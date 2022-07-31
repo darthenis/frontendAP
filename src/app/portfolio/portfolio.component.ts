@@ -1,9 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs/internal/Subject';
-import { AuthService } from 'src/app/services/auth.service';
-import { LoadingService } from 'src/app/services/loading.service';
-import { UserDataService } from 'src/app/services/user-data.service';
 import { AboutMe } from './components/about-me/type';
 
 
@@ -15,10 +11,6 @@ import { AboutMe } from './components/about-me/type';
 })
 export class PortfolioComponent implements OnInit {
 
-  display = 'none';
-
-  actualUserPage : string;
-
   subAddSection = new Subject<string>();
 
   aboutme : AboutMe;
@@ -29,28 +21,13 @@ export class PortfolioComponent implements OnInit {
   
   }
 
-  constructor(private userDataService : UserDataService, 
-              private router : Router, 
-              private authService : AuthService, 
-              private route : ActivatedRoute,
-              private loadingService : LoadingService,
-              private cdr : ChangeDetectorRef) { 
-
-
-  }
+  constructor() {}
 
   ngOnInit(): void {
 
         this.subAddSection.next('portfolio');
 
         
-
-  }
-
-
-  userExist() {
-
-    this.display = 'block';
 
   }
 

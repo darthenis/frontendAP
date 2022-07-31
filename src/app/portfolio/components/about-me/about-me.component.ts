@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, EventEmitter, Output, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {faPenSquare, faCamera, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from 'src/app/services/auth.service';
-import { LoadingService } from 'src/app/services/loading.service';
-import { StorageService } from 'src/app/services/storage.service';
-import { UserDataService } from 'src/app/services/user-data.service';
-import { FormData } from '../dynamic-form/interfaces';
+import { AuthService } from '../../../services/auth.service';
+import { LoadingService } from '../../../services/loading.service';
+import { StorageService } from '../../../services/storage.service';
+import { UserDataService } from '../../../services/user-data.service';
+import { FormData } from '../interfaces';
 import { socialNetWorks } from '../interfaces/socialNetWorks';
 import { AboutMe } from './type';
 

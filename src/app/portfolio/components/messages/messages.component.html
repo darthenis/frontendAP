@@ -1,14 +1,17 @@
 <div id="container-black" (click)="exit.emit()">
 
     <div id="container-white" (click)="$event.stopPropagation()">
-        <div id="title-list">
-            <h2>Mensajes</h2></div>
-        <div id="title">
+        <div id="title-list" *ngIf="isMobile && activeListMobile || !isMobile">
+            <h2>Mensajes</h2>
+            <fa-icon *ngIf="isMobile" (click)="exit.emit()" [icon]="faTimes" id="iconX"></fa-icon>
+        </div>
+        <div id="title" *ngIf="isMobile && !activeListMobile || !isMobile">
+            <fa-icon *ngIf="isMobile" (click)="backMenuListReponsive()" [icon]="faArrowLeft" id="iconX"></fa-icon>
             <h2>{{messages[selectedMessage]?.name}}</h2>
-            <!--agregar icono FaTimes-->
             <fa-icon (click)="exit.emit()" [icon]="faTimes" id="iconX"></fa-icon>
         </div>
-        <div id="list-messages">
+        <div *ngIf="(isMobile && activeListMobile) || !isMobile" id="list-messages">
+            <div *ngIf="isMobile && !messages.length">No hay mensajes</div>
             <div    class="list-item" 
                     *ngFor="let m of messages; let i = index" 
                     (click)="selectedMessage = i; setSeen()" 
@@ -24,11 +27,11 @@
                         </li>
                     </ul>
                     <div id="dot" [ngStyle]="{'visibility': m.seen ? 'hidden' : 'visible'}"></div>
-                    <fa-icon (click)="deleteMessage(m.id)" [icon]="faTimes" class="icon-list-item" *ngIf="i === mouseOver && m.seen"></fa-icon>
+                    <fa-icon (click)="deleteMessage(m.id)" [icon]="faTimes" class="icon-list-item" *ngIf="i === mouseOver && m.seen || isMobile"></fa-icon>
             </div>
         </div>
 
-        <div id="view-messages">
+        <div id="view-messages" *ngIf="(isMobile && !activeListMobile) || !isMobile">
      
            <ul *ngIf="messages[0]?.name">
                 <li>

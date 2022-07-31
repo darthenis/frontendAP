@@ -66,6 +66,7 @@ h2{
 
 #title-list{
     display: flex;
+    height: 40px;
     align-items: center;
     background-color: #273c75;
     color: white;
@@ -193,5 +194,45 @@ li{
 #spinnerLoading > fa-icon{
 
     font-size: 30px;
+
+}
+
+
+@media screen and (max-width: 500px) {
+
+    #container-white{
+
+        min-width: 0px;
+        width: 100%;
+
+    }
+
+    #list-messages{
+
+        grid-column: 1/-1;
+
+    }
+
+    #view-messages{
+
+        grid-column: 1/-1;
+    }
+
+    #title{
+
+        min-width: 0px;
+        grid-column: 1/-1;
+
+    }
+
+    #title-list{
+
+        grid-column: 1/-1;
+        display: flex;
+        justify-content: space-between;
+
+
+    }
+
 
 }

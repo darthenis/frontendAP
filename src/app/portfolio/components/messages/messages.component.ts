@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import {faTimes, faSpinner, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { Message } from './type';
@@ -13,11 +13,20 @@ export class MessagesComponent implements OnInit {
 
   @Output() exit = new EventEmitter();
   @Output() seen = new EventEmitter();
-  @Input() messages : Message[] = [] as Message[];;
+  @Input() messages : Message[] = [] as Message[];
 
+  @HostListener('window:resize', ['$event']) 
+    onResize(event : any) {
+
+      event.target.innerWidth <= 500 ? this.isMobile = true : this.isMobile = false;
+
+      console.log('isMobile: ', this.isMobile)
+
+    }
 
   faTimes = faTimes;
   faSpinner = faSpinner;
+  faArrowLeft = faArrowLeft;
 
   selectedMessage = 0;
 
@@ -25,12 +34,18 @@ export class MessagesComponent implements OnInit {
 
   isLoading$ = this.loadingService.isLoadingGet;
 
+  isMobile = false;
+
+  activeListMobile = true;
+
   constructor(private userDataService : UserDataService,
               private loadingService : LoadingService) { }
 
   ngOnInit(): void {
 
-    if(this.messages.length){
+    window.innerWidth <= 500 ? this.isMobile = true : this.isMobile = false;
+    
+    if(this.messages.length && !this.isMobile){
 
       if(this.messages[0]?.seen === false){
 
@@ -47,14 +62,14 @@ export class MessagesComponent implements OnInit {
     
         })
 
-    }
-
-
+      }
     }
 
   }
 
   setSeen(){
+
+    this.activeListMobile = false;
 
     if(this.messages[this.selectedMessage].seen === false){
 
@@ -144,6 +159,11 @@ export class MessagesComponent implements OnInit {
 
     })
 
+  }
+
+  backMenuListReponsive(){
+
+      this.activeListMobile = true;
 
   }
 

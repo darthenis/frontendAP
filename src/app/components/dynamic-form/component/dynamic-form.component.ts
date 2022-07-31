@@ -8,8 +8,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { education } from '../education/type';
-import { experience } from '../experience/type';
+import { education } from '../../../portfolio/components/education/type';
+import { experience } from '../../../portfolio/components/experience/type';
 import { FilesUpdate, FormControls, FormData } from './interfaces';
 import {
   faTimes,
@@ -17,9 +17,9 @@ import {
   faCamera,
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import { skill } from '../skills/type';
-import { project } from '../projects/type';
-import { AboutMe } from '../about-me/type';
+import { skill } from '../../../portfolio/components/skills/type';
+import { project } from '../../../portfolio/components/projects/type';
+import { AboutMe } from '../../../portfolio/components/about-me/type';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 import { LoadingService } from 'src/app/services/loading.service';
 

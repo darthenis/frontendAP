@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { FormData } from '../dynamic-form/interfaces';
+import { FormData } from '../interfaces';
 import { skill } from './type';
 
 @Component({

@@ -18,7 +18,7 @@
                         </header>
                         <div id="menu-responsive" [ngStyle]="{'animation-name': activeMenu ? 'translate' : activeMenu !== null ? 'reverse' : ''}">
                             <div id="container-messages" *ngIf="(logged$ | async).username"> 
-                                <fa-icon class="icon"  [icon]="faEnvelope" (click)="openMessages = true"></fa-icon>
+                                <fa-icon class="icon"  [icon]="faEnvelope" (click)="openMessagesWindow()"></fa-icon>
                                 <span *ngIf="newMessages !== 0" id="iconAlert">{{newMessages}}</span>
                             </div>
                             <button *ngIf="!(logged$ | async).id" (click)="login()">Login</button>

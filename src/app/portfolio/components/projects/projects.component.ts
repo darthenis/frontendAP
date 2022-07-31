@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { FormData } from '../dynamic-form/interfaces';
+import { FormData } from '../interfaces';
 import { project } from './type';
 
 @Component({

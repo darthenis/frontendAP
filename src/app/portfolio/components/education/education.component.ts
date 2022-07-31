@@ -1,6 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormData } from '../dynamic-form/interfaces';
+import { FormData } from '../interfaces';
 import { HttpClient} from '@angular/common/http'
 import { Subject } from 'rxjs/internal/Subject';
 import { education } from './type';

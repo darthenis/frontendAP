@@ -1,8 +1,8 @@
-<div class="container" [ngStyle]="{'display': display}">
+<div class="container">
     <app-header></app-header>
     <div class="layout" >
         <div class="container-app">
-            <app-about-me (userExist)="userExist()"  (onAddSection)="handleAddSection($event)"></app-about-me>
+            <app-about-me (onAddSection)="handleAddSection($event)"></app-about-me>
             <app-experience  [subAddSection]="subAddSection"></app-experience>
             <app-education  [subAddSection]="subAddSection"></app-education>
             <app-skills  [subAddSection]="subAddSection"></app-skills>

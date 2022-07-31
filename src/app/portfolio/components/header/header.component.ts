@@ -78,6 +78,14 @@ export class HeaderComponent implements OnInit {
     this.getScreenHeight = window.innerHeight;
   }
 
+  openMessagesWindow(){
+
+    this.openMessages = true;
+
+    this.activeMenu = false;
+
+  }
+
   isMobile(){
 
     if(this.getScreenWidth < 700){
